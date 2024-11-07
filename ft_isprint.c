@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:20:29 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/05 21:30:17 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/06 14:52:38 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 int	ft_isprint(int c)
 {
-	if (' ' <= c && c <= '~')
-		return (TRUE);
-	return (FALSE);
+	return (' ' <= c && c <= '~');
 }

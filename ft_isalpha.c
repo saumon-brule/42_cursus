@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:29:31 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/05 21:29:11 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/06 14:52:02 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 int	ft_isalpha(int c)
 {
-	if (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'))
-		return (TRUE);
-	return (FALSE);
+	return (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'));
 }

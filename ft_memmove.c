@@ -1,37 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 10:02:01 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/06 14:50:12 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/06 11:36:25 by ebini             #+#    #+#             */
+/*   Updated: 2024/11/06 15:17:09 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 
-	i = -1;
 	if (!dest && !src)
 		return (NULL);
-	while (++i < n)
-		((char *)dest)[i] = ((char *)src)[i];
+	if (dest > src)
+	{
+		while ((--n) + 1 >= (size_t)(1))
+			((char *)dest)[n] = ((char *)src)[n];
+	}
+	else
+	{
+		i = -1;
+		while (++i < n)
+			((char *)dest)[i] = ((char *)src)[i];
+	}
 	return (dest);
 }
 
 // int	main(void)
 // {
-// 	int	a[5] = {1, 2, 3, 4, 5};
-// 	int	b[5];
+// 	char	*src = "this is a good nyancat !\r\n";
+// 	char	dst1[0xF0];
+// 	char	dst2[0xF0];
+// 	int		size;
 
-// 	printf("%d:%d:%d:%d:%d\n", a[0], a[1], a[2], a[3], a[4]);
-// 	printf("%d:%d:%d:%d:%d\n", b[0], b[1], b[2], b[3], b[4]);
-// 	ft_memcpy((char *)0, (char *)0, 5 * 4);
-// 	printf("%d:%d:%d:%d:%d\n", a[0], a[1], a[2], a[3], a[4]);
-// 	printf("%d:%d:%d:%d:%d\n", b[0], b[1], b[2], b[3], b[4]);
+// 	size = strlen(src);
+// 	memmove(dst1, src, size);
+//     ft_memmove(dst2, src, size);
+// 	printf("%s\n", dst1);
+// 	printf("%s\n", dst2);
 // }

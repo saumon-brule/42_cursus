@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:14:35 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/05 21:28:53 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/06 14:51:49 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 int	ft_isascii(int c)
 {
-	if (0 <= c && c <= 127)
-		return (TRUE);
-	return (FALSE);
+	return (0 <= c && c <= 127);
 }
