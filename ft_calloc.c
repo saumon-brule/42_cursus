@@ -1,19 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 22:03:16 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/07 23:27:36 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/08 16:52:32 by ebini             #+#    #+#             */
+/*   Updated: 2024/11/09 14:26:18 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	while (n > 0)
-		((char *)s)[--n] = 0;
+	size_t	malloc_size;
+	char	*result;
+
+	malloc_size = nmemb * size;
+	result = malloc(malloc_size);
+	if (!result)
+		return (result);
+	while (malloc_size--)
+	{
+		result[malloc_size] = 0;
+	}
+	return (result);
 }
+
+// int	main(void)
+// {
+// 	int	*a;
+
+// 	a = ft_calloc(69000, 4);
+// 	printf("%p\n", a);
+// 	free(a);
+// 	a = calloc(69000, 4);
+// 	printf("%p\n", a);
+// 	free(a);
+// }

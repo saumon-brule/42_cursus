@@ -1,19 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 22:03:16 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/07 23:27:36 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/09 14:18:34 by ebini             #+#    #+#             */
+/*   Updated: 2024/11/09 14:42:16 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_strdup(const char *s)
 {
-	while (n > 0)
-		((char *)s)[--n] = 0;
+	int		i;
+	char	*o;
+
+	o = malloc(ft_strlen(s) + 1);
+	if (!o)
+		return (NULL);
+	i = -1;
+	while (s[++i])
+		o[i] = s[i];
+	o[i] = 0;
+	return (o);
 }
+
+// int	main(int ac, char **av)
+// {
+// 	char	*a;
+
+// 	if (ac > 1)
+// 	{
+// 		a = ft_strdup(av[1]);
+// 		printf("%s", a);
+// 		free(a);
+// 	}
+// }

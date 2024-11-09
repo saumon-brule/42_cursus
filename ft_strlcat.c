@@ -6,11 +6,11 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:12:15 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/07 12:27:30 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/07 12:35:28 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft.h"
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {

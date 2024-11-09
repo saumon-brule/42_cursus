@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/05 22:03:16 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/07 23:27:36 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/07 12:34:33 by ebini             #+#    #+#             */
+/*   Updated: 2024/11/07 13:34:39 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_tolower(int c)
 {
-	while (n > 0)
-		((char *)s)[--n] = 0;
+	if ('A' <= c && c <= 'Z')
+		return (c + 32);
+	return (c);
 }
+
+// #include <stdio.h>
+
+// int	main(int ac, char **av)
+// {
+// 	int	av_len;
+// 	int	i;
+
+// 	(void)ac;
+// 	av_len = ft_strlen(av[1]);
+// 	i = -1;
+// 	while (++i < av_len)
+// 		av[1][i] = ft_tolower(av[1][i]);
+// 	printf("%s\n", av[1]);
+// 	return (0);
+// }
