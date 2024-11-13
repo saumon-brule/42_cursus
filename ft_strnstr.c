@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 21:28:57 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/09 15:12:59 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/13 19:02:21 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ static size_t	min(size_t a, size_t b)
 	return (b);
 }
 
-/*
-Boyer Moore algorithm (not horsepool version meaning, the position of a character
-in little is recalculated each time)
-*/
+/**Boyer Moore algorithm (not horsepool version meaning, the position of a
+ * character in little is recalculated each time)*/
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	lil_size;
@@ -56,6 +54,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
+
 // int	main(int ac, char **cav)
 // {
 // 	char *result;

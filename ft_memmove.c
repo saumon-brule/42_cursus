@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 11:36:25 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/07 23:36:43 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/13 19:10:57 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	else
 	{
-		i = -1;
-		while (++i < n)
+		i = 0;
+		while (i < n)
+		{
 			((char *)dest)[i] = ((char *)src)[i];
+			i++;
+		}
 	}
 	return (dest);
 }

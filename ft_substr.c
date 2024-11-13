@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:44:25 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/09 15:21:19 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/13 19:03:47 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,12 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub_s = malloc(sub_s_size + 1);
 	if (!sub_s)
 		return (NULL);
-	i = -1;
-	while (++i < sub_s_size)
+	i = 0;
+	while (i < sub_s_size)
+	{
 		sub_s[i] = s[start + i];
+		i++;
+	}
 	sub_s[i] = 0;
 	return (sub_s);
 }

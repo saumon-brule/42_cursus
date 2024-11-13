@@ -1,6 +1,6 @@
 NAME = libft.a
 
-FILE =	ft_isalnum.c \
+FILES =	ft_isalnum.c \
 	ft_isalpha.c \
 	ft_isdigit.c \
 	ft_isascii.c \
@@ -25,21 +25,33 @@ FILE =	ft_isalnum.c \
 	ft_strdup.c \
 	ft_substr.c \
 	ft_strjoin.c \
+	ft_strtrim.c \
+	ft_split.c \
+	ft_itoa.c \
+	ft_strmapi.c \
+	ft_striteri.c \
+	ft_putchar_fd.c \
+	ft_putstr_fd.c \
+	ft_putendl_fd.c \
+	ft_putnbr_fd.c \
 
-OBJ = $(FILE:.c=.o)
+BONUS_FILES = none
+
+OBJS = $(FILES:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 all:	$(NAME)
 
-$(NAME):	$(OBJ)
-	ar rcs $(NAME) $(OBJ)
+$(NAME):	$(FILES)
+	make $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
-$(OBJ):	libft.h Makefile
+$(OBJS):	libft.h Makefile
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)

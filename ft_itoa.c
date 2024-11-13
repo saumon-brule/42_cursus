@@ -1,43 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 14:18:34 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/13 19:04:15 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/13 03:46:32 by ebini             #+#    #+#             */
+/*   Updated: 2024/11/13 04:18:38 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-char	*ft_strdup(const char *s)
+static size_t	int_size(int x)
 {
-	int		i;
-	char	*result;
+	size_t	size;
 
-	result = malloc(ft_strlen(s) + 1);
-	if (!result)
-		return (NULL);
-	i = 0;
-	while (s[i])
+	size = x <= 0;
+	while (x)
 	{
-		result[i] = s[i];
-		i++;
+		size++;
+		x /= 10;
 	}
-	result[i] = 0;
-	return (result);
+	return (size);
+}
+
+char	*ft_itoa(int n)
+{
+	size_t	str_len;
+	char	*str;
+
+	str_len = int_size(n);
+	str = malloc(str_len + 1);
+	if (!str)
+		return (NULL);
+	str[str_len] = '\0';
+	if (n == 0)
+		str[0] = '0';
+	if (n < 0)
+	{
+		str[0] = '-';
+		str[--str_len] = '0' - n % 10;
+		n /= 10;
+		n = -n;
+	}
+	while (n)
+	{
+		str[--str_len] = '0' + n % 10;
+		n /= 10;
+	}
+	return (str);
 }
 
 // int	main(int ac, char **av)
 // {
-// 	char	*a;
-
 // 	if (ac > 1)
 // 	{
-// 		a = ft_strdup(av[1]);
-// 		printf("%s", a);
-// 		free(a);
+// 		printf("%d => %s\n", ft_atoi(av[1]), ft_itoa(ft_atoi(av[1])));
 // 	}
 // }

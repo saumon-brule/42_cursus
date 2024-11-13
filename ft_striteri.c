@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 21:11:57 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/13 19:03:08 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/13 04:44:26 by ebini             #+#    #+#             */
+/*   Updated: 2024/11/13 04:53:04 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
-	while (i < n)
+	while (s[i])
 	{
-		if (((unsigned char *)s1)[i] != ((unsigned char *)s2)[i])
-			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
+		(*f)(i, s + i);
 		i++;
 	}
-	return (0);
 }
+
+// void	test(unsigned int i, char *c)
+// {
+// 	(void)i;
+// 	*c = 'm' - (*c - 'n');
+// }
+
+// int	main(int ac, char **av)
+// {
+// 	if (ac > 1)
+// 	{
+// 		ft_striteri(av[1], &test);
+// 		printf("%s\n", av[1]);
+// 	}
+// }

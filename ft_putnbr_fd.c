@@ -1,42 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 15:23:41 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/12 17:47:05 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/13 15:26:54 by ebini             #+#    #+#             */
+/*   Updated: 2024/11/13 18:26:47 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+static void	putchar_fd(char c, int fd)
 {
-	char	*s3;
-	size_t	i;
+	write(fd, &c, 1);
+}
 
-	s3 = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!s3)
-		return (NULL);
-	i = 0;
-	while (*s1)
-		s3[i++] = *s1++;
-	while (*s2)
-		s3[i++] = *s2++;
-	s3[i] = '\0';
-	return (s3);
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		if (n > -10)
+			putchar_fd('0' - n, fd);
+		else
+		{
+			ft_putnbr_fd(-(n / 10), fd);
+			putchar_fd('0' - (n % 10), fd);
+		}
+	}
+	else
+	{
+		if (n < 10)
+			putchar_fd('0' + n, fd);
+		else
+		{
+			ft_putnbr_fd(n / 10, fd);
+			putchar_fd('0' + (n % 10), fd);
+		}
+	}
 }
 
 // int	main(int ac, char **av)
 // {
-// 	char	*a;
+// 	int	fd;
 
 // 	if (ac > 2)
 // 	{
-// 		a = ft_strjoin(av[1], av[2]);
-// 		printf("%s\n", a);
-// 		free(a);
+// 		fd = open(av[2], O_WRONLY);
+// 		ft_putnbr_fd(ft_atoi(av[1]), fd);
+// 		close(fd);
 // 	}
 // }

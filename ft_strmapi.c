@@ -1,42 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 15:23:41 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/12 17:47:05 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/13 04:28:32 by ebini             #+#    #+#             */
+/*   Updated: 2024/11/13 19:01:27 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*s3;
-	size_t	i;
+	unsigned int	i;
+	char			*mapped_str;
 
-	s3 = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!s3)
+	mapped_str = malloc(ft_strlen(s) + 1);
+	if (!mapped_str)
 		return (NULL);
 	i = 0;
-	while (*s1)
-		s3[i++] = *s1++;
-	while (*s2)
-		s3[i++] = *s2++;
-	s3[i] = '\0';
-	return (s3);
+	while (s[i])
+	{
+		mapped_str[i] = (*f)(i, s[i]);
+		i++;
+	}
+	mapped_str[i] = '\0';
+	return (mapped_str);
 }
+
+// char	test(unsigned int i, char c)
+// {
+// 	return (c + 1 - i + i);
+// }
 
 // int	main(int ac, char **av)
 // {
-// 	char	*a;
+// 	char	*result;
 
-// 	if (ac > 2)
+// 	if (ac > 1)
 // 	{
-// 		a = ft_strjoin(av[1], av[2]);
-// 		printf("%s\n", a);
-// 		free(a);
+// 		result = ft_strmapi(av[1], &test);
+// 		printf("\"%s\" => \"%s\"", av[1], result);
+// 		free(result);
 // 	}
 // }
