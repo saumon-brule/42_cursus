@@ -1,5 +1,5 @@
 NAME = libft.a
-BUILD_FOLDER = .
+BUILD_FOLDER = .build
 GLOBAL_DEPS = libft.h \
 
 FILES =	ft_isalpha.c \
@@ -75,8 +75,7 @@ bonus: 	$(BONUS_FILES)
 	@$(MAKE) FILES="$(FILES) $(BONUS_FILES)"
 
 clean:
-	# rm -rf $(BUILD_FOLDER)
-	rm -rf *.
+	rm -rf $(BUILD_FOLDER)
 
 fclean: clean
 	rm -f $(NAME)

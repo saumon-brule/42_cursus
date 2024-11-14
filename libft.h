@@ -6,16 +6,12 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/14 22:51:45 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 23:50:59 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # include <stddef.h>
-//temp
-# include <fcntl.h>
-# include <stdio.h>
-# include <string.h>
 
 # define TRUE 1
 # define FALSE 0
@@ -55,6 +51,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
+/* BONUS PART */
 typedef struct s_list
 {
 	void			*content;
