@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 15:23:41 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/14 07:44:26 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/13 20:16:12 by ebini             #+#    #+#             */
+/*   Updated: 2024/11/14 07:34:48 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 #include <stdlib.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+t_list	*ft_lstnew(void *content)
 {
-	char	*s3;
-	size_t	i;
+	t_list	*new_lst;
 
-	s3 = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!s3)
+	new_lst = malloc(sizeof (t_list));
+	if (!new_lst)
 		return (NULL);
-	i = 0;
-	while (*s1)
-		s3[i++] = *s1++;
-	while (*s2)
-		s3[i++] = *s2++;
-	s3[i] = '\0';
-	return (s3);
+	new_lst->content = content;
+	new_lst->next = NULL;
+	return (new_lst);
 }
 
 // int	main(int ac, char **av)
 // {
-// 	char	*a;
+// 	t_list	*lst;
 
-// 	if (ac > 2)
+// 	if (ac > 1)
 // 	{
-// 		a = ft_strjoin(av[1], av[2]);
-// 		printf("%s\n", a);
-// 		free(a);
+// 		lst = ft_lstnew(av[1]);
+// 		printf("%s\n", (char *)(lst->content));
 // 	}
 // }

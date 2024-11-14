@@ -6,14 +6,13 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 21:28:57 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/13 19:02:21 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 07:53:32 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
-#include <stdio.h>
 
-static char	*ft_strnrchr(const char *s, int c, size_t n)
+static char	*strnrchr(const char *s, int c, size_t n)
 {
 	while ((int)(--n) > -1)
 		if (s[n] == (char)c)
@@ -44,7 +43,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	{
 		if (!ft_strncmp((char *)big, (char *)little, lil_size))
 			return ((char *)big);
-		last_position = ft_strnrchr(little, big[lil_size - 1], lil_size - 1);
+		last_position = strnrchr(little, big[lil_size - 1], lil_size - 1);
 		if (!last_position)
 			offset = lil_size;
 		else
@@ -58,7 +57,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 // int	main(int ac, char **cav)
 // {
 // 	char *result;
-// 	char *av[] = {"tits", "", "coucou", "-11974"};
+// 	char *av[] = {"abcdef", "abcdefghijklmnopm", "mnopm", "-11974"};
 
 // 	(void)cav;
 // 	if (ac > 2)

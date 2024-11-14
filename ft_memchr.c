@@ -6,11 +6,11 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 21:02:43 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/13 19:02:53 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 07:35:09 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include <stddef.h>
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

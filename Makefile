@@ -1,7 +1,9 @@
 NAME = libft.a
+BUILD_FOLDER = .
+GLOBAL_DEPS = libft.h \
 
-FILES =	ft_isalnum.c \
-	ft_isalpha.c \
+FILES =	ft_isalpha.c \
+	ft_isalnum.c \
 	ft_isdigit.c \
 	ft_isascii.c \
 	ft_isprint.c \
@@ -35,27 +37,49 @@ FILES =	ft_isalnum.c \
 	ft_putendl_fd.c \
 	ft_putnbr_fd.c \
 
-BONUS_FILES = none
+OBJS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.o))
+DEPS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.d))
 
-OBJS = $(FILES:.c=.o)
+BONUS_FILES = ft_lstnew_bonus.c \
+	ft_lstadd_front_bonus.c \
+	ft_lstsize_bonus.c \
+	ft_lstlast_bonus.c \
+	ft_lstadd_back_bonus.c \
+	ft_lstiter_bonus.c \
+	ft_lstdelone_bonus.c \
+	ft_lstclear_bonus.c \
+	ft_lstmap_bonus.c \
+
+BONUS_OBJS = $(addprefix $(BUILD_FOLDER)/, $(BONUS_FILES:.c=.o))
+BONUS_DEPS = $(addprefix $(BUILD_FOLDER)/, $(BONUS_FILES:.c=.d))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -MD -MP
+
+
+.PHONY: all bonus clean fclean re
 
 all:	$(NAME)
 
-$(NAME):	$(FILES)
-	make $(OBJS)
+-include $(DEPS)
+
+$(NAME):	$(OBJS) $(GLOBAL_DEPS)
+	ar d $(NAME) $(BONUS_OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-$(OBJS):	libft.h Makefile
+$(BUILD_FOLDER)/%.o: %.c
+	@mkdir -p $(BUILD_FOLDER)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+bonus: 	$(BONUS_FILES)
+	@$(MAKE) FILES="$(FILES) $(BONUS_FILES)"
 
 clean:
-	rm -f $(OBJS)
+	# rm -rf $(BUILD_FOLDER)
+	rm -rf *.
 
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean all
-
-.PHONY: all compile clean fclean
+re: fclean 
+	$(MAKE) all

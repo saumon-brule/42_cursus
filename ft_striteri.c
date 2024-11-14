@@ -6,11 +6,9 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 04:44:26 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/13 04:53:04 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 07:44:05 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "./libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {

@@ -6,11 +6,12 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:26:54 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/13 18:26:47 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 07:38:59 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
+#include <unistd.h>
 
 static void	putchar_fd(char c, int fd)
 {

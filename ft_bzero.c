@@ -6,11 +6,11 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 22:03:16 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/07 23:27:36 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 07:09:29 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include <stddef.h>
 
 void	ft_bzero(void *s, size_t n)
 {

@@ -6,11 +6,9 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:29:31 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/06 14:52:02 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 07:09:56 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "./libft.h"
 
 int	ft_isalpha(int c)
 {

@@ -6,11 +6,9 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:20:29 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/06 14:52:38 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 07:10:10 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "./libft.h"
 
 int	ft_isprint(int c)
 {

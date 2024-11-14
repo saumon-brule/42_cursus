@@ -6,11 +6,11 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 21:36:46 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/05 21:51:21 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 23:31:43 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include <stddef.h>
 
 size_t	ft_strlen(const char *s)
 {

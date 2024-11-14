@@ -6,11 +6,11 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 16:52:32 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/13 17:23:09 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 07:12:03 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include <stdlib.h>
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

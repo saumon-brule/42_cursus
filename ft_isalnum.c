@@ -6,11 +6,9 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 14:11:44 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/06 14:52:17 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 07:09:46 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "./libft.h"
 
 int	ft_isalnum(int c)
 {

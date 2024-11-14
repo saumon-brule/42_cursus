@@ -6,11 +6,11 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 03:46:32 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/13 04:18:38 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 07:30:35 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include <stdlib.h>
 
 static size_t	int_size(int x)
 {

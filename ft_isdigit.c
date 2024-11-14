@@ -6,11 +6,9 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 13:11:17 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/06 14:51:25 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 07:10:06 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "./libft.h"
 
 int	ft_isdigit(int c)
 {

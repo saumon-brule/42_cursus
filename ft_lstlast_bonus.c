@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 15:23:41 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/14 07:44:26 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/13 21:08:18 by ebini             #+#    #+#             */
+/*   Updated: 2024/11/14 07:33:36 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
-#include <stdlib.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+t_list	*ft_lstlast(t_list *lst)
 {
-	char	*s3;
-	size_t	i;
-
-	s3 = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!s3)
+	if (!lst)
 		return (NULL);
-	i = 0;
-	while (*s1)
-		s3[i++] = *s1++;
-	while (*s2)
-		s3[i++] = *s2++;
-	s3[i] = '\0';
-	return (s3);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
 
 // int	main(int ac, char **av)
 // {
-// 	char	*a;
+// 	t_list	*lst;
+// 	int		i;
 
-// 	if (ac > 2)
+// 	if (ac > 1)
 // 	{
-// 		a = ft_strjoin(av[1], av[2]);
-// 		printf("%s\n", a);
-// 		free(a);
+// 		i = ft_strlen(av[1]);
+// 		printf("strlen : %d\n", i);
+// 		lst = ft_lstnew(&i);
+// 		while (i >= 0)
+// 			ft_lstadd_front(&lst, ft_lstnew(&av[1][i--]));
+// 		printf("last : %d\n", *(int *)(ft_lstlast(lst)->content));
 // 	}
 // }

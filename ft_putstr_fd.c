@@ -6,11 +6,12 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 04:53:48 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/13 16:42:25 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 07:39:37 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
+#include <unistd.h>
 
 void	ft_putstr_fd(char *s, int fd)
 {

@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 15:23:41 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/14 07:44:26 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/13 23:32:20 by ebini             #+#    #+#             */
+/*   Updated: 2024/11/14 07:11:53 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
-#include <stdlib.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	char	*s3;
-	size_t	i;
-
-	s3 = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!s3)
-		return (NULL);
-	i = 0;
-	while (*s1)
-		s3[i++] = *s1++;
-	while (*s2)
-		s3[i++] = *s2++;
-	s3[i] = '\0';
-	return (s3);
+	if (!new)
+		return ;
+	if (!(*lst))
+	{
+		*lst = new;
+		return ;
+	}
+	while ((*lst)->next)
+		(lst) = &((*lst)->next);
+	(*lst)->next = new;
 }
 
 // int	main(int ac, char **av)
 // {
-// 	char	*a;
+// 	t_list	*lst;
 
-// 	if (ac > 2)
+// 	if (ac > 1)
 // 	{
-// 		a = ft_strjoin(av[1], av[2]);
-// 		printf("%s\n", a);
-// 		free(a);
+// 		lst = ft_lstnew("FIRST");
+// 		ft_lstadd_back(&lst, ft_lstnew(av[1]));
+// 		printf("\"%s\" > ", (char *)(lst->content));
+// 		printf("\"%s\"\n", (char *)(lst->next->content));
+// 		free(lst->next);
+// 		free(lst);
 // 	}
 // }

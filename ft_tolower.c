@@ -6,11 +6,9 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:34:33 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/07 13:34:39 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 04:10:16 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "./libft.h"
 
 int	ft_tolower(int c)
 {

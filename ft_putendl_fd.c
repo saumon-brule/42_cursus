@@ -6,11 +6,12 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:19:33 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/13 16:42:41 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/14 07:50:56 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
+#include <unistd.h>
 
 void	ft_putendl_fd(char *s, int fd)
 {
