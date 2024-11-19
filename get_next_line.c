@@ -6,14 +6,14 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 03:50:32 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/18 23:53:34 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/19 01:26:40 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./get_next_line.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdio.h>
 
 /**
  * This function will concatenate 2 strings and set the result
@@ -46,7 +46,7 @@ int	strjoin_nl(char **s1, t_reader *reader)
 	if (*s1)
 		free(*s1);
 	*s1 = result;
-	return (result[pre_len + i - 1] == '\n');
+	return (!(result[pre_len + i - 1] == '\n'));
 }
 
 int	secure_eof_read(int fd, t_reader *reader, size_t buffer_size, char *result)
@@ -55,38 +55,28 @@ int	secure_eof_read(int fd, t_reader *reader, size_t buffer_size, char *result)
 	if (reader->to_read < 0 || (reader->to_read == 0 && !result))
 		return (-1);
 	reader->pos = 0;
-	return (0);
+	return (reader->to_read);
 }
 
 char	*get_next_line(int fd)
 {
 	static t_reader	reader;
 	char			*result;
-	int				join_value;
+	int				return_value;
 
 	result = NULL;
 	while (1)
 	{
 		if (reader.pos < reader.to_read)
-		{
-			join_value = strjoin_nl(&result, &reader);
-			if (join_value < 0)
-			{
-				free(result);
-				return (NULL);
-			}
-			if (join_value)
-				return (result);
-		}
+			return_value = strjoin_nl(&result, &reader);
 		else
+			return_value = secure_eof_read(fd, &reader, BUFFER_SIZE, result);
+		if (return_value < 0)
 		{
-			if (secure_eof_read(fd, &reader, BUFFER_SIZE, result) < 0)
-			{
-				free(result);
-				return (NULL);
-			}
-			else if (reader.to_read == 0 && *result != '\0')
-				return (result);
+			free(result);
+			return (NULL);
 		}
+		if (!return_value)
+			return (result);
 	}
 }
