@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 03:51:36 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/18 23:52:20 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/19 02:07:13 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_reader
 char		*get_next_line(int fd);
 size_t		ft_strlen(const char *s);
 size_t		ft_strnlen_nl(const char *s, size_t n);
-void		*ft_calloc(size_t nmemb, size_t size);
 
 # define GET_NEXT_LINE_H
 #endif
