@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 03:50:32 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/21 19:36:27 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/11/21 19:35:20 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./get_next_line.h"
-#include <stdlib.h>
+#include "./get_next_line_bonus.h"
 #include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
+/**
+ * This function will concatenate 2 strings and set the result
+ * pointer to this new allocated string and then free s1.
+ * It will return the length of s2 that was concatenated or -1 if
+ * allocation fails.
+ */
 int	strjoin_nl(char **s1, t_reader *reader)
 {
 	size_t	i;
@@ -42,7 +49,7 @@ int	strjoin_nl(char **s1, t_reader *reader)
 	return (!(result[pre_len + i - 1] == '\n'));
 }
 
-int	secure_eof_read(int fd, t_reader *reader, size_t buffer_size, char *result)
+int	secure_read(int fd, t_reader *reader, size_t buffer_size, char *result)
 {
 	reader->to_read = read(fd, reader->buffer, buffer_size);
 	if (reader->to_read < 0 || (reader->to_read == 0 && !result))
@@ -53,17 +60,19 @@ int	secure_eof_read(int fd, t_reader *reader, size_t buffer_size, char *result)
 
 char	*get_next_line(int fd)
 {
-	static t_reader	reader;
+	static t_reader	reader[FOPEN_MAX];
 	char			*result;
 	int				return_value;
 
+	if (fd >= FOPEN_MAX)
+		return (NULL);
 	result = NULL;
 	while (1)
 	{
-		if (reader.pos < reader.to_read)
-			return_value = strjoin_nl(&result, &reader);
+		if (reader[fd].pos < reader[fd].to_read)
+			return_value = strjoin_nl(&result, &reader[fd]);
 		else
-			return_value = secure_eof_read(fd, &reader, BUFFER_SIZE, result);
+			return_value = secure_read(fd, &reader[fd], BUFFER_SIZE, result);
 		if (return_value < 0)
 		{
 			free(result);

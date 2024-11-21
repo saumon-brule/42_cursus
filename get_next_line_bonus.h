@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 15:49:14 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/20 16:39:03 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/15 03:51:36 by ebini             #+#    #+#             */
+/*   Updated: 2024/11/20 20:34:55 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-size_t	ft_strlen(const char *s)
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4096
+# endif
+# include <stddef.h>
+
+typedef struct s_reader
 {
-	size_t	i;
+	char	(buffer[BUFFER_SIZE]);
+	int		to_read;
+	int		pos;
+}			t_reader;
 
-	if (!s)
-		return ((size_t)0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
+char		*get_next_line(int fd);
+size_t		ft_strlen(const char *s);
+size_t		ft_strnlen_nl(const char *s, size_t n);
 
-size_t	ft_strnlen_nl(const char *s, size_t n)
-{
-	size_t	i;
-
-	if (!s)
-		return ((size_t)0);
-	i = 0;
-	while (i < n && s[i] != '\n')
-		i++;
-	i += i < n && s[i] == '\n';
-	return (i);
-}
+#endif
