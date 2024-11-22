@@ -51,7 +51,6 @@ BONUS_FILES = ft_lstnew_bonus.c \
 	ft_lstmap_bonus.c \
 
 BONUS_OBJS = $(addprefix $(BUILD_FOLDER)/, $(BONUS_FILES:.c=.o))
-BONUS_DEPS = $(addprefix $(BUILD_FOLDER)/, $(BONUS_FILES:.c=.d))
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -MD -MP
