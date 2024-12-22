@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:01:46 by ebini             #+#    #+#             */
-/*   Updated: 2024/12/18 23:38:42 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/12/22 16:44:11 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	print_text(const char **format)
 	return (writed_len);
 }
 
-int	print_flag(const char **format, va_list args)
+size_t	print_flag(const char **format, va_list args)
 {
 	size_t	flag_value;
 

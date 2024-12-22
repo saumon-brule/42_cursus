@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 00:34:32 by ebini             #+#    #+#             */
-/*   Updated: 2024/12/22 16:04:10 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/12/22 16:42:33 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <unistd.h>
 #include "utils.h"
 
-int	print_unsigned(unsigned int n)
+size_t	print_unsigned(unsigned int n)
 {
 	char	c;
-	ssize_t	child_len;
+	size_t	child_len;
 
 	c = '0' + n % 10;
 	n /= 10;
@@ -29,7 +29,7 @@ int	print_unsigned(unsigned int n)
 	return (child_len);
 }
 
-int	print_u(va_list value)
+size_t	print_u(va_list value)
 {
 	return (print_unsigned(va_arg(value, unsigned)));
 }

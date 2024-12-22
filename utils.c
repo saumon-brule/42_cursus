@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:06:12 by ebini             #+#    #+#             */
-/*   Updated: 2024/12/22 15:22:23 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/12/22 16:40:50 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ size_t	len_flag(const char *s)
 	return (i);
 }
 
-int	print_base(unsigned long long n, char *base, int base_len)
+size_t	print_base(unsigned long long n, char *base, int base_len)
 {
 	char	c;
-	int		writed_size;
+	size_t	writed_size;
 
 	c = n % base_len;
 	n /= base_len;

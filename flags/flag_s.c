@@ -6,14 +6,14 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 19:44:58 by ebini             #+#    #+#             */
-/*   Updated: 2024/12/22 14:58:50 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/12/22 16:41:45 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "utils.h"
 
-ssize_t	print_s(va_list value)
+size_t	print_s(va_list value)
 {
 	char	*s;
 	ssize_t	write_size;

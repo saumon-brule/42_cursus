@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 23:24:07 by ebini             #+#    #+#             */
-/*   Updated: 2024/12/22 14:55:20 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/12/22 16:41:25 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <stdint.h>
 
-int	print_p(va_list value)
+size_t	print_p(va_list value)
 {
 	uintptr_t	p;
 	ssize_t		write_size;

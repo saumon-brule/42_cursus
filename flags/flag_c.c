@@ -6,14 +6,14 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 19:21:47 by ebini             #+#    #+#             */
-/*   Updated: 2024/12/18 22:54:00 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/12/22 16:20:05 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdarg.h>
 
-ssize_t	print_c(va_list value)
+size_t	print_c(va_list value)
 {
 	char	c;
 	int		write_size;

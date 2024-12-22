@@ -6,13 +6,13 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 23:24:07 by ebini             #+#    #+#             */
-/*   Updated: 2024/12/22 15:50:23 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/12/22 16:19:53 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int	print_low_x(va_list value)
+size_t	print_low_x(va_list value)
 {
 	return (print_base(va_arg(value, unsigned), "0123456789abcdef", 16));
 }

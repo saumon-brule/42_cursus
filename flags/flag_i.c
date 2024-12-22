@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 00:16:58 by ebini             #+#    #+#             */
-/*   Updated: 2024/12/22 15:18:10 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/12/22 16:25:02 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,21 @@ static int	handle_n(int n, char *c, ssize_t *write_len)
 	}
 }
 
-ssize_t	print_int(int n)
+size_t	print_int(int n)
 {
 	char	c;
 	ssize_t	printed_len;
 	ssize_t	write_size;
 
-	n = handle_n(n, &c, &write_size);
-	write_size = write_size == 1;
-	printed_len = write_size;
+	n = handle_n(n, &c, &printed_len);
+	printed_len = printed_len == 1;
 	if (n)
 		printed_len += print_int(n);
-	write_size = write(1, &c, 1);
-	if (write_size < 1)
-		printed_len = 0;
+	write_size = write(1, &c, 1) > 0;
 	return (printed_len + write_size);
 }
 
-ssize_t	print_i(va_list value)
+size_t	print_i(va_list value)
 {
 	return (print_int(va_arg(value, int)));
 }
