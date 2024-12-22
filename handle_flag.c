@@ -6,17 +6,14 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:43:28 by ebini             #+#    #+#             */
-/*   Updated: 2024/12/05 19:00:31 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/12/18 23:02:20 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include <unistd.h>
 #include "flags.h"
 
-#include <stdio.h>
-
-int	handle_flag(const char *format, va_list args)
+ssize_t	handle_flag(const char *format, va_list args)
 {
 	if (*format == 'c')
 		return (print_c(args));

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 00:34:32 by ebini             #+#    #+#             */
-/*   Updated: 2024/12/04 01:48:15 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/12/22 16:04:10 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@
 int	print_unsigned(unsigned int n)
 {
 	char	c;
-	int		child_len;
+	ssize_t	child_len;
 
 	c = '0' + n % 10;
 	n /= 10;
-	child_len = 1;
 	if (n)
-		child_len += print_unsigned(n);
-	write(1, &c, 1);
+		child_len = print_unsigned(n);
+	else
+		child_len = 0;
+	child_len += write(1, &c, 1) > 0;
 	return (child_len);
 }
 

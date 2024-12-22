@@ -6,24 +6,28 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 19:44:58 by ebini             #+#    #+#             */
-/*   Updated: 2024/12/05 18:19:47 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2024/12/22 14:58:50 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdarg.h>
 #include "utils.h"
-#include <stdio.h>
 
-int	print_s(va_list value)
+ssize_t	print_s(va_list value)
 {
 	char	*s;
-	size_t	len;
+	ssize_t	write_size;
 
 	s = va_arg(value, char *);
 	if (!s)
-		return (write(1, "(null)", 6));
-	len = ft_strlen(s);
-	write(1, s, len);
-	return (len);
+	{
+		write_size = write(1, "(null)", 6);
+		if (write_size < 0)
+			return (0);
+		return (write_size);
+	}
+	write_size = write(1, s, ft_strlen(s));
+	if (write_size < 0)
+		return (0);
+	return (write_size);
 }
