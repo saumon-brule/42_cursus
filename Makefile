@@ -16,9 +16,6 @@ FILES =	ft_printf.c \
 OBJS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.o))
 DEPS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.d))
 
-BONUS_FILES = 
-BONUS_OBJS = $(addprefix $(BUILD_FOLDER)/, $(BONUS_FILES:.c=.o))
-
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(INCLUDE_FOLDER)
 
@@ -28,7 +25,7 @@ TEST = test.out
 TEST_FLAGS = -Wall -Wextra -Werror -g3 -I$(INCLUDE_FOLDER)
 TEST_MAIN = main.test.c
 
-.PHONY: all bonus clean fclean re test
+.PHONY: all clean fclean re test compile
 
 all:	$(NAME)
 
@@ -36,12 +33,12 @@ $(NAME):	$(OBJS)
 	ar d $(NAME) $(BONUS_OBJS)
 	ar rcs $(NAME) $(OBJS)
 
+compile:
+	$(MAKE) $(OBJS)
+
 $(BUILD_FOLDER)/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
-
-bonus: 	$(BONUS_FILES)
-	@$(MAKE) FILES="$(FILES) $(BONUS_FILES)"
 
 clean:
 	rm -rf $(BUILD_FOLDER)
