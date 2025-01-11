@@ -6,11 +6,12 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 22:15:30 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/07 17:30:15 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/11 17:16:28 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
 static size_t	count_split_len(char const *s, char c)
 {

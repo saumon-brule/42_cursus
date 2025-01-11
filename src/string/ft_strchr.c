@@ -6,11 +6,12 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:02:16 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/07 17:41:19 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/11 17:16:46 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -23,21 +24,13 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-// #include <stdio.h>
+char	*ft_strrchr(const char *s, int c)
+{
+	int	i;
 
-// int	main(int ac, char **av)
-// {
-// 	char	*result;
-
-// 	if (ac >= 3)
-// 		result = ft_strchr(av[1], av[2][0]);
-// 	else
-// 	{
-// 		printf("Not enough parameters\n");
-// 		return (1);
-// 	}
-// 	if (result)
-// 		printf("%s\n", result);
-// 	else
-// 		printf("no \'%c\' in \"%s\"\n", av[2][0], av[1]);
-// }
+	i = ft_strlen(s) + 1;
+	while (--i > -1)
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+	return (NULL);
+}

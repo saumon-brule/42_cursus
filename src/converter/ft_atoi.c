@@ -6,9 +6,11 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:41:15 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/07 18:26:40 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/11 16:21:30 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_atoi(const char *nptr)
 {

@@ -6,11 +6,11 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 21:28:57 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/14 07:53:32 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/11 16:20:59 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include "libft.h"
 
 static char	*strnrchr(const char *s, int c, size_t n)
 {
@@ -18,13 +18,6 @@ static char	*strnrchr(const char *s, int c, size_t n)
 		if (s[n] == (char)c)
 			return ((char *)s + n);
 	return (NULL);
-}
-
-static size_t	min(size_t a, size_t b)
-{
-	if (a < b)
-		return (a);
-	return (b);
 }
 
 /**Boyer Moore algorithm (not horsepool version meaning, the position of a
@@ -53,19 +46,3 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
-
-// int	main(int ac, char **cav)
-// {
-// 	char *result;
-// 	char *av[] = {"abcdef", "abcdefghijklmnopm", "mnopm", "-11974"};
-
-// 	(void)cav;
-// 	if (ac > 2)
-// 	{
-// 		result = ft_strnstr(av[1], av[2], ft_atoi(av[3]));
-// 		if (result)
-// 			printf("\"%p\" is in \"%p\" : \"%p\"\n", av[2], av[1], result);
-// 		else
-// 			printf("\"%s\" is not in \"%s\"\n", av[2], av[1]);
-// 	}
-// }

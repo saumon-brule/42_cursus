@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/08 13:38:10 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/11 17:57:32 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,45 @@ t_list		*ft_lstnew(void *content);
  * @param lst A pointer on the first element of a list
  * @return The length of the list starting by lst.
  */
-size_t	ft_lstsize(t_list *lst);
+size_t		ft_lstsize(t_list *lst);
+
+/*************************************************/
+/*                     MATH                      */
+/*************************************************/
+
+// "Maths" is maybe a bit presomptuous
+
+/**
+ * @brief Give you the biggest number of an array arr of n element.
+ * @param arr An array of int
+ * @param n The length of the array
+ * @return The biggest int of the array.
+ */
+int			arrmax(int *arr, size_t n);
+
+/**
+ * @brief Give you the smallest number of an array arr of n element.
+ * @param arr An array of int
+ * @param n The length of the array
+ * @return The smallest int of the array.
+ */
+int			arrmin(int *arr, size_t n);
+
+/**
+ * @brief Returns the biggest number between a and b.
+ * @param a An int
+ * @param b An other int
+ * @return The biggest int.
+ */
+int			max(int a, int b);
+
+/**
+ * @brief returns the smallest number between a and b
+ * @param a an int
+ * @param b an other int
+ * @return the smallest int
+ */
+int			min(int a, int b);
 
 /*************************************************/
 /*                    MEMORY                     */
@@ -174,7 +212,7 @@ void		ft_bzero(void *s, size_t n);
  * @param size The size of the elements
  * @return A void pointer on the first element allocated in the memory.
  */
-void	*ft_calloc(size_t nmemb, size_t size);
+void		*ft_calloc(size_t nmemb, size_t size);
 
 /**		
  * @brief Look in the memory starting at the adress pointed by s of size n for
@@ -185,7 +223,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
  * @return A void pointer on the first byte corresponding to c (or NULL if
  * nothing was found).
  */
-void	*ft_memchr(const void *s, int c, size_t n);
+void		*ft_memchr(const void *s, int c, size_t n);
 
 /**		
  * @brief Gives the difference between 2 memory areas
@@ -195,7 +233,7 @@ void	*ft_memchr(const void *s, int c, size_t n);
  * @return The difference between the first different bytes between in s1 and
  * s2 or 0 if the n bytes of s1 and s2 are identicals.
  */
-int	ft_memcmp(const void *s1, const void *s2, size_t n);
+int			ft_memcmp(const void *s1, const void *s2, size_t n);
 
 /**
  * @brief Copy n bytes of the memory from src to dest.
@@ -205,7 +243,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n);
  * @note If the src and dest are overlapping use ft_memmove instead
  * @return dest
  */
-void	*ft_memcpy(void *dest, const void *src, size_t n);
+void		*ft_memcpy(void *dest, const void *src, size_t n);
 
 /**
  * @brief Move n bytes of the memory from src to dest (overlapping safe).
@@ -216,7 +254,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
  * modified but dest will always contain what was in src.
  * @return dest
  */
-void	*ft_memmove(const void *src, void *dest, size_t n);
+void		*ft_memmove(const void *src, void *dest, size_t n);
 
 /**
  * @brief Set n bytes of the memory from s to the value c.
@@ -225,7 +263,27 @@ void	*ft_memmove(const void *src, void *dest, size_t n);
  * @param n The number of bytes to set
  * @return s
  */
-void	*ft_memset(void *s, int c, size_t n);
+void		*ft_memset(void *s, int c, size_t n);
+
+/*************************************************/
+/*                    STRING                     */
+/*************************************************/
+
+char		**ft_split(char const *s, char c);
+char		*ft_strchr(const char *s, int c);
+char		*ft_strrchr(const char *s, int c);
+int			ft_strcmp(const char *s1, const char *s2);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+void		ft_strcpy(const char *src, char *dest);
+void		ft_strncpy(const char *src, char *dest, size_t n);
+char		*ft_strdup(const char *s);
+void		ft_striteri(char *s, void (*f)(unsigned int, char*));
+char		*ft_strjoin(char const *s1, char const *s2);
+size_t		ft_strlen(const char *s);
+char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char		*ft_strtrim(char const *s1, char const *set);
+int			ft_tolower(int c);
+int			ft_toupper(int c);
 
 # define LIBFT_H
 #endif

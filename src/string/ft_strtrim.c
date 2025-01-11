@@ -6,11 +6,11 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:48:42 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/14 07:51:49 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/11 17:20:08 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include "libft.h"
 #include <stdlib.h>
 
 static char	*strrchr_len(const char *s, int c, size_t len)
@@ -45,52 +45,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	result[i] = '\0';
 	return (result);
 }
-
-// int	main(int ac, char **av)
-// {
-// 	size_t	i;
-// 	char	*result;
-// 	char	*current_string;
-// 	char	*current_set;
-// 	char	*test_strings[12] = {
-// 		"  aba",
-// 		" ",
-// 		"aba  ",
-// 		" ",
-// 		"  aba ",
-// 		"   4897  ",
-// 		"",
-// 		"GAAA",
-// 		"TEST",
-// 		"",
-// 		"",
-// 		""
-// 		};
-
-// 	if (ac > 2)
-// 	{
-// 		i = -1;
-// 		while (++i < ((size_t)ac - 1) / 2)
-// 		{
-// 			current_string = av[i * 2 + 1];
-// 			current_set = av[i * 2 + 2];
-// 			result = ft_strtrim(current_string, current_set);
-// 			printf("%s\n", result);
-// 			free(result);
-// 		}
-// 	}
-// 	else
-// 	{
-// 		i = -1;
-// 		while (++i < 6)
-// 		{
-// 			current_string = test_strings[i * 2];
-// 			current_set = test_strings[i * 2 + 1];
-// 			result = ft_strtrim(current_string, current_set);
-// 			printf("string : \"%s\"\nset : \"%s\"\nresult : \"%s\"\n",
-// 					current_string, current_set, result);
-// 			free(result);
-// 		}
-// 	}
-// 	return (0);
-// }

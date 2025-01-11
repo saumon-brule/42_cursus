@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   arrmax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 10:02:01 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/11 17:14:38 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/01/10 20:22:34 by ebini             #+#    #+#             */
+/*   Updated: 2025/01/11 16:11:22 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+// #include "defs.h"
+#include <stddef.h>	
 
-void	*ft_memcpy(void *src, const void *dest, size_t n)
+int	arrmax(int *arr, size_t n)
 {
+	int		result;
 	size_t	i;
 
-	if (!dest && !src)
-		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		((char *)dest)[i] = ((char *)src)[i];
-		i++;
-	}
-	return ((void *)dest);
+	result = arr[i];
+	while (++i < n)
+		if (arr[i] > result)
+			result = arr[i];
+	return (result);
 }

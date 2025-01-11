@@ -6,11 +6,11 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:18:34 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/07 16:13:09 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/11 16:20:48 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include "libft.h"
 #include <stdlib.h>
 
 char	*ft_strdup(const char *s)

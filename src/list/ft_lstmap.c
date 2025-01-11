@@ -6,11 +6,12 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 01:27:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/08 12:47:10 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/11 17:13:47 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "defs.h"
+#include "libft.h"
 
 t_list	*generate_node(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {

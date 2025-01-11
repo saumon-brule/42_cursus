@@ -6,19 +6,12 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 14:44:25 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/14 07:08:20 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/11 17:22:30 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
-
-static size_t	min(size_t a, size_t b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
