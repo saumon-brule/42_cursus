@@ -57,6 +57,8 @@ STRING_FILES = ft_split.c \
 	ft_toupper.c \
 	ft_tolower.c
 
+FT_PRINTF_FOLDER = ft_printf
+
 FILES = $(addprefix $(SRC_FOLDER)/, \
 	$(addprefix $(CONVERTER_FOLDER)/, $(CONVERTER_FILES)) \
 	$(addprefix $(IDENTIFER_FOLDER)/, $(IDENTIFER_FILES)) \
@@ -76,8 +78,6 @@ CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(HEADER_FOLDER)
 
 all:	$(NAME)
 
--include $(DEPS)
-
 $(NAME):	$(OBJS)
 	ar d $(NAME) $(BONUS_OBJS)
 	ar rcs $(NAME) $(OBJS)
@@ -94,3 +94,5 @@ fclean: clean
 
 re: fclean 
 	$(MAKE) all
+
+-include $(DEPS)
