@@ -30,7 +30,6 @@ TEST_MAIN = main.test.c
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-	ar d $(NAME) $(BONUS_OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 compile: $(OBJS)
