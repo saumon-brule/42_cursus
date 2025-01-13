@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/11 17:57:32 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/13 22:34:49 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,6 +284,13 @@ char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char		*ft_strtrim(char const *s1, char const *set);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
+
+/**
+ * @brief Will try to behave as a simple printf, handling flags csuihHp%
+ */
+int			ft_printf(const char *arg, ...) __attribute__((format(printf, 1, 2)));
+
+char		*get_next_line(int fd);
 
 # define LIBFT_H
 #endif

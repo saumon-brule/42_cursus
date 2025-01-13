@@ -75,6 +75,10 @@ FT_PRINTF = $(addprefix $(SRC_FOLDER)/, ft_printf)
 FT_PRINTF_BUILD_FOLDER = $(addprefix $(FT_PRINTF)/, .build)
 FT_PRINTF_OBJECTS_LIST = $(addprefix $(FT_PRINTF_BUILD_FOLDER)/, obj_list.mk)
 
+GNL = $(addprefix $(SRC_FOLDER)/, get_next_line)
+GNL_BUILD_FOLDER = $(addprefix $(GNL)/, .build)
+GNL_OBJECTS_LIST = $(addprefix $(GNL_BUILD_FOLDER)/, obj_list.mk)
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(HEADER_FOLDER)
 
@@ -84,8 +88,10 @@ MAKEFLAGS = --no-print-directory
 
 all:	$(NAME)
 
-$(NAME):	$(OBJS) ft_printf
-	ar rcs $(NAME) $(OBJS) $(addprefix $(FT_PRINTF)/, $(shell cat $(FT_PRINTF_OBJECTS_LIST)))
+$(NAME):	$(OBJS) ft_printf gnl
+	ar rcs $(NAME) $(OBJS) \
+		$(addprefix $(FT_PRINTF)/, $(shell cat $(FT_PRINTF_OBJECTS_LIST))) \
+		$(addprefix $(GNL)/, $(shell cat $(GNL_OBJECTS_LIST)))
 
 $(BUILD_FOLDER)/%.o: %.c
 	@mkdir -p $(dir $@)
@@ -94,9 +100,13 @@ $(BUILD_FOLDER)/%.o: %.c
 ft_printf:
 	$(MAKE) compile -C $(FT_PRINTF)
 
+gnl:
+	$(MAKE) compile -C $(GNL)
+
 clean:
 	rm -rf $(BUILD_FOLDER)
 	$(MAKE) clean -C $(FT_PRINTF)
+	$(MAKE) clean -C $(GNL)
 
 fclean: clean
 	rm -f $(NAME)
