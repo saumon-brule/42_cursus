@@ -33,8 +33,8 @@ $(NAME):	$(OBJS)
 	ar d $(NAME) $(BONUS_OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-compile:
-	$(MAKE) $(OBJS)
+compile: $(OBJS)
+	@echo $(OBJS) > $(BUILD_FOLDER)/obj_list.mk
 
 $(BUILD_FOLDER)/%.o: %.c
 	@mkdir -p $(dir $@)
