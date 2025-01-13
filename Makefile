@@ -57,8 +57,6 @@ STRING_FILES = ft_split.c \
 	ft_toupper.c \
 	ft_tolower.c
 
-FT_PRINTF_FOLDER = ft_printf
-
 FILES = $(addprefix $(SRC_FOLDER)/, \
 	$(addprefix $(CONVERTER_FOLDER)/, $(CONVERTER_FILES)) \
 	$(addprefix $(IDENTIFER_FOLDER)/, $(IDENTIFER_FILES)) \
@@ -71,23 +69,34 @@ FILES = $(addprefix $(SRC_FOLDER)/, \
 OBJS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.o))
 DEPS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.d))
 
+
+
+FT_PRINTF = $(addprefix $(SRC_FOLDER)/, ft_printf)
+FT_PRINTF_BUILD_FOLDER = $(addprefix $(FT_PRINTF)/, .build)
+FT_PRINTF_OBJECTS_LIST = $(addprefix $(FT_PRINTF_BUILD_FOLDER)/, obj_list.mk)
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(HEADER_FOLDER)
+
+MAKEFLAGS = --no-print-directory
 
 .PHONY: all clean fclean re
 
 all:	$(NAME)
 
-$(NAME):	$(OBJS)
-	ar d $(NAME) $(BONUS_OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(NAME):	$(OBJS) ft_printf
+	ar rcs $(NAME) $(OBJS) $(addprefix $(FT_PRINTF)/, $(shell cat $(FT_PRINTF_OBJECTS_LIST)))
 
 $(BUILD_FOLDER)/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+ft_printf:
+	$(MAKE) compile -C $(FT_PRINTF)
+
 clean:
 	rm -rf $(BUILD_FOLDER)
+	$(MAKE) clean -C $(FT_PRINTF)
 
 fclean: clean
 	rm -f $(NAME)
