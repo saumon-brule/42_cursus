@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   get_next_line_utils.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 03:51:36 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/20 20:34:55 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/13 22:05:54 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_UTILS_H
+# define GET_NEXT_LINE_UTILS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
@@ -25,7 +25,6 @@ typedef struct s_reader
 	int		pos;
 }			t_reader;
 
-char		*get_next_line(int fd);
 size_t		ft_strlen(const char *s);
 size_t		ft_strnlen_nl(const char *s, size_t n);
 

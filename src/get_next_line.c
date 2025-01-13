@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 03:50:32 by ebini             #+#    #+#             */
-/*   Updated: 2024/11/21 19:35:20 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/13 22:01:36 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./get_next_line_bonus.h"
+#include "get_next_line_utils.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
