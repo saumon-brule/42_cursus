@@ -6,3 +6,4 @@ You may want to clone only one projet and not ALL my cursus, here is the command
 ```
 git clone --branch <project> --single-branch https://github.com/saumon-brule/42_cursus.git
 ```
+Btw, the code and some projects may have been updated, if you want the version I pushed to attendance, see the tags
