@@ -1,3 +1,6 @@
 [submodule "src/ft_printf"]
 	path = src/ft_printf
 	url = git@sb:ft_printf
+[submodule "src/get_next_line"]
+	path = src/get_next_line
+	url = git@sb:get_next_line
