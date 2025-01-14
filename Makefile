@@ -7,6 +7,15 @@ CONVERTER_FOLDER = converter
 CONVERTER_FILES = ft_atoi.c \
 	ft_itoa.c
 
+FT_PRINTF_FOLDER = ft_printf
+FT_PRINTF_FILES = ft_printf.c \
+	handle_flag.c \
+	ft_printf_utils.c
+
+GET_NEXT_LINE_FOLDER = get_next_line
+GET_NEXT_LINE_FILES = get_next_line.c \
+	get_next_line_utils.c
+
 IDENTIFER_FOLDER = identifier
 IDENTIFER_FILES = ft_isalnum.c \
 	ft_isalpha.c \
@@ -59,6 +68,8 @@ STRING_FILES = ft_split.c \
 
 FILES = $(addprefix $(SRC_FOLDER)/, \
 	$(addprefix $(CONVERTER_FOLDER)/, $(CONVERTER_FILES)) \
+	$(addprefix $(FT_PRINTF_FOLDER)/, $(FT_PRINTF_FILES)) \
+	$(addprefix $(GET_NEXT_LINE_FOLDER)/, $(GET_NEXT_LINE_FILES)) \
 	$(addprefix $(IDENTIFER_FOLDER)/, $(IDENTIFER_FILES)) \
 	$(addprefix $(LIST_FOLDER)/, $(LIST_FILES)) \
 	$(addprefix $(MATHS_FOLDER)/, $(MATHS_FILES)) \
@@ -69,16 +80,6 @@ FILES = $(addprefix $(SRC_FOLDER)/, \
 OBJS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.o))
 DEPS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.d))
 
-
-
-FT_PRINTF = $(addprefix $(SRC_FOLDER)/, ft_printf)
-FT_PRINTF_BUILD_FOLDER = $(addprefix $(FT_PRINTF)/, .build)
-FT_PRINTF_OBJECTS_LIST = $(addprefix $(FT_PRINTF_BUILD_FOLDER)/, obj_list.mk)
-
-GNL = $(addprefix $(SRC_FOLDER)/, get_next_line)
-GNL_BUILD_FOLDER = $(addprefix $(GNL)/, .build)
-GNL_OBJECTS_LIST = $(addprefix $(GNL_BUILD_FOLDER)/, obj_list.mk)
-
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(HEADER_FOLDER)
 
@@ -88,25 +89,15 @@ MAKEFLAGS = --no-print-directory
 
 all:	$(NAME)
 
-$(NAME):	$(OBJS) ft_printf gnl
-	ar rcs $(NAME) $(OBJS) \
-		$(addprefix $(FT_PRINTF)/, $(shell cat $(FT_PRINTF_OBJECTS_LIST))) \
-		$(addprefix $(GNL)/, $(shell cat $(GNL_OBJECTS_LIST)))
+$(NAME):	$(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
 $(BUILD_FOLDER)/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-ft_printf:
-	$(MAKE) compile -C $(FT_PRINTF)
-
-gnl:
-	$(MAKE) compile -C $(GNL)
-
 clean:
 	rm -rf $(BUILD_FOLDER)
-	$(MAKE) clean -C $(FT_PRINTF)
-	$(MAKE) clean -C $(GNL)
 
 fclean: clean
 	rm -f $(NAME)
