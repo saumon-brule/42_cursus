@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:23:41 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/11 16:20:55 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/14 02:40:48 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,26 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (*s2)
 		s3[i++] = *s2++;
 	s3[i] = '\0';
+	return (s3);
+}
+
+char	*strjoinfr(char *s1, char *s2, bool f1, bool f2)
+{
+	char	*s3;
+	size_t	i;
+
+	s3 = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!s3)
+		return (NULL);
+	i = 0;
+	while (*s1)
+		s3[i++] = *s1++;
+	while (*s2)
+		s3[i++] = *s2++;
+	s3[i] = '\0';
+	if (f1)
+		free(s1);
+	if (f2)
+		free(s2);
 	return (s3);
 }
