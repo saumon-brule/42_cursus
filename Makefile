@@ -1,7 +1,7 @@
 NAME = pipex
 BUILD_FOLDER = .build
-INCLUDE_FOLDER = include \
-	libft/include
+INCLUDE_FOLDER = . \
+	./libft/include
 
 FILES =	main.c
 
@@ -14,7 +14,8 @@ LIBFT_NAME = ft
 
 INCLUDE_FLAGS = $(addprefix -I, $(INCLUDE_FOLDER))
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MD -MP $(INCLUDE_FLAGS)
+# CFLAGS = -Wall -Wextra -Werror -MD -MP $(INCLUDE_FLAGS)
+CFLAGS = -MD -MP $(INCLUDE_FLAGS)
 
 MAKEFLAGS = --no-print-directory
 
