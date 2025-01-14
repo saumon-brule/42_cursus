@@ -10,7 +10,14 @@ CONVERTER_FILES = ft_atoi.c \
 FT_PRINTF_FOLDER = ft_printf
 FT_PRINTF_FILES = ft_printf.c \
 	handle_flag.c \
-	ft_printf_utils.c
+	ft_printf_utils.c \
+	flags/flag_c.c \
+	flags/flag_i.c \
+	flags/flag_low_x.c \
+	flags/flag_p.c \
+	flags/flag_s.c \
+	flags/flag_u.c \
+	flags/flag_up_x.c
 
 GET_NEXT_LINE_FOLDER = get_next_line
 GET_NEXT_LINE_FILES = get_next_line.c \
