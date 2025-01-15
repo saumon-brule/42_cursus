@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_s.c                                           :+:      :+:    :+:   */
+/*   flag_p.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 19:44:58 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/14 03:06:21 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/12/03 23:24:07 by ebini             #+#    #+#             */
+/*   Updated: 2025/01/15 18:59:49 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../ft_fprintf_utils.h"
+#include <stdarg.h>
 #include <unistd.h>
-#include "../ft_printf_utils.h"
+#include <stdint.h>
 
-static size_t	ft_strlen(const char *s)
+size_t	print_p(int fd, va_list value)
 {
-	size_t	i;
+	uintptr_t	p;
+	ssize_t		write_size;
 
-	i = -1;
-	while (s[++i])
-		;
-	return (i);
-}
-
-size_t	print_s(va_list value)
-{
-	char	*s;
-	ssize_t	write_size;
-
-	s = va_arg(value, char *);
-	if (!s)
+	p = va_arg(value, uintptr_t);
+	if (!p)
 	{
-		write_size = write(1, "(null)", 6);
+		write_size = write(fd, "(nil)", 5);
 		if (write_size < 0)
 			return (0);
 		return (write_size);
 	}
-	write_size = write(1, s, ft_strlen(s));
+	write_size = write(fd, "0x", 2);
 	if (write_size < 0)
-		return (0);
-	return (write_size);
+		write_size = 0;
+	return (write_size + print_base(fd, p, "0123456789abcdef", 16));
 }

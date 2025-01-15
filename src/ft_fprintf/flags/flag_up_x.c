@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_u.c                                           :+:      :+:    :+:   */
+/*   flag_up_x.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 00:34:32 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/14 03:06:24 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/12/03 23:24:07 by ebini             #+#    #+#             */
+/*   Updated: 2025/01/15 19:00:45 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <unistd.h>
-#include "../ft_printf_utils.h"
+#include "../ft_fprintf_utils.h"
 
-size_t	print_unsigned(unsigned int n)
+size_t	print_up_x(int fd, va_list value)
 {
-	char	c;
-	size_t	child_len;
-
-	c = '0' + n % 10;
-	n /= 10;
-	if (n)
-		child_len = print_unsigned(n);
-	else
-		child_len = 0;
-	child_len += write(1, &c, 1) > 0;
-	return (child_len);
-}
-
-size_t	print_u(va_list value)
-{
-	return (print_unsigned(va_arg(value, unsigned)));
+	return (print_base(fd, va_arg(value, unsigned), "0123456789ABCDEF", 16));
 }

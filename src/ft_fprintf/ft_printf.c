@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_low_x.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 23:24:07 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/14 03:06:16 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/01/15 19:03:25 by ebini             #+#    #+#             */
+/*   Updated: 2025/01/15 19:14:29 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf_utils.h"
+#include "libft.h"
+#include <stdarg.h>
 
-size_t	print_low_x(va_list value)
+int	ft_printf(const char *format, ...)
 {
-	return (print_base(va_arg(value, unsigned), "0123456789abcdef", 16));
+	va_list	args;
+
+	va_start(args, format);
+	ft_fprintf(1, format, args);
+	va_end(args);
 }

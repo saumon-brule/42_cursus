@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_p.c                                           :+:      :+:    :+:   */
+/*   flag_c.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 23:24:07 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/14 03:06:18 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/22 19:21:47 by ebini             #+#    #+#             */
+/*   Updated: 2025/01/15 18:59:16 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf_utils.h"
-#include <stdarg.h>
 #include <unistd.h>
-#include <stdint.h>
+#include <stdarg.h>
 
-size_t	print_p(va_list value)
+size_t	print_c(int fd, va_list value)
 {
-	uintptr_t	p;
-	ssize_t		write_size;
+	char	c;
+	int		write_size;
 
-	p = va_arg(value, uintptr_t);
-	if (!p)
-	{
-		write_size = write(1, "(nil)", 5);
-		if (write_size < 0)
-			return (0);
-		return (write_size);
-	}
-	write_size = write(1, "0x", 2);
+	c = va_arg(value, int);
+	write_size = write(fd, &c, 1);
 	if (write_size < 0)
-		write_size = 0;
-	return (write_size + print_base(p, "0123456789abcdef", 16));
+		return (0);
+	return (write_size);
 }

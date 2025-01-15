@@ -7,8 +7,9 @@ CONVERTER_FOLDER = converter
 CONVERTER_FILES = ft_atoi.c \
 	ft_itoa.c
 
-FT_PRINTF_FOLDER = ft_printf
-FT_PRINTF_FILES = ft_printf.c \
+FT_FPRINTF_FOLDER = ft_fprintf
+FT_FPRINTF_FILES = ft_fprintf.c \
+	ft_printf.c \
 	handle_flag.c \
 	ft_printf_utils.c \
 	flags/flag_c.c \
@@ -92,7 +93,11 @@ CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(HEADER_FOLDER)
 
 MAKEFLAGS = --no-print-directory
 
-.PHONY: all clean fclean re
+TEST_NAME = tester
+TEST_FLAGS = -L. -lft
+TEST_FILE = main.test.c
+
+.PHONY: all clean fclean re test
 
 all:	$(NAME)
 
@@ -111,5 +116,13 @@ fclean: clean
 
 re: fclean 
 	$(MAKE) all
+
+$(TEST_NAME):
+	$(CC) $(CFLAGS) $(TEST_FLAGS) $(TEST_FILE) -o $(TEST_NAME)
+
+test: $(TEST_NAME)
+	@$(MAKE) -s $(NAME) $(TEST_NAME)
+	@./$(TEST_NAME)
+	@rm $(TEST_NAME)
 
 -include $(DEPS)

@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flag_c.c                                           :+:      :+:    :+:   */
+/*   ft_fprintf_utils.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 19:21:47 by ebini             #+#    #+#             */
-/*   Updated: 2024/12/22 16:20:05 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/22 18:36:02 by ebini             #+#    #+#             */
+/*   Updated: 2025/01/15 19:13:56 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdarg.h>
+#ifndef FT_FPRINTF_UTILS_H
+# define FT_FPRINTF_UTILS_H
+# include <stdarg.h>
+# include <stddef.h>
 
-size_t	print_c(va_list value)
-{
-	char	c;
-	int		write_size;
+size_t	len_flag(const char *s);
+size_t	print_base(int fd, unsigned long long n, char *base, int base_len);
 
-	c = va_arg(value, int);
-	write_size = write(1, &c, 1);
-	if (write_size < 0)
-		return (0);
-	return (write_size);
-}
+size_t	handle_flag(int fd, const char *format, va_list args);
+
+#endif

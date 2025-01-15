@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/14 02:40:44 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/15 19:25:12 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@
  * INT_MIN will result in a overflow.
  * @return An int corresponding to the string passed in parameter.
  */
-int			ft_atoi(const char *nptr);
+int		ft_atoi(const char *nptr);
 
 /**
  * @brief Will convert an int into a allocated string.
  * @param n The number converted
  * @return An allocated string corresponding to the number passed in parameter.
  */
-char		*ft_itoa(int n);
+char	*ft_itoa(int n);
 
 /*************************************************/
 /*                  IDENTIFIERS                  */
@@ -45,43 +45,43 @@ char		*ft_itoa(int n);
  * @brief Identify if a character is alphanumeric.
  * @param c the character to identify
  */
-bool		ft_isalnum(int c);
+bool	ft_isalnum(int c);
 
 /**
  * @brief Identify if a character is in the alphabet.
  * @param c the character to identify
  */
-bool		ft_isalpha(int c);
+bool	ft_isalpha(int c);
 
 /**
  * @brief Identify if a character is in the ascii table.
  * @param c the character to identify
  */
-bool		ft_isascii(int c);
+bool	ft_isascii(int c);
 
 /**
  * @brief Identify if a character is a digit.
  * @param c the character to identify
  */
-bool		ft_isdigit(int c);
+bool	ft_isdigit(int c);
 
 /**
  * @brief Identify if a character is a lowercase letter.
  * @param c the character to identify
  */
-bool		ft_islower(int c);
+bool	ft_islower(int c);
 
 /**
  * @brief Identify if a character is printable.
  * @param c the character to identify
  */
-bool		ft_isprint(int c);
+bool	ft_isprint(int c);
 
 /**
  * @brief Identify if a character is an uppercase letter.
  * @param c the character to identify
  */
-bool		ft_isupper(int c);
+bool	ft_isupper(int c);
 
 /*************************************************/
 /*                     LIST                      */
@@ -95,7 +95,7 @@ bool		ft_isupper(int c);
  * @note The parameter lst is a double pointer because in the case where it is
  * NULL, it will be replaced by the new pointer.
  */
-void		ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *new);
 
 /**
  * @brief Will add a new t_list struct at the front of the list pointed by the
@@ -105,7 +105,7 @@ void		ft_lstadd_back(t_list **lst, t_list *new);
  * @note The parameter lst is a double pointer because the first element of the
  * list lst will be replaced by the first element of the list new
  */
-void		ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 
 /**
  * @brief Will free all element composing a list made of t_list.
@@ -113,21 +113,21 @@ void		ft_lstadd_front(t_list **lst, t_list *new);
  * @param del A function that will free the element stored in each list node
  * @note The value of *lst will be replaced by NULL
  */
-void		ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
 
 /**
  * @brief Delete and free the content of one node of a list.
  * @param lst The node to delete
  * @param del The function to free the content of the node
  */
-void		ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
 
 /**
  * @brief Apply the function f to the content of every node of the list lst.
  * @param lst The first node of a listto iter through
  * @param f The funciton to call with the content of every node
  */
-void		ft_lstiter(t_list *lst, void (*f)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 /**
  * @brief Duplicate the list lst and update the content of every node with the
@@ -139,21 +139,21 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
  * of the many malloc returns NULL, all the new created list will be freed
  * @return The same list as lst but updated by the function f.
  */
-t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /**
  * @brief Creates a new node of t_list.
  * @param content The the content that will be contained by the list node
  * @return A pointer on a new node of a list.
  */
-t_list		*ft_lstnew(void *content);
+t_list	*ft_lstnew(void *content);
 
 /**
  * @brief Calculate the length of a list made of t_list nodes.
  * @param lst A pointer on the first element of a list
  * @return The length of the list starting by lst.
  */
-size_t		ft_lstsize(t_list *lst);
+size_t	ft_lstsize(t_list *lst);
 
 /*************************************************/
 /*                     MATH                      */
@@ -167,7 +167,7 @@ size_t		ft_lstsize(t_list *lst);
  * @param n The length of the array
  * @return The biggest int of the array.
  */
-int			arrmax(int *arr, size_t n);
+int		arrmax(int *arr, size_t n);
 
 /**
  * @brief Give you the smallest number of an array arr of n element.
@@ -175,7 +175,7 @@ int			arrmax(int *arr, size_t n);
  * @param n The length of the array
  * @return The smallest int of the array.
  */
-int			arrmin(int *arr, size_t n);
+int		arrmin(int *arr, size_t n);
 
 /**
  * @brief Returns the biggest number between a and b.
@@ -183,7 +183,7 @@ int			arrmin(int *arr, size_t n);
  * @param b An other int
  * @return The biggest int.
  */
-int			max(int a, int b);
+int		max(int a, int b);
 
 /**
  * @brief returns the smallest number between a and b
@@ -191,7 +191,7 @@ int			max(int a, int b);
  * @param b an other int
  * @return the smallest int
  */
-int			min(int a, int b);
+int		min(int a, int b);
 
 /*************************************************/
 /*                    MEMORY                     */
@@ -203,7 +203,7 @@ int			min(int a, int b);
  * @param s Pointer of the first element of the memory to erase
  * @param n The number of bytes set to 0
  */
-void		ft_bzero(void *s, size_t n);
+void	ft_bzero(void *s, size_t n);
 
 /**
  * @brief Allocate nmemb followed area of size size in the memory
@@ -212,7 +212,7 @@ void		ft_bzero(void *s, size_t n);
  * @param size The size of the elements
  * @return A void pointer on the first element allocated in the memory.
  */
-void		*ft_calloc(size_t nmemb, size_t size);
+void	*ft_calloc(size_t nmemb, size_t size);
 
 /**		
  * @brief Look in the memory starting at the adress pointed by s of size n for
@@ -223,7 +223,7 @@ void		*ft_calloc(size_t nmemb, size_t size);
  * @return A void pointer on the first byte corresponding to c (or NULL if
  * nothing was found).
  */
-void		*ft_memchr(const void *s, int c, size_t n);
+void	*ft_memchr(const void *s, int c, size_t n);
 
 /**		
  * @brief Gives the difference between 2 memory areas
@@ -233,7 +233,7 @@ void		*ft_memchr(const void *s, int c, size_t n);
  * @return The difference between the first different bytes between in s1 and
  * s2 or 0 if the n bytes of s1 and s2 are identicals.
  */
-int			ft_memcmp(const void *s1, const void *s2, size_t n);
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
 
 /**
  * @brief Copy n bytes of the memory from src to dest.
@@ -243,7 +243,7 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
  * @note If the src and dest are overlapping use ft_memmove instead
  * @return dest
  */
-void		*ft_memcpy(void *dest, const void *src, size_t n);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 
 /**
  * @brief Move n bytes of the memory from src to dest (overlapping safe).
@@ -254,7 +254,7 @@ void		*ft_memcpy(void *dest, const void *src, size_t n);
  * modified but dest will always contain what was in src.
  * @return dest
  */
-void		*ft_memmove(const void *src, void *dest, size_t n);
+void	*ft_memmove(const void *src, void *dest, size_t n);
 
 /**
  * @brief Set n bytes of the memory from s to the value c.
@@ -263,35 +263,39 @@ void		*ft_memmove(const void *src, void *dest, size_t n);
  * @param n The number of bytes to set
  * @return s
  */
-void		*ft_memset(void *s, int c, size_t n);
+void	*ft_memset(void *s, int c, size_t n);
 
 /*************************************************/
 /*                    STRING                     */
 /*************************************************/
 
-char		**ft_split(char const *s, char c);
-char		*ft_strchr(const char *s, int c);
-char		*ft_strrchr(const char *s, int c);
-int			ft_strcmp(const char *s1, const char *s2);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
-void		ft_strcpy(const char *src, char *dest);
-void		ft_strncpy(const char *src, char *dest, size_t n);
-char		*ft_strdup(const char *s);
-void		ft_striteri(char *s, void (*f)(unsigned int, char*));
-char		*ft_strjoin(char const *s1, char const *s2);
-char		*strjoinfr(char *s1, char *s2, bool f1, bool f2);
-size_t		ft_strlen(const char *s);
-char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-char		*ft_strtrim(char const *s1, char const *set);
-int			ft_tolower(int c);
-int			ft_toupper(int c);
+char	**ft_split(char const *s, char c);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strrchr(const char *s, int c);
+int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	ft_strcpy(const char *src, char *dest);
+void	ft_strncpy(const char *src, char *dest, size_t n);
+char	*ft_strdup(const char *s);
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*strjoinfr(char *s1, char *s2, bool f1, bool f2);
+size_t	ft_strlen(const char *s);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char	*ft_strtrim(char const *s1, char const *set);
+int		ft_tolower(int c);
+int		ft_toupper(int c);
 
 /**
  * @brief Will try to behave as a simple printf, handling flags csuihHp%
  */
-int			ft_printf(const char *arg, ...) __attribute__((format(printf, 1, 2)));
+int		ft_printf(const char *format, ...)
+		__attribute__((format(printf, 1, 2)));
 
-char		*get_next_line(int fd);
+int		ft_fprintf(int fd, const char *format, ...)
+		__attribute__((format(printf, 2, 3)));
+
+char	*get_next_line(int fd);
 
 # define LIBFT_H
 #endif
