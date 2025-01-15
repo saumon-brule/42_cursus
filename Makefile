@@ -11,7 +11,7 @@ FT_FPRINTF_FOLDER = ft_fprintf
 FT_FPRINTF_FILES = ft_fprintf.c \
 	ft_printf.c \
 	handle_flag.c \
-	ft_printf_utils.c \
+	ft_fprintf_utils.c \
 	flags/flag_c.c \
 	flags/flag_i.c \
 	flags/flag_low_x.c \
@@ -76,7 +76,7 @@ STRING_FILES = ft_split.c \
 
 FILES = $(addprefix $(SRC_FOLDER)/, \
 	$(addprefix $(CONVERTER_FOLDER)/, $(CONVERTER_FILES)) \
-	$(addprefix $(FT_PRINTF_FOLDER)/, $(FT_PRINTF_FILES)) \
+	$(addprefix $(FT_FPRINTF_FOLDER)/, $(FT_FPRINTF_FILES)) \
 	$(addprefix $(GET_NEXT_LINE_FOLDER)/, $(GET_NEXT_LINE_FILES)) \
 	$(addprefix $(IDENTIFER_FOLDER)/, $(IDENTIFER_FILES)) \
 	$(addprefix $(LIST_FOLDER)/, $(LIST_FILES)) \
@@ -94,7 +94,7 @@ CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(HEADER_FOLDER)
 MAKEFLAGS = --no-print-directory
 
 TEST_NAME = tester
-TEST_FLAGS = -L. -lft
+TEST_FLAGS = -Wall -Wextra -Werror -I$(HEADER_FOLDER)
 TEST_FILE = main.test.c
 
 .PHONY: all clean fclean re test
@@ -118,7 +118,7 @@ re: fclean
 	$(MAKE) all
 
 $(TEST_NAME):
-	$(CC) $(CFLAGS) $(TEST_FLAGS) $(TEST_FILE) -o $(TEST_NAME)
+	@$(CC) $(TEST_FLAGS) $(TEST_FILE) $(NAME) -o $(TEST_NAME)
 
 test: $(TEST_NAME)
 	@$(MAKE) -s $(NAME) $(TEST_NAME)

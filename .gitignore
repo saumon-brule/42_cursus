@@ -55,7 +55,7 @@ dkms.conf
 .vscode/
 local/
 *.test*
-libftTester
+*test.*
 
 *.o
 *.d
