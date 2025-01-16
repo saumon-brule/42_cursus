@@ -68,7 +68,7 @@ STRING_FILES = ft_split.c \
 	ft_strjoin.c \
 	ft_strlen.c \
 	ft_strmapi.c \
-	ft_strnstr.c \
+	ft_strstr.c \
 	ft_strtrim.c \
 	ft_substr.c \
 	ft_toupper.c \
