@@ -33,8 +33,8 @@ IDENTIFER_FILES = ft_isalnum.c \
 	ft_isprint.c \
 	ft_isupper.c
 
-MATH_FOLDER = maths
-MATH_FILES = arrmax.c \
+MATHS_FOLDER = maths
+MATHS_FILES = arrmax.c \
 	arrmin.c \
 	max.c \
 	min.c
