@@ -94,7 +94,7 @@ CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(HEADER_FOLDER)
 
 MAKEFLAGS = --no-print-directory
 
-TEST_NAME = tester
+TEST_NAME = tester.out
 TEST_FLAGS = -Wall -Wextra -Werror -I$(HEADER_FOLDER)
 TEST_FILE = main.test.c
 
@@ -114,15 +114,18 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(TEST_NAME)
 
 re: fclean 
 	$(MAKE) all
 
 $(TEST_NAME):
-	@$(CC) $(TEST_FLAGS) $(TEST_FILE) $(NAME) -o $(TEST_NAME)
-
-test: $(TEST_NAME)
 	@$(MAKE) -s $(NAME)
+	@$(CC) $(TEST_FLAGS) $(TEST_FILE) $(NAME) -g3 -o $(TEST_NAME)
+
+tester: $(TEST_NAME)
+
+test: tester
 	@./$(TEST_NAME)
 	@rm $(TEST_NAME)
 

@@ -6,12 +6,12 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:36:02 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/16 22:02:03 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/16 23:27:31 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FPRINTF_UTILS_H
-# define FT_FPRINTF_UTILS_H
+#ifndef FT_VFPRINTF_UTILS_H
+# define FT_VFPRINTF_UTILS_H
 # include <stdarg.h>
 # include <stddef.h>
 

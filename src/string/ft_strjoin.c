@@ -6,12 +6,13 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:23:41 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/16 21:44:12 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/17 00:00:23 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
+#include <stdarg.h>
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -30,23 +31,30 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (s3);
 }
 
-char	*strjoinfr(char *s1, char *s2, bool f1, bool f2)
+char	*strjoinall(size_t count, ...)
 {
-	char	*s3;
+	va_list	args;
+	char	**tab;
 	size_t	i;
+	size_t	result_size;
+	char	*result;
 
-	s3 = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!s3)
+	tab = malloc(count * sizeof(char *));
+	if (!tab)
 		return (NULL);
-	i = 0;
-	while (*s1)
-		s3[i++] = *s1++;
-	while (*s2)
-		s3[i++] = *s2++;
-	s3[i] = '\0';
-	if (f1)
-		free(s1);
-	if (f2)
-		free(s2);
-	return (s3);
+	i = -1;
+	result_size = 0;
+	va_start(args, count);
+	while (++i < count)
+	{
+		tab[i] = va_arg(args, char *);
+		result_size += ft_strlen(tab[i]);
+	}
+	result = malloc(result_size * sizeof(char) + 1);
+	i = -1;
+	result_size = 0;
+	while (++i < count)
+		result_size += ft_strcpy_len(tab[i], result + result_size);
+	free(tab);
+	return (result);
 }
