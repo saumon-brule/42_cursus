@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:09:30 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/16 23:49:50 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/17 00:55:18 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ size_t	ft_strcpy_len(const char *src, char *dest)
 	while (src[++i])
 		dest[i] = src[i];
 	dest[i] = '\0';
-	return (i - 1);
+	return (i);
 }
 
 void	ft_strncpy(const char *src, char *dest, size_t n)
