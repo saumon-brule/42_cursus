@@ -7,11 +7,12 @@ CONVERTER_FOLDER = converter
 CONVERTER_FILES = ft_atoi.c \
 	ft_itoa.c
 
-FT_FPRINTF_FOLDER = ft_fprintf
-FT_FPRINTF_FILES = ft_fprintf.c \
+FT_PRINTF_FOLDER = ft_printf
+FT_PRINTF_FILES = ft_vfprintf.c \
 	ft_printf.c \
+	ft_fprintf.c \
 	handle_flag.c \
-	ft_fprintf_utils.c \
+	ft_vfprintf_utils.c \
 	flags/flag_c.c \
 	flags/flag_i.c \
 	flags/flag_low_x.c \
@@ -76,7 +77,7 @@ STRING_FILES = ft_split.c \
 
 FILES = $(addprefix $(SRC_FOLDER)/, \
 	$(addprefix $(CONVERTER_FOLDER)/, $(CONVERTER_FILES)) \
-	$(addprefix $(FT_FPRINTF_FOLDER)/, $(FT_FPRINTF_FILES)) \
+	$(addprefix $(FT_PRINTF_FOLDER)/, $(FT_PRINTF_FILES)) \
 	$(addprefix $(GET_NEXT_LINE_FOLDER)/, $(GET_NEXT_LINE_FILES)) \
 	$(addprefix $(IDENTIFER_FOLDER)/, $(IDENTIFER_FILES)) \
 	$(addprefix $(LIST_FOLDER)/, $(LIST_FILES)) \
@@ -121,7 +122,7 @@ $(TEST_NAME):
 	@$(CC) $(TEST_FLAGS) $(TEST_FILE) $(NAME) -o $(TEST_NAME)
 
 test: $(TEST_NAME)
-	@$(MAKE) -s $(NAME) $(TEST_NAME)
+	@$(MAKE) -s $(NAME)
 	@./$(TEST_NAME)
 	@rm $(TEST_NAME)
 

@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   flag_up_x.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/15 19:03:25 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/15 19:40:44 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/12/03 23:24:07 by ebini             #+#    #+#             */
+/*   Updated: 2025/01/16 22:02:48 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdarg.h>
+#include "../ft_vfprintf_utils.h"
 
-int	ft_printf(const char *format, ...)
+size_t	print_up_x(int fd, va_list value)
 {
-	int		printf_return;
-	va_list	args;
-
-	va_start(args, format);
-	printf_return = ft_fprintf(1, format, args);
-	va_end(args);
-	return (printf_return);
+	return (print_base(fd, va_arg(value, unsigned), "0123456789ABCDEF", 16));
 }

@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fprintf_utils.h                                 :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/22 18:36:02 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/15 19:13:56 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/01/15 19:03:25 by ebini             #+#    #+#             */
+/*   Updated: 2025/01/16 22:02:37 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_FPRINTF_UTILS_H
-# define FT_FPRINTF_UTILS_H
-# include <stdarg.h>
-# include <stddef.h>
+#include "./ft_vfprintf_utils.h"
+#include <stdarg.h>
 
-size_t	len_flag(const char *s);
-size_t	print_base(int fd, unsigned long long n, char *base, int base_len);
+int	ft_printf(const char *format, ...)
+{
+	int		printf_return;
+	va_list	args;
 
-size_t	handle_flag(int fd, const char *format, va_list args);
-
-#endif
+	va_start(args, format);
+	printf_return = ft_vfprintf(1, format, args);
+	va_end(args);
+	return (printf_return);
+}

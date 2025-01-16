@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fprintf.c                                       :+:      :+:    :+:   */
+/*   ft_vfprintf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 14:01:46 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/15 19:10:23 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/16 22:02:14 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <unistd.h>
-#include "./ft_fprintf_utils.h"
+#include "./ft_vfprintf_utils.h"
 
 size_t	print_text(int fd, const char **format)
 {
@@ -37,16 +37,14 @@ size_t	print_flag(int fd, const char **format, va_list args)
 	return (flag_value);
 }
 
-int	ft_fprintf(int fd, const char *format, ...)
+int	ft_vfprintf(int fd, const char *format, va_list args)
 {
 	int		text_len;
 	int		printed_len;
 	int		flag_value;
-	va_list	args;
 
 	if (!format)
 		return (-1);
-	va_start(args, format);
 	printed_len = 0;
 	while (*format)
 	{
@@ -60,6 +58,5 @@ int	ft_fprintf(int fd, const char *format, ...)
 			printed_len += flag_value;
 		}
 	}
-	va_end(args);
 	return (printed_len);
 }
