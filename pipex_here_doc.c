@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_parser.c                                   :+:      :+:    :+:   */
+/*   pipex_here_doc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 02:03:16 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/14 02:41:57 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/01/17 14:35:19 by ebini             #+#    #+#             */
+/*   Updated: 2025/01/17 14:36:12 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-
-
-
-char	*parse_command(char *cmd, char *path)
+int	pipex_here_doc(int ac, char **av, char **env)
 {
-	if (!ft_strchr(cmd, "/"))
-		return (ft_strdup(cmd));
-	
-	
+
 }

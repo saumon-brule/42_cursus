@@ -53,7 +53,7 @@ dkms.conf
 
 .clan-format
 .vscode/
-local/
+local
 *test.*
 .build/
 *.a
