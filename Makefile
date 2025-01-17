@@ -7,6 +7,9 @@ CONVERTER_FOLDER = converter
 CONVERTER_FILES = ft_atoi.c \
 	ft_itoa.c
 
+FREE_FOLDER = free
+FREE_FILES = free_split.c \
+
 FT_PRINTF_FOLDER = ft_printf
 FT_PRINTF_FILES = ft_vfprintf.c \
 	ft_printf.c \
@@ -77,6 +80,7 @@ STRING_FILES = ft_split.c \
 
 FILES = $(addprefix $(SRC_FOLDER)/, \
 	$(addprefix $(CONVERTER_FOLDER)/, $(CONVERTER_FILES)) \
+	$(addprefix $(FREE_FOLDER)/, $(FREE_FILES)) \
 	$(addprefix $(FT_PRINTF_FOLDER)/, $(FT_PRINTF_FILES)) \
 	$(addprefix $(GET_NEXT_LINE_FOLDER)/, $(GET_NEXT_LINE_FILES)) \
 	$(addprefix $(IDENTIFER_FOLDER)/, $(IDENTIFER_FILES)) \

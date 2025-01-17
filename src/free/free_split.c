@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defs.h                                             :+:      :+:    :+:   */
+/*   free_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/07 16:22:00 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/17 16:44:11 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/01/17 16:39:44 by ebini             #+#    #+#             */
+/*   Updated: 2025/01/17 16:43:34 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFS_H
-# include <limits.h>
-# include <stdbool.h>
-# include <stddef.h>
+#include <stdlib.h>
 
-# define MEMORY_SIZE 4096
-
-typedef struct s_list
+void	free_split(char **splitted_string)
 {
-	void			*content;
-	struct s_list	*next;
-}		t_list;
+	int	i;
 
-# define DEFS_H
-#endif
+	i = -1;
+	while (splitted_string[++i])
+		free(splitted_string[i]);
+	free(splitted_string);
+}

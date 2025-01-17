@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/17 15:28:49 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/17 16:43:12 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ int		ft_atoi(const char *nptr);
  * @return An allocated string corresponding to the number passed in parameter.
  */
 char	*ft_itoa(int n);
+
+/**
+ * @brief Will free an array string NULL terminated (the format returned by
+ * ft_split).
+ * @param splitted_string An array string NULL terminated
+ */
+void	free_split(char **splitted_string);
 
 /*************************************************/
 /*                  IDENTIFIERS                  */
