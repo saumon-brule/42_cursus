@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fprintf.c                                       :+:      :+:    :+:   */
+/*   free_n.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/15 19:03:25 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/16 22:06:12 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/01/19 18:23:54 by ebini             #+#    #+#             */
+/*   Updated: 2025/01/19 18:23:58 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_vfprintf_utils.h"
-#include <stdarg.h>
+#include <stdlib.h>
 
-int	ft_fprintf(int fd, const char *format, ...)
+void	free_n(char **ptr, size_t n)
 {
-	int		printf_return;
-	va_list	args;
+	size_t	i;
 
-	va_start(args, format);
-	printf_return = ft_vfprintf(fd, format, args);
-	va_end(args);
-	return (printf_return);
+	i = 0;
+	while (i < n)
+	{
+		free(ptr[i]);
+		i++;
+	}
+	free(ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/17 16:43:12 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/19 18:53:29 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ int		ft_atoi(const char *nptr);
  * @return An allocated string corresponding to the number passed in parameter.
  */
 char	*ft_itoa(int n);
+
+/**
+ * @brief Free n pointers of an array arr of pointer (and the array itself).
+ * @param arr The array containing the pointers
+ * @param n The number of pointer to free
+ */
+void	free_n(char **arr, size_t n);
 
 /**
  * @brief Will free an array string NULL terminated (the format returned by
@@ -276,7 +283,29 @@ void	*ft_memset(void *s, int c, size_t n);
 /*                    STRING                     */
 /*************************************************/
 
+/**
+ * @brief Split a string s into substring for every character c. The result
+ * can't contain any empty string.
+ * @param s The string to split
+ * @param c The character that delimits substrings
+ * @warning The result is a double pointer to dynamically allocated strings
+ * using malloc, to avoid memory leaks free them when done. You can use
+ * the free_split function to do so.
+ */
 char	**ft_split(char const *s, char c);
+
+/**
+ * @brief Split a string s into substring for every character in the set given
+ * in parameter. The result can't contain any empty string.
+ * @param s The string to split
+ * @param c The character that delimits substrings
+ * @note This function behaves exactly like ft_split except that you pass a set
+ * of characters as delimiters.
+ * @warning The result is a double pointer to dynamically allocated strings
+ * using malloc, to avoid memory leaks free them when done. You can use
+ * the free_split function to do so.
+ */
+char	**ft_strtok(char const *s, const char *set);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strcmp(const char *s1, const char *s2);
@@ -302,7 +331,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
 int		ft_printf(const char *format, ...)
 		__attribute__((format(printf, 1, 2)));
 
-int		ft_fprintf(int fd, const char *format, ...)
+int		ft_dprintf(int fd, const char *format, ...)
 		__attribute__((format(printf, 2, 3)));
 
 char	*get_next_line(int fd);

@@ -9,11 +9,12 @@ CONVERTER_FILES = ft_atoi.c \
 
 FREE_FOLDER = free
 FREE_FILES = free_split.c \
+	free_n.c
 
 FT_PRINTF_FOLDER = ft_printf
 FT_PRINTF_FILES = ft_vfprintf.c \
 	ft_printf.c \
-	ft_fprintf.c \
+	ft_dprintf.c \
 	handle_flag.c \
 	ft_vfprintf_utils.c \
 	flags/flag_c.c \
@@ -73,6 +74,7 @@ STRING_FILES = ft_split.c \
 	ft_strlen.c \
 	ft_strmapi.c \
 	ft_strstr.c \
+	ft_strtok.c \
 	ft_strtrim.c \
 	ft_substr.c \
 	ft_toupper.c \
