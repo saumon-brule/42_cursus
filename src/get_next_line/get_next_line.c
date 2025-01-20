@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 03:50:32 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/13 22:01:36 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/20 19:14:04 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ int	strjoin_nl(char **s1, t_reader *reader)
 	char	*result;
 	char	*suffix;
 
-	pre_len = ft_strlen(*s1);
+	pre_len = 0;
+	if (*s1)
+		pre_len = ft_strlen(*s1);
 	suffix = reader->buffer + reader->pos;
 	suf_len = ft_strnlen_nl(suffix, reader->to_read - reader->pos);
 	result = malloc(pre_len + suf_len + 1);

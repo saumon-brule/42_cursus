@@ -100,11 +100,11 @@ CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(HEADER_FOLDER)
 
 MAKEFLAGS = --no-print-directory
 
-TEST_NAME = tester.out
+TEST_NAME = tester
 TEST_FLAGS = -Wall -Wextra -Werror -I$(HEADER_FOLDER)
 TEST_FILE = main.test.c
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re test tester
 
 all:	$(NAME)
 
@@ -125,13 +125,11 @@ fclean: clean
 re: fclean 
 	$(MAKE) all
 
-$(TEST_NAME):
-	@$(MAKE) -s $(NAME)
+$(TEST_NAME): fclean
+	@$(MAKE) -s $(NAME) CFLAGS="$(CFLAGS) -g3"
 	@$(CC) $(TEST_FLAGS) $(TEST_FILE) $(NAME) -g3 -o $(TEST_NAME)
 
-tester: $(TEST_NAME)
-
-test: tester
+test: $(TEST_NAME)
 	@./$(TEST_NAME)
 	@rm $(TEST_NAME)
 
