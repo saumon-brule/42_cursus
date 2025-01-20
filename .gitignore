@@ -60,6 +60,7 @@ local/
 *.o
 *.d
 *.out	
-.build/
 
+.build/
 *.a
+tester
