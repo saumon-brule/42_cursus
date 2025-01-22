@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/20 18:56:54 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/22 18:58:26 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ bool	ft_isupper(int c);
  * @note The parameter lst is a double pointer because in the case where it is
  * NULL, it will be replaced by the new pointer.
  */
-void	ft_lstadd_back(t_list **lst, t_list *new);
+void	lstadd_back(t_list **lst, t_list *new);
 
 /**
  * @brief Will add a new t_list struct at the front of the list pointed by the
@@ -119,7 +119,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
  * @note The parameter lst is a double pointer because the first element of the
  * list lst will be replaced by the first element of the list new
  */
-void	ft_lstadd_front(t_list **lst, t_list *new);
+void	lstadd_front(t_list **lst, t_list *new);
 
 /**
  * @brief Will free all element composing a list made of t_list.
@@ -127,21 +127,21 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
  * @param del A function that will free the element stored in each list node
  * @note The value of *lst will be replaced by NULL
  */
-void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	lstclear(t_list **lst, void (*del)(void *));
 
 /**
  * @brief Delete and free the content of one node of a list.
  * @param lst The node to delete
  * @param del The function to free the content of the node
  */
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	lstdelone(t_list *lst, void (*del)(void *));
 
 /**
  * @brief Apply the function f to the content of every node of the list lst.
  * @param lst The first node of a listto iter through
  * @param f The funciton to call with the content of every node
  */
-void	ft_lstiter(t_list *lst, void (*f)(void *));
+void	lstiter(t_list *lst, void (*f)(void *));
 
 /**
  * @brief Duplicate the list lst and update the content of every node with the
@@ -153,21 +153,28 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
  * of the many malloc returns NULL, all the new created list will be freed
  * @return The same list as lst but updated by the function f.
  */
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list	*lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /**
  * @brief Creates a new node of t_list.
  * @param content The the content that will be contained by the list node
  * @return A pointer on a new node of a list.
  */
-t_list	*ft_lstnew(void *content);
+t_list	*lstnew(void *content);
+
+/**
+ * @brief Delete the last node of a t_list list an returns its content.
+ * @param lst The first node of a list of which you want to pop the last element
+ * @return The content of the last node of lst.
+ */
+void	*lstpop(t_list *lst);
 
 /**
  * @brief Calculate the length of a list made of t_list nodes.
  * @param lst A pointer on the first element of a list
  * @return The length of the list starting by lst.
  */
-size_t	ft_lstsize(t_list *lst);
+size_t	lstsize(t_list *lst);
 
 /*************************************************/
 /*                     MATH                      */

@@ -45,14 +45,15 @@ MATHS_FILES = arrmax.c \
 	min.c
 
 LIST_FOLDER = list
-LIST_FILES = ft_lstadd_back.c \
-	ft_lstclear.c \
-	ft_lstdelone.c \
-	ft_lstiter.c \
-	ft_lstlast.c \
-	ft_lstmap.c \
-	ft_lstnew.c \
-	ft_lstsize.c
+LIST_FILES = lstadd_back.c \
+	lstclear.c \
+	lstdelone.c \
+	lstiter.c \
+	lstlast.c \
+	lstmap.c \
+	lstnew.c \
+	lstpop.c \
+	lstsize.c
 
 MEMORY_FOLDER = memory
 MEMORY_FILES = ft_bzero.c \

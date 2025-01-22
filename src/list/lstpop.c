@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   lstpop.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 20:16:12 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/07 17:17:06 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/01/22 18:51:33 by ebini             #+#    #+#             */
+/*   Updated: 2025/01/22 18:54:02 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "defs.h"
 
-t_list	*ft_lstnew(void *content)
+void	*lstpop(t_list *lst)
 {
-	t_list	*new_lst;
+	void	*content;
 
-	new_lst = malloc(sizeof (t_list));
-	if (!new_lst)
+	if (!lst)
 		return (NULL);
-	new_lst->content = content;
-	new_lst->next = NULL;
-	return (new_lst);
+	while (lst->next)
+		lst = lst->next;
+	content = lst->content;
+	free(lst);
+	return (content);
 }

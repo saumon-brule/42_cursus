@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   lstiter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 20:30:02 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/07 20:49:52 by ebini            ###   ########lyon.fr   */
+/*   Created: 2024/11/14 00:53:53 by ebini             #+#    #+#             */
+/*   Updated: 2025/01/22 18:58:44 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "defs.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	lstiter(t_list *lst, void (*f)(void *))
 {
-	new->next = *lst;
-	*lst = new;
+	while (lst)
+	{
+		(*f)(lst->content);
+		lst = lst->next;
+	}
 }

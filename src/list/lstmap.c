@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   lstmap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 01:27:19 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/11 17:13:47 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/22 18:59:42 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*generate_node(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	void	*new_content;
 
 	new_content = f(lst->content);
-	result_node = ft_lstnew(new_content);
+	result_node = lstnew(new_content);
 	if (!result_node)
 	{
 		del(new_content);
@@ -28,7 +28,7 @@ t_list	*generate_node(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	return (result_node);
 }
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_list	*lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*result_lst;
 	t_list	*current_node;
@@ -45,7 +45,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		current_node->next = generate_node(lst, f, del);
 		if (!current_node->next)
 		{
-			ft_lstclear(&result_lst, del);
+			lstclear(&result_lst, del);
 			return (NULL);
 		}
 		lst = lst->next;
