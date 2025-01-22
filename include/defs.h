@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 16:22:00 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/17 16:44:11 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/22 21:37:37 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <stddef.h>
+# include <sys/types.h>
 
 # define MEMORY_SIZE 4096
 
