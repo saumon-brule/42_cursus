@@ -61,6 +61,7 @@ MEMORY_FILES = ft_bzero.c \
 	ft_memchr.c \
 	ft_memcmp.c \
 	ft_memcpy.c \
+	ft_memdup.c \
 	ft_memmove.c \
 	ft_memset.c
 

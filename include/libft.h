@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/22 18:58:26 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/22 20:50:33 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,6 +265,15 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
  * @return dest
  */
 void	*ft_memcpy(void *dest, const void *src, size_t n);
+
+/**
+ * @brief Allocates a memory of size n with malloc and copy n bytes of ptr into
+ * the new memory area.
+ * @param ptr A pointer to the first byte of the area tu duplicate
+ * @param n The number of bytes to copy into the new memory area
+ * @return The new allocated area.
+ */
+void	*ft_memdup(void *ptr, size_t n);
 
 /**
  * @brief Move n bytes of the memory from src to dest (overlapping safe).
