@@ -46,6 +46,7 @@ MATHS_FILES = arrmax.c \
 
 LIST_FOLDER = list
 LIST_FILES = lstadd_back.c \
+	lstadd_front.c \
 	lstclear.c \
 	lstdelone.c \
 	lstiter.c \
