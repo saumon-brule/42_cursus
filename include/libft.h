@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/22 22:36:56 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/27 04:08:54 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ t_list	*lstnew(void *content);
  * @param lst The first node of a list of which you want to pop the last element
  * @return The content of the last node of lst.
  */
-void	*lstpop(t_list *lst);
+void	*lstpop(t_list **lst);
 
 /**
  * @brief Calculate the length of a list made of t_list nodes.
