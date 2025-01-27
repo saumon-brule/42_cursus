@@ -6,13 +6,14 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:23:41 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/17 00:00:23 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/23 05:50:27 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdlib.h>
 #include <stdarg.h>
+
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
