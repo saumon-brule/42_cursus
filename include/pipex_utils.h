@@ -6,12 +6,27 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 02:01:37 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/17 14:37:53 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/28 14:52:14 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_UTILS_H
 # define PIPEX_UTILS_H
+
+# include "libft.h"
+
+# define WESC 0b00100000
+# define AESC 0b00010000
+# define WDQ  0b00001000
+# define ADQ  0b00000100
+# define WSQ  0b00000010
+# define ASQ  0b00000001
+
+typedef struct s_sh_cmd
+{
+	char	*path;
+	char	**arguments;
+}		t_sh_cmd;
 
 /**
  * @brief Will give you the path depending of the env variables given in
@@ -20,7 +35,7 @@
  * shell env)
  * @return The value assigned to the key PATH or NULL if nothing is found.
  */
-char	*get_path(char **env);
+char	*get_from_env(char *var, char **env);
 
 /**
  * @brief This function will give you the full path of a shell comand using its
@@ -33,5 +48,84 @@ char	*get_path(char **env);
  * cmd
  */
 char	*parse_command(char *cmd, char *path);
+
+/**
+ * @brief Will write every bytes of the file file_name in the new file pointed
+ * by fd (Assuming file_name as correct access rights to read)
+ * @param file_name The path of the file to read
+ * @param fd The file descriptor to write in
+ * @return 0 is everything is good.
+ * -1 if there was an error while opening the file.
+ * -2 if there was an error while reading the file.
+ * -3 if there was an error while writing in fd.
+ */
+int		write_file_fd(char *file_name, int fd);
+
+/**
+ * @brief Will change pipe fd position according to their values. The old read
+ * fd will be set to the new one, the new write fd will be deleted and a new
+ * pipe will be created to replace the new write and read fd.
+ * @param fd_arr And array of fd. The first one is the old read fd, the second
+ * one is the new write fd and the last one is the new read fd
+ * @return 0 if everything is good. -1 if there was an error with pipe.
+ */
+int		swap_fd(int fd_arr[3]);
+
+/**
+ * @brief Give you the file descriptor of the file opened depending of the
+ * value of here_doc
+ * @param file_path The path to the file you want to open
+ * @param here_doc A boolean telling if here_doc is active
+ * @note This function will exit(-1) on error because the file path should
+ * already have been verified.
+ */
+int		get_fd(char *file_path, bool here_doc);
+
+/**
+ * @brief Tells if a character is a separator or not.
+ * @param c The character
+ * @return 1 if the character is a separator, 0 if it isn't.
+ */
+bool	issep(int c);
+bool	isquote(int c);
+
+/**
+ * @brief Tells if a character is escapable character, a character used for
+ * special syntaxe, the list in this programm are space, tab, single and double
+ * quotes, dollars and backslash
+ * @param c the character
+ */
+bool	isescapable(int c);
+
+/**
+ * @brief Tells if the character at position pos of s is escaped by '\' or not.
+ * It will be if the number of '\' before the character is odd.
+ * @param s The string containing the character
+ * @param pos th epositon of the character
+ */
+bool	is_escaped(char *s, size_t pos);
+
+bool	is_neutral_end(int c);
+
+char	*parse_squote(char **s);
+char	*parse_dquote(char **s, char **env);
+char	*parse_neutral(char **s, char **env);
+
+
+bool	is_var_name(int c);
+size_t	var_name_len(char *s);
+
+/**
+ * @brief Give the length of the use of a variable in a command. ($PATH will
+ * return 5 and ${PATH} will return 7)
+ * @param s The start of the var usage. The function assumes that it starts by a
+ * '$'
+ */
+size_t	var_len(char *s);
+
+int		exec_shell(char *cmd, char **env);
+void	free_cmd(t_sh_cmd *cmd);
+
+int		pipex(int paramsc, char **params, char **env, bool here_doc);
 
 #endif
