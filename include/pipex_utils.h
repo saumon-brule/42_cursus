@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 02:01:37 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/06 18:54:31 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 18:58:39 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ char	*parse_dquote(char **s, char **env);
  * offset the string while parsing it.
  */
 char	*parse_neutral(char **s, char **env);
-
 
 size_t	var_name_len(char *s);
 
