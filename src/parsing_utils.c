@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:04:31 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/28 06:23:52 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/05 17:31:30 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char	*parse_command(char *cmd, char *path)
 		free(file_path);
 		++i;
 	}
+	free_split(folders);
 	return (NULL);
 }
 

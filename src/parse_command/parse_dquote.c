@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_neutral.c                                    :+:      :+:    :+:   */
+/*   parse_dquote.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 06:41:00 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/28 14:54:01 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/01/22 00:30:32 by ebini             #+#    #+#             */
+/*   Updated: 2025/02/06 13:32:19 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,21 @@ static ssize_t	dquote_len(char *s, t_list **vars, char **env)
 	size_t	len;
 	ssize_t	var_result;
 
-	i = 0;
+	i = 1;
 	len = 0;
-	while (s[i] && (!is_neutral_end(s[i]) || is_escaped(s, i)))
+	while (s[i] && (s[i] != '\"' || is_escaped(s, i)))
 	{
 		if (s[i] == '$' && !is_escaped(s, i) && (is_var_name(s[i + 1])
-			|| (s[i + 1] == '{' && is_var_name(s[i + 2]))))
+				|| (s[i + 1] == '{' && is_var_name(s[i + 2]))))
 		{
 			var_result = parse_var(s, &i, vars, env);
 			if (var_result == -1)
 				return (-1);
 			len += var_result;
-			// ft_dprintf(2, "VAR DETECTED\n");
 			continue ;
 		}
 		len += (!is_escaped(s, i)
-			|| (s[i] != '$' && !is_neutral_end(s[i])));
+				|| (s[i] != '$' && s[i] != '"' && s[i] != '\\'));
 		++i;
 	}
 	return (len);
@@ -69,7 +68,7 @@ static ssize_t	dquote_len(char *s, t_list **vars, char **env)
 
 static void	handle_backslash(char *src, char *dest, size_t *i, size_t *len)
 {
-	if (src[*i + 1] == '$' || is_neutral_end(src[*i + 1]))
+	if (src[*i + 1] == '$' || src[*i + 1] == '"' || src[*i + 1] == '\\')
 	{
 		dest[*len] = src[*i + 1];
 		++*i;
@@ -89,10 +88,10 @@ static size_t	str_replace(char *src, char *dest, size_t n, t_list **vars)
 
 	len = 0;
 	i = 0;
-	while (len < n || *vars)
+	while (len < n || (*vars && len == 0))
 	{
 		if (src[i] == '$' && !is_escaped(src, i) && (is_var_name(src[i + 1])
-			|| (src[i + 1] == '{' && is_var_name(src[i + 2]))))
+				|| (src[i + 1] == '{' && is_var_name(src[i + 2]))))
 		{
 			len += ft_strcpy_len(lstpop(vars), dest + len);
 			i += var_len(src + i);
@@ -111,7 +110,7 @@ static size_t	str_replace(char *src, char *dest, size_t n, t_list **vars)
 	return (i);
 }
 
-char	*parse_neutral(char **s, char **env)
+char	*parse_dquote(char **s, char **env)
 {
 	ssize_t	size;
 	t_list	*vars;
@@ -127,6 +126,9 @@ char	*parse_neutral(char **s, char **env)
 	result = malloc(size + 1);
 	if (!result)
 		return (NULL);
+	++*s;
 	*s += str_replace(*s, result, size, &vars);
+	if (**s)
+		++*s;
 	return (result);
 }

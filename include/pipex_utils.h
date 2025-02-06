@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 02:01:37 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/28 14:52:14 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/01/31 13:22:31 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,36 +50,14 @@ char	*get_from_env(char *var, char **env);
 char	*parse_command(char *cmd, char *path);
 
 /**
- * @brief Will write every bytes of the file file_name in the new file pointed
- * by fd (Assuming file_name as correct access rights to read)
- * @param file_name The path of the file to read
- * @param fd The file descriptor to write in
- * @return 0 is everything is good.
- * -1 if there was an error while opening the file.
- * -2 if there was an error while reading the file.
- * -3 if there was an error while writing in fd.
- */
-int		write_file_fd(char *file_name, int fd);
-
-/**
- * @brief Will change pipe fd position according to their values. The old read
- * fd will be set to the new one, the new write fd will be deleted and a new
- * pipe will be created to replace the new write and read fd.
- * @param fd_arr And array of fd. The first one is the old read fd, the second
- * one is the new write fd and the last one is the new read fd
+ * @brief Will change pipe fd position according to their values. The read
+ * fd will be set to the next one, the new write fd will be closed and a new
+ * pipe will be created to replace the write and next read fd.
+ * @param fd_arr And array of fd. The first one is the read fd, the second
+ * one is the write fd and the last one is the next read fd
  * @return 0 if everything is good. -1 if there was an error with pipe.
  */
 int		swap_fd(int fd_arr[3]);
-
-/**
- * @brief Give you the file descriptor of the file opened depending of the
- * value of here_doc
- * @param file_path The path to the file you want to open
- * @param here_doc A boolean telling if here_doc is active
- * @note This function will exit(-1) on error because the file path should
- * already have been verified.
- */
-int		get_fd(char *file_path, bool here_doc);
 
 /**
  * @brief Tells if a character is a separator or not.
@@ -111,7 +89,6 @@ char	*parse_squote(char **s);
 char	*parse_dquote(char **s, char **env);
 char	*parse_neutral(char **s, char **env);
 
-
 bool	is_var_name(int c);
 size_t	var_name_len(char *s);
 
@@ -123,6 +100,7 @@ size_t	var_name_len(char *s);
  */
 size_t	var_len(char *s);
 
+void	child_process(int pipe_fd[3], char *command, char **env);
 int		exec_shell(char *cmd, char **env);
 void	free_cmd(t_sh_cmd *cmd);
 

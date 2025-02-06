@@ -1,18 +1,22 @@
 NAME = pipex
+SRC_FOLDER = src
 BUILD_FOLDER = .build
 INCLUDE_FOLDER = include \
 	./libft/include
 
-FILES =	main.c \
+FILES =	$(addprefix $(SRC_FOLDER)/, main.c \
 	pipex.c \
 	parsing_utils.c \
 	exec_shell.c \
 	pipex_utils.c \
-	parse_args/char_type.c \
-	parse_args/parse_dquote.c \
-	parse_args/parse_neutral.c \
-	parse_args/parse_squote.c \
-	parse_args/parse_env.c
+	pipex_children.c \
+	here_doc/tmp_fd.c \
+	here_doc/here_doc.c \
+	parse_command/char_type.c \
+	parse_command/parse_dquote.c \
+	parse_command/parse_neutral.c \
+	parse_command/parse_squote.c \
+	parse_command/parse_env.c)
 
 OBJS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.o))
 DEPS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.d))
@@ -50,5 +54,7 @@ fclean: clean
 
 re: fclean 
 	$(MAKE) all
+
+bonus: all
 
 -include $(DEPS)

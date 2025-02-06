@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:01:57 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/28 15:17:06 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 14:40:15 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 size_t	count_arg(char *s)
@@ -23,7 +24,7 @@ size_t	count_arg(char *s)
 	int		state;
 
 	if (!*s)
-		return (0);
+		return (1);
 	count = (!issep(*s) && *(s + 1) != '\'' && *(s + 1) != '"');
 	state = ((*s == '\'') * ASQ) | ((*s == '"') * ADQ) | ((*s == '\\') * AESC);
 	while (*++s)
@@ -38,8 +39,8 @@ size_t	count_arg(char *s)
 		{
 			if (!(state & WESC) && issep(*(s - 1)) && !issep(*s))
 				++count;
-			state = ((*s == '\'') * ASQ) | ((*s == '"') * ADQ) | ((*s == '\\')
-						* AESC);
+			state = ((*s == '\'') * ASQ) | ((*s == '"') * ADQ)
+				| ((*s == '\\') * AESC);
 		}
 	}
 	return (count);
@@ -50,7 +51,6 @@ char	*parse_split(int escaped, char **s, char **env)
 	static int	calls = 0;
 
 	calls += 1;
-	// ft_dprintf(2, "\n==call nb %d==\n", calls);
 	if (escaped)
 	{
 		if (isescapable(**(s + 1)))
@@ -72,17 +72,18 @@ char	*parse_split(int escaped, char **s, char **env)
 
 int	update_result(size_t count, char **result, char *new_string)
 {
-	char	*temp_result;
+	char	*tmp_result;
+
 	if (result[count])
 	{
-		temp_result = ft_strjoin(result[count], new_string);
+		tmp_result = ft_strjoin(result[count], new_string);
 		free(result[count]);
-		if (!temp_result)
+		if (!tmp_result)
 		{
 			free_n(result, count);
 			return (-1);
 		}
-		result[count] = temp_result;
+		result[count] = tmp_result;
 		return (0);
 	}
 	result[count] = new_string;
@@ -95,6 +96,8 @@ char	**fill_split(char *s, char **result, char **env)
 	size_t	count;
 	char	*parse_result;
 
+	if (!*s)
+		result[0] = ft_strdup("");
 	count = 0;
 	escaped = *s == '\\';
 	while (*s)
@@ -117,19 +120,29 @@ char	**fill_split(char *s, char **result, char **env)
 
 int	exec_shell(char *cmd, char **env)
 {
-	char	*cmd_file;
-	char	**splited_cmd;
-	size_t	arg_count;
-	int		result;
+	const size_t	arg_count = count_arg(cmd);
+	char			*cmd_path;
+	char			**splited_cmd;
 
-	arg_count = count_arg(cmd);
+	cmd = ft_strtrim(cmd, " \t");
 	splited_cmd = ft_calloc((arg_count + 1), sizeof(char *));
-	splited_cmd = fill_split(cmd, splited_cmd, env);
 	if (!splited_cmd)
 		return (-1);
-	cmd_file = parse_command(splited_cmd[0], get_from_env("PATH", env));
-	result = execve(cmd_file, splited_cmd, env);
+	splited_cmd = fill_split(cmd, splited_cmd, env);
+	cmd_path = parse_command(splited_cmd[0], get_from_env("PATH", env));
+	if (!cmd_path)
+	{
+		free_split(splited_cmd);
+		if (errno == ENOENT)
+		{
+			ft_dprintf(2, "pipex: command not found: %s\n", cmd);
+			return (127);
+		}
+		ft_dprintf(2, "pipex: %s: %s\n", strerror(errno), cmd);
+		return (-1);
+	}
+	execve(cmd_path, splited_cmd, env);
 	free_split(splited_cmd);
-	free(cmd_file);
-	return (result);
+	free(cmd_path);
+	return (-1);
 }
