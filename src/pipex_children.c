@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:21:27 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/06 12:39:56 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 18:46:25 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,6 @@
 #include <errno.h>
 #include "libft.h"
 #include "pipex_utils.h"
-
-int	change_fd(int old, int new)
-{
-	if (dup2(new, old) == -1)
-	{
-		perror("pipex");
-		close(new);
-		return (-1);
-	}
-	close(new);
-	return (0);
-}
 
 void	child_process(int pipe_fd[3], char *command, char **env)
 {

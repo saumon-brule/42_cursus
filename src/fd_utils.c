@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:54:08 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/31 13:08:16 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 18:46:34 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,14 @@ int	swap_fd(int pipe_fd[3])
 	return (pipe(pipe_fd + 1));
 }
 
-void	free_cmd(t_sh_cmd *cmd)
+int	change_fd(int old, int new)
 {
-	free_split(cmd->arguments);
-	free(cmd->path);
+	if (dup2(new, old) == -1)
+	{
+		perror("pipex");
+		close(new);
+		return (-1);
+	}
+	close(new);
+	return (0);
 }

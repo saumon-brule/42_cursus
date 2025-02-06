@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 02:01:37 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/31 13:22:31 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 18:54:31 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ char	*parse_command(char *cmd, char *path);
 int		swap_fd(int fd_arr[3]);
 
 /**
+ * @brief Uses dup2 to make fd new point on the same file as fd old and then
+ * delete old.
+ * @param old A deleted fd
+ * @param new A fd redirected to old
+ */
+int		change_fd(int old, int new);
+
+/**
  * @brief Tells if a character is a separator or not.
  * @param c The character
  * @return 1 if the character is a separator, 0 if it isn't.
@@ -71,7 +79,7 @@ bool	isquote(int c);
  * @brief Tells if a character is escapable character, a character used for
  * special syntaxe, the list in this programm are space, tab, single and double
  * quotes, dollars and backslash
- * @param c the character
+ * @param c The character
  */
 bool	isescapable(int c);
 
@@ -79,17 +87,56 @@ bool	isescapable(int c);
  * @brief Tells if the character at position pos of s is escaped by '\' or not.
  * It will be if the number of '\' before the character is odd.
  * @param s The string containing the character
- * @param pos th epositon of the character
+ * @param pos the epositon of the character
  */
 bool	is_escaped(char *s, size_t pos);
 
+/**
+ * @brief Tells if the character is a separator of arguments in a unquotted
+ * contexte (basically space or tab).
+ * @param c The character
+ */
 bool	is_neutral_end(int c);
 
+/**
+ * @brief Tells if a character is part of the authorised character for shell
+ * variables.
+ * @param c The character
+ * @note Shell variables can be composed of alnum characters and underscores.
+ */
+bool	is_var_name(int c);
+
+/**
+ * @brief Will parse an argument starting by a single quote.
+ * @param s This is a douple pointer to a string because the function will
+ * offset the string while parsing it, the function will assume that the string
+ * starts by a single quote
+ * @note Difference in parsing between squote and dquote is that squote will not
+ * handle any special character (except the squote for the end). The dquote will
+ * need to parse variables and/or character escaping by '\'.
+ */
 char	*parse_squote(char **s);
+
+/**
+ * @brief Will parse an argument starting by a double quote.
+ * @param s This is a douple pointer to a string because the function will
+ * offset the string while parsing it, the function will assume that the string
+ * starts by a double quote
+ * @note Difference in parsing between squote and dquote is that squote will not
+ * handle any special character (except the squote for the end). The dquote will
+ * need to parse variables and/or character escaping by '\'.
+ */
 char	*parse_dquote(char **s, char **env);
+
+/**
+ * @brief Will parse an argument in a unquoted contexte and stop at first space
+ * or tab.
+ * @param s This is a douple pointer to a string because the function will
+ * offset the string while parsing it.
+ */
 char	*parse_neutral(char **s, char **env);
 
-bool	is_var_name(int c);
+
 size_t	var_name_len(char *s);
 
 /**
@@ -100,10 +147,23 @@ size_t	var_name_len(char *s);
  */
 size_t	var_len(char *s);
 
+/**
+ * @brief The function called by the child after every fork.
+ * @param pipe_fd The array of fd used to redirect in/outputs through pipes
+ * @param command The unparsed command as raw string
+ * @param env The env of the parent
+ */
 void	child_process(int pipe_fd[3], char *command, char **env);
-int		exec_shell(char *cmd, char **env);
-void	free_cmd(t_sh_cmd *cmd);
 
-int		pipex(int paramsc, char **params, char **env, bool here_doc);
+/**
+ * @brief This function will exec a raw command as if it was parsed by the shell
+ * (in an easy way)
+ * @param cmd The raw command
+ * @param env The env of the parent process
+ * @note This function should handle env variables, squote/dquote and '\'.
+ */
+int		exec_shell(char *cmd, char **env);
+
+int		pipex(int pc, char **pv, char **env, bool here_doc);
 
 #endif
