@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/27 04:08:54 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 14:37:52 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -336,7 +336,24 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*strjoinall(size_t count, ...);
 size_t	ft_strlen(const char *s);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-char	*ft_strtrim(char const *s1, char const *set);
+
+/**
+ * @brief Delete every characters of set at the beginning and the end of s.
+ * @param s The string to trim
+ * @param set The set of character to remove
+ * @warning This function allocates a new memory area for the new string,
+ * ensuring that the original string remains unchanged.
+ */
+char	*ft_strtrimm(char const *s, char const *set);
+
+/**
+ * @brief Delete every characters of set at the beginning and the end of s.
+ * @param s The string to trim
+ * @param set The set of character to remove
+ * @warning This function modifies the existing string in place, avoiding memory
+ * reallocation and reducing the risk of memory errors..
+ */
+char	*ft_strtrim(char *s, char const *set);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 char	*ft_strstr(const char *big, const char *little);
