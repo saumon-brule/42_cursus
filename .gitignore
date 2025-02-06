@@ -54,7 +54,7 @@ dkms.conf
 .clan-format
 .vscode/
 local
-*test.*
+*test*
 .build/
 *.a
 
