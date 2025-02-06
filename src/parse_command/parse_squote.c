@@ -6,12 +6,11 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 00:30:32 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/27 07:16:42 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 19:05:55 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 char	*parse_squote(char **s)
 {

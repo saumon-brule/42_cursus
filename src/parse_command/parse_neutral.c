@@ -6,12 +6,12 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 06:41:00 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/06 13:36:02 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 19:05:14 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
+
 #include "pipex_utils.h"
 
 static ssize_t	parse_var(char *s, size_t *i, t_list **vars, char **env)

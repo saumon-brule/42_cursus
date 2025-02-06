@@ -6,16 +6,15 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:21:27 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/06 18:46:25 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 19:09:02 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
-#include "libft.h"
+
 #include "pipex_utils.h"
 
 void	child_process(int pipe_fd[3], char *command, char **env)

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 14:51:33 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/06 12:46:00 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 19:13:35 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <sys/wait.h>
 #include <stdio.h>
 #include <errno.h>
-#include "libft.h"
+
 #include "pipex_utils.h"
 #include "here_doc.h"
 

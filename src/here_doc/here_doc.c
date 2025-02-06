@@ -6,12 +6,14 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/05 17:29:53 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 19:12:23 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
+
 #include "libft.h"
 #include "here_doc.h"
 

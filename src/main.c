@@ -6,18 +6,14 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 01:24:32 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/05 09:33:12 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 19:08:06 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
 #include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <fcntl.h>
 #include <errno.h>
-#include "libft.h"
+
 #include "pipex_utils.h"
 
 int	main(int ac, char **av, char *env[])

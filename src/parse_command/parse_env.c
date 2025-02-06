@@ -6,11 +6,10 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 23:25:03 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/28 06:20:48 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 19:04:34 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "pipex_utils.h"
 
 size_t	var_name_len(char *s)

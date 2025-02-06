@@ -6,17 +6,16 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:01:57 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/06 14:40:15 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 19:06:39 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "pipex_utils.h"
 #include <errno.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+
+#include "pipex_utils.h"
 
 size_t	count_arg(char *s)
 {

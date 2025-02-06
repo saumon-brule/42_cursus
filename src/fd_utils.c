@@ -1,20 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   fd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:54:08 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/06 18:46:34 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 19:02:15 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdlib.h>
 #include <unistd.h>
-#include "libft.h"
-#include "pipex_utils.h"
+#include <stdio.h>
 
 int	swap_fd(int pipe_fd[3])
 {

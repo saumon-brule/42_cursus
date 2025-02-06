@@ -6,14 +6,12 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 10:44:29 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/05 14:24:55 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 19:12:34 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HERE_DOC_H
 # define HERE_DOC_H
-
-# include <fcntl.h>
 
 /**
  * @brief Generate a temporary file and write the STDIN in it.

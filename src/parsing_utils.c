@@ -6,13 +6,14 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:04:31 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/05 17:31:30 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/06 19:08:25 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include <stdlib.h>
 #include <unistd.h>
+
+#include "libft.h"
 
 char	*get_from_env(char *var, char **env)
 {
