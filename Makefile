@@ -8,7 +8,7 @@ FILES =	$(addprefix $(SRC_FOLDER)/, main.c \
 	pipex.c \
 	parsing_utils.c \
 	exec_shell.c \
-	pipex_utils.c \
+	fd_utils.c \
 	pipex_children.c \
 	here_doc/tmp_fd.c \
 	here_doc/here_doc.c \
