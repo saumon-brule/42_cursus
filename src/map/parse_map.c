@@ -20,6 +20,7 @@
 #include "so_long_defs.h"
 #include "libft.h"
 #include "map_err_num.h"
+#include "settings.h"
 
 int	join_line_to_map(t_map	*map, char *line)
 {
@@ -31,8 +32,7 @@ int	join_line_to_map(t_map	*map, char *line)
 		line[--line_len] = '\0';
 	if (map->data)
 	{
-		printf("line: %zu\nmap: %zu\n", line_len, map->width);
-		if (line_len != map->width)
+		if (line_len != (size_t)map->width)
 			return (MAP_INVALID_MAP_FORMAT);
 		new_data = malloc((map->height + 1) * map->width * sizeof(char));
 		if (!new_data)
@@ -47,8 +47,9 @@ int	join_line_to_map(t_map	*map, char *line)
 		++(map->height);
 		return (MAP_SUCCESS);
 	}
-	map->data = ft_strdup(line);
+	map->data = ft_memdup(line, line_len);
 	map->width = line_len;
+	map->height = 1;
 	return (MAP_SUCCESS);
 }
 
@@ -80,7 +81,7 @@ int	fill_map(t_map *map, int map_fd)
 	return (MAP_SUCCESS);
 }
 
-int	parse_map(t_map **map_ptr, char *map_file)
+int	parse_map(t_game *game, char *map_file)
 {
 	int			map_fd;
 	int			result;
@@ -91,17 +92,22 @@ int	parse_map(t_map **map_ptr, char *map_file)
 		ft_dprintf(2, "parse_map: %s: %s", strerror(errno), map_file);
 		return (-1);
 	}
-	*map_ptr = malloc(sizeof(t_map));
-	if (!*map_ptr)
+	game->map = malloc(sizeof(t_map));
+	if (!game->map)
 	{
 		perror("parse_map");
 		close(map_fd);
 		return (-1);
 	}
-	(*map_ptr)->height = 0;
-	result = fill_map(*map_ptr, map_fd);
+	game->map->height = 0;
+	result = fill_map(game->map, map_fd);
 	if (result)
-		free(*map_ptr);
+		free(game->map);
 	close(map_fd);
+	int	i = 0;
+	while (game->map->data[i] != 'P')
+		++i;
+	game->player->pos.x = (double)((i % game->map->width) * CELL_SIZE) + ((double)CELL_SIZE - (double)game->player->width) / 2.0;
+	game->player->pos.y = (double)((i / game->map->height - 1) * CELL_SIZE) + ((double)CELL_SIZE - (double)game->player->height) / 2.0;
 	return (result);
 }

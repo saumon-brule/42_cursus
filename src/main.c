@@ -28,7 +28,7 @@ int	main(int ac, char **av)
 		game = init_game(ac, av);
 		if (!game)
 			return (EXIT_FAILURE);
-		parse_result = parse_map(&(game->map), av[1]);
+		parse_result = parse_map(game, av[1]);
 		if (parse_result)
 		{
 			if (parse_result > 0)

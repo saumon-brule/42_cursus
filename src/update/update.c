@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42.fr>                +#+  +:+       +#+        */
+/*   By: saumon <saumon@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 06:24:41 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/24 19:04:55 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/26 02:51:03 by saumon           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	move_player(t_map *map, t_player *player, double dt)
 
 	if (collision.x != -1)
 		printf("colliding with : %c\n", get_map(map, collision.x, collision.y));
-	else
-		printf("colliding with : Nothing\n");
+	// else
+	// 	printf("colliding with : %d, %d\n", collision.x, collision.y);
 	player->pos.x += player->speed.x * dt;
 	player->pos.y += player->speed.y * dt;
 }
@@ -90,11 +90,14 @@ int	main_loop(t_game *game)
 {
 	const double	dt = wait_for_frame(&(game->last_time));
 
+	if (game->frames)
+		exit_game(game);
 	move_player(game->map, game->player, dt);
 	update_player_speed(game->player, dt);
-	printf("====STATS====\n");
-	printf("pos: %.3f:%.3f\n", game->player->pos.x, game->player->pos.y);
-	show_fps(dt);
+	// printf("====STATS====\n");
+	// printf("pos: %.3f:%.3f\n", game->player->pos.x, game->player->pos.y);
+	// show_fps(dt);
 	draw_game(game);
+	// ++(game->frames);
 	return (0);
 }

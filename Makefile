@@ -29,8 +29,8 @@ FILES =	$(addprefix $(SRC_FOLDER)/, \
 OBJS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.o))
 DEPS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.d))
 
-CC = clang
-CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(INCLUDE_FOLDER) -g3
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(INCLUDE_FOLDER) -pg
 
 LIBFT_FOLDER = libft
 LIBFT_ARCHIVE = libft.a

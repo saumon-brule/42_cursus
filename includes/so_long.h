@@ -21,7 +21,7 @@ t_game		*init_game(int ac, char **av);
 
 //        MAP         //
 char		get_map(t_map *map, size_t x, size_t y);
-int			parse_map(t_map **map, char *map_file);
+int			parse_map(t_game *game, char *map_file);
 char		*get_map_errors(int map_error_num);
 
 //       MATHS        //
@@ -34,8 +34,8 @@ int			setup_game(t_game *game);
 
 //       UPDATE       //
 
-bool	check_player_movement_square(t_player *player, t_vec movement,
-	int x, int y);
+bool		check_player_movement_square(t_player *player, t_vec movement,
+				int x, int y);
 t_index		get_nearest_collision(t_map *map, t_player *player, t_vec movement);
 double		wait_for_frame(t_time *last_time);
 int			main_loop(t_game *game);

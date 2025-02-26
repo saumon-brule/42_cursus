@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42.fr>                +#+  +:+       +#+        */
+/*   By: saumon <saumon@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 01:56:46 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/24 19:52:25 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/25 20:02:07 by saumon           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,24 @@
 
 bool	init_sprites(t_game *game)
 {
-	int	dummy_value;
+	int	a;
 
 	game->sprites = malloc(sizeof(t_sprites));
 	if (!game->sprites)
-	game->sprites->air = mlx_xpm_file_to_image(game->mlx, TEXTURE_AIR);
-	game->sprites->wall = mlx_xpm_file_to_image(game->mlx, TEXTURE_WALL);
-	game->sprites->coin = mlx_xpm_file_to_image(game->mlx, TEXTURE_COIN);
+		return (true);
+	game->sprites->air = mlx_xpm_file_to_image(game->mlx, TEXTURE_AIR, &a, &a);
+	game->sprites->wall = mlx_xpm_file_to_image(game->mlx, TEXTURE_WALL,
+			&a, &a);
+	game->sprites->coin = mlx_xpm_file_to_image(game->mlx, TEXTURE_COIN,
+			&a, &a);
+	if (!game->sprites->air || !game->sprites->wall
+		|| !game->sprites->coin)
+	{
+		clean_sprites(game);
+		perror("init_sprites");
+		return (true);
+	}
+	return (false);
 }
 
 bool	init_mlx(t_game *game)
@@ -46,12 +57,12 @@ bool	init_mlx(t_game *game)
 		return (true);
 	}
 	game->win = mlx_new_window(game->mlx,
-		WINDOW_WIDTH, WINDOW_HEIGHT, GAME_TITLE);
+			WINDOW_WIDTH, WINDOW_HEIGHT, GAME_TITLE);
 	if (!game->win)
 	{
 		perror("init_mlx");
 		clean_mlx(game->mlx);
-			mlx_destroy_image(game->mlx, game->displayed);
+		mlx_destroy_image(game->mlx, game->displayed);
 		return (true);
 	}
 	return (false);
@@ -59,7 +70,7 @@ bool	init_mlx(t_game *game)
 
 bool	init_player(t_game *game)
 {
-	game->player = calloc(1, sizeof(t_player));
+	game->player = malloc(sizeof(t_player));
 	if (!game->player)
 	{
 		perror("init_player");
@@ -70,7 +81,6 @@ bool	init_player(t_game *game)
 	if (!game->player->sprite)
 	{
 		free(game->player);
-		printf("%s\n", TEXTURE_PLAYER);
 		perror("init_player");
 		return (true);
 	}
@@ -88,21 +98,21 @@ bool	init_player(t_game *game)
 
 int	get_scale(int ac, char **av)
 {
-	int	scale;
+	// int	scale;
 
-	if (ac < 3)
+	if (ac < 3 || ft_strlen(av[2]) > 1)
 		return (1);
-	scale = ft_atoi(av[2]);
-	if (scale > 0)
-		return (scale);
-	return (1);
+	// scale = ft_atoi(av[2]);
+	// if (scale > 0)
+	// 	return (scale);
+	return (av[2][0] - '0');
 }
 
 t_game	*init_game(int ac, char **av)
 {
 	t_game	*game;
 
-	game = calloc(1, sizeof(t_game));
+	game = calloc(1, sizeof(t_game)); //check
 	if (!game)
 	{
 		perror("init_game");
@@ -119,6 +129,10 @@ t_game	*init_game(int ac, char **av)
 		free(game->win);
 		free(game);
 		return (NULL);
+	}
+	if (init_sprites(game))
+	{
+		perror("tkt"); // soon
 	}
 	game->scale = get_scale(ac, av);
 	return (game);

@@ -25,8 +25,8 @@ double	square_distance(t_square *a, t_square *b)
 
 double	player_square_distance(t_player *player, t_index square_position)
 {
-	t_square player_box;
-	t_square square_box;
+	t_square	player_box;
+	t_square	square_box;
 
 	player_box.pos = player->pos;
 	player_box.size = player->width;

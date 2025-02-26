@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_img_on_screen.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42.fr>                +#+  +:+       +#+        */
+/*   By: saumon <saumon@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 10:27:57 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/23 12:30:27 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/25 19:30:29 by saumon           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 void	handle_pixel_cpy(char *dest, char *src, int bpp_dest, int bpp_src)
 {
+	// if (bpp_dest == 32 && bpp_src == 32)
+	// 	return ;
 	dest[0] = src[0];
 	dest[1] = src[1];
 	dest[2] = src[2];
@@ -36,6 +38,7 @@ void	put_pixel_on_screen(t_game *game, char *pixel, t_point pos, int bpp)
 	int		j;
 	int		x;
 	int		y;
+	int		y_pos;
 
 	j = -1;
 	while (++j < game->scale)
@@ -44,14 +47,15 @@ void	put_pixel_on_screen(t_game *game, char *pixel, t_point pos, int bpp)
 		if (y < 0 || y > game->displayed->height)
 			continue ;
 		i = -1;
+		y_pos = y * game->displayed->size_line;
 		while (++i < game->scale)
 		{
 			x = pos.x * game->scale + i;
 			if (x < 0 || x > game->displayed->width)
 				continue ;
 			handle_pixel_cpy(game->displayed->data
-				+ (y * game->displayed->size_line + x * (game->displayed->bpp / 8)), pixel,
-				game->displayed->bpp, bpp);
+				+ (y_pos + x * (game->displayed->bpp / 8)),
+				pixel, game->displayed->bpp, bpp);
 		}
 	}
 }
@@ -75,8 +79,8 @@ void	draw_img_on_screen(t_img *img, t_game *game, t_point pos)
 		i = -1;
 		while (++i < img->width)
 		{
-			screen_pos.x = pos.x + i;
-			screen_pos.y = pos.y + j;
+			screen_pos.x = (pos.x + i);
+			screen_pos.y = (pos.y + j);
 			put_pixel_on_screen(game,
 				img->data + (j * img->size_line + i * (img->bpp / 8)),
 				screen_pos, img->bpp);

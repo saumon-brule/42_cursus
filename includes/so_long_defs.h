@@ -38,8 +38,8 @@ typedef struct s_player
 typedef struct s_map
 {
 	char	*data;
-	size_t	width;
-	size_t	height;
+	int		width;
+	int		height;
 }						t_map;
 
 typedef struct timeval	t_time;
@@ -61,6 +61,7 @@ typedef struct s_game
 	t_map		*map;
 	t_time		last_time;
 	t_sprites	*sprites;
+	int			frames;
 	int			scale;
 }						t_game;
 
