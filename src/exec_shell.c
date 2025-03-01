@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:01:57 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/01 14:51:01 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/01 14:58:33 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,12 @@ int	exec_shell(char *cmd, char **env)
 	int				result;
 
 	cmd = ft_strtrim(cmd, " \t");
-	// dprintf(2, "%s\n", cmd);
 	dprintf(2, "%lu\n", (arg_count + 1));
 	splited_cmd = ft_calloc((arg_count + 1), sizeof(char *));
 	if (!splited_cmd || fill_split(cmd, splited_cmd, env) == 1)
 		return (1);
-	// while (splited_cmd)
-	// 	dprintf(2, "\"%s\"\n", *(splited_cmd++));
-	// (void)cmd_path;
-	// (void)result;
-	// return (1);
 	result = parse_command(splited_cmd[0], get_from_env("PATH", env),
-		&cmd_path);
+			&cmd_path);
 	if (result)
 	{
 		free_split(splited_cmd);
