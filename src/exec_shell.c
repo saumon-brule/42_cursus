@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:01:57 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/01 15:56:06 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/01 16:16:00 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@
 
 #include "pipex_utils.h"
 
-char	*parse_split(bool escaped, char **s, char **env)
+char	*parse_split(bool *escaped, char **s, char **env)
 {
-	if (escaped)
+	if (*escaped)
 	{
+		ft_dprintf(2, "%s\n", *s);
 		if (isescapable(*(*s + 1)))
+		{
 			*s += 2;
+			*escaped = false;
+		}
 		else
 			*s += 1;
 		return (ft_strndup((*s - 1), 1));
@@ -31,8 +35,7 @@ char	*parse_split(bool escaped, char **s, char **env)
 		return (parse_squote(s));
 	if (**s == '"')
 		return (parse_dquote(s, env));
-	else
-		return (parse_neutral(s, env));
+	return (parse_neutral(s, env));
 }
 
 int	update_result(size_t count, char **result, char *new_string)
@@ -69,7 +72,7 @@ int	fill_split(char *s, char **result, char **env)
 	{
 		while (issep(*s))
 			++s;
-		parse_result = parse_split(escaped, &s, env);
+		parse_result = parse_split(&escaped, &s, env);
 		if (!parse_result)
 		{
 			free_n(result, count);
