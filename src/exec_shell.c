@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 19:01:57 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/01 14:58:33 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/01 15:56:06 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,14 @@
 
 #include "pipex_utils.h"
 
-#include <stdio.h>
-
 char	*parse_split(bool escaped, char **s, char **env)
 {
-	static int	calls = 0;
-
-	calls += 1;
 	if (escaped)
 	{
 		if (isescapable(*(*s + 1)))
 			*s += 2;
-		*s += 1;
+		else
+			*s += 1;
 		return (ft_strndup((*s - 1), 1));
 	}
 	if (**s == '\'')
@@ -75,7 +71,10 @@ int	fill_split(char *s, char **result, char **env)
 			++s;
 		parse_result = parse_split(escaped, &s, env);
 		if (!parse_result)
-			return (free_n(result, count), 1);
+		{
+			free_n(result, count);
+			return (1);
+		}
 		update_result(count, result, parse_result);
 		if (issep(*s))
 			++count;
@@ -92,7 +91,6 @@ int	exec_shell(char *cmd, char **env)
 	int				result;
 
 	cmd = ft_strtrim(cmd, " \t");
-	dprintf(2, "%lu\n", (arg_count + 1));
 	splited_cmd = ft_calloc((arg_count + 1), sizeof(char *));
 	if (!splited_cmd || fill_split(cmd, splited_cmd, env) == 1)
 		return (1);

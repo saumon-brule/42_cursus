@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:04:31 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/28 16:12:18 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/01 15:56:38 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ int	find_command(char **folders, char *cmd, char **result)
 {
 	size_t	i;
 
+	if (!ft_strlen(cmd))
+	{
+		ft_dprintf(2, "pipex: permission denied: %s\n", cmd);
+		return (126);
+	}
 	i = -1;
 	while (folders[++i])
 	{
