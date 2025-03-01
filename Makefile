@@ -10,6 +10,7 @@ FILES =	$(addprefix $(SRC_FOLDER)/, main.c \
 	exec_shell.c \
 	fd_utils.c \
 	pipex_children.c \
+	count_args.c \
 	here_doc/tmp_fd.c \
 	here_doc/here_doc.c \
 	parse_command/char_type.c \

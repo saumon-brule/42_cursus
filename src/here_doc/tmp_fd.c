@@ -13,48 +13,53 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
 #include <errno.h>
 
-#include "libft.h"
+#include "here_doc.h"
+#include "pipex_utils.h"
 
-char	*generate_random_string(void)
+char	*generate_random_string(size_t n)
 {
-	const int	fd = open("/dev/urandom", O_RDONLY);
+	const int	fd = open(RANDOM_FILE, O_RDONLY);
 	char		*string;
 
 	if (fd == -1)
 	{
-		perror("pipex: Couldn't open /dev/urandom");
+		ft_dprintf(2, "pipex: Can't open %s: %s", RANDOM_FILE, strerror(errno));
 		return (NULL);
 	}
-	string = malloc(11 * sizeof(char));
+	string = malloc((n + 1) * sizeof(char));
 	if (!string)
 	{
 		perror("pipex");
+		close(fd);
 		return (NULL);
 	}
-	if (read(fd, string, 10) != 10)
+	if (read(fd, string, n) != (ssize_t)n)
 	{
+		ft_dprintf(2, "pipex: Can't read %s: %s", RANDOM_FILE, strerror(errno));
 		free(string);
-		perror("pipex: Couldn't read in /dev/urandom");
+		close(fd);
 		return (NULL);
 	}
-	string[10] = '\0';
+	string[n] = '\0';
+	close(fd);
 	return (string);
 }
 
-char	*here_doc_path(void)
+char	*tmp_path(void)
 {
 	char	*path;
 	char	*random_string;
 
 	while (true)
 	{
-		random_string = generate_random_string();
+		random_string = generate_random_string(10);
 		if (!random_string)
 			return (NULL);
-		path = ft_strjoin("/tmp/pipex_here_doc_", random_string);
+		path = ft_strjoin(PIPEX_TMP_PATH, random_string);
 		free(random_string);
 		if (!path)
 		{
@@ -71,10 +76,10 @@ int	tmp_fd(char **path, int flags)
 {
 	int		fd;
 
-	*path = here_doc_path();
+	*path = tmp_path();
 	if (!*path)
 		return (-1);
-	fd = open(*path, flags | O_CREAT, 0644);
+	fd = open(*path, flags | O_CREAT, 0600);
 	if (fd == -1)
 	{
 		free(*path);

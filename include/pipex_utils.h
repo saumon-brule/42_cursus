@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 02:01:37 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/06 18:58:39 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/01 14:43:26 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@
 # define WSQ  0b00000010
 # define ASQ  0b00000001
 
-typedef struct s_sh_cmd
+typedef struct s_pipex_fd
 {
-	char	*path;
-	char	**arguments;
-}		t_sh_cmd;
+	int	in;
+	int	out;
+	int	next_out;
+	int	last_out;
+}			t_pipex_fd;
 
 /**
  * @brief Will give you the path depending of the env variables given in
@@ -47,7 +49,14 @@ char	*get_from_env(char *var, char **env);
  * we don't parse it an returns a duplicated and malloced string identical to
  * cmd
  */
-char	*parse_command(char *cmd, char *path);
+int		parse_command(char *cmd, char *path, char **result);
+
+/**
+ * @brief Count the number of arguments of a command.
+ * @param s The command
+ * @return The number of arguments in the command s.
+ */
+size_t	count_args(char *s);
 
 /**
  * @brief Will change pipe fd position according to their values. The read
@@ -57,7 +66,7 @@ char	*parse_command(char *cmd, char *path);
  * one is the write fd and the last one is the next read fd
  * @return 0 if everything is good. -1 if there was an error with pipe.
  */
-int		swap_fd(int fd_arr[3]);
+int		swap_fd(t_pipex_fd *pipe_fd);
 
 /**
  * @brief Uses dup2 to make fd new point on the same file as fd old and then
@@ -93,7 +102,8 @@ bool	is_escaped(char *s, size_t pos);
 
 /**
  * @brief Tells if the character is a separator of arguments in a unquotted
- * contexte (basically space or tab).
+ * context (basically space or tab) or a quote (marking the beggining of a
+ * quoted context).
  * @param c The character
  */
 bool	is_neutral_end(int c);
@@ -146,13 +156,7 @@ size_t	var_name_len(char *s);
  */
 size_t	var_len(char *s);
 
-/**
- * @brief The function called by the child after every fork.
- * @param pipe_fd The array of fd used to redirect in/outputs through pipes
- * @param command The unparsed command as raw string
- * @param env The env of the parent
- */
-void	child_process(int pipe_fd[3], char *command, char **env);
+int		pipex_fork(t_pipex_fd *pipe_fd, int pc, char **pv, char **env);
 
 /**
  * @brief This function will exec a raw command as if it was parsed by the shell

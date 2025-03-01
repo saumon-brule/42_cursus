@@ -6,12 +6,13 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:04:31 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/06 19:08:25 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/28 16:12:18 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdio.h>
 
 #include "libft.h"
 
@@ -30,31 +31,45 @@ char	*get_from_env(char *var, char **env)
 	return ("");
 }
 
-char	*parse_command(char *cmd, char *path)
+int	find_command(char **folders, char *cmd, char **result)
 {
-	char	**folders;
-	char	*file_path;
 	size_t	i;
 
-	if (ft_strchr(cmd, '/'))
-		return (ft_strdup(cmd));
-	if (!path)
-		return (NULL);
-	i = 0;
-	folders = ft_split(path, ':');
-	while (folders[i])
+	i = -1;
+	while (folders[++i])
 	{
-		file_path = strjoinall(3, folders[i], "/", cmd);
-		if (!access(file_path, F_OK))
+		*result = strjoinall(3, folders[i], "/", cmd);
+		if (!*result)
 		{
-			free_split(folders);
-			return (file_path);
+			perror("pipex");
+			return (1);
 		}
-		free(file_path);
-		++i;
+		if (!access(*result, X_OK | F_OK))
+			return (0);
+		free(*result);
 	}
+	ft_dprintf(2, "pipex: command not found: %s\n", cmd);
+	return (127);
+}
+
+int	parse_command(char *cmd, char *path, char **result)
+{
+	char	**folders;
+	int		status;
+
+	if (ft_strchr(cmd, '/'))
+	{
+		*result = ft_strdup(cmd);
+		return (0);
+	}
+	if (!path)
+		return (1);
+	folders = ft_split(path, ':');
+	if (!folders)
+		return (1);
+	status = find_command(folders, cmd, result);
 	free_split(folders);
-	return (NULL);
+	return (status);
 }
 
 bool	is_escaped(char *s, size_t pos)
