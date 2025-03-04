@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/06 14:37:52 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/04 23:37:57 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,12 +207,28 @@ int		arrmin(int *arr, size_t n);
 int		max(int a, int b);
 
 /**
- * @brief returns the smallest number between a and b
- * @param a an int
- * @param b an other int
- * @return the smallest int
+ * @brief Returns the biggest number between a and b.
+ * @param a A size_t
+ * @param b An other size_t
+ * @return The biggest int.
+ */
+size_t	maxs(size_t a, size_t b);
+
+/**
+ * @brief Returns the smallest number between a and b.
+ * @param a An int
+ * @param b An other int
+ * @return The smallest int.
  */
 int		min(int a, int b);
+
+/**
+ * @brief Returns the smallest number between a and b.
+ * @param a A size_t
+ * @param b An other size_t
+ * @return The smallest int.
+ */
+size_t	mins(size_t a, size_t b);
 
 /*************************************************/
 /*                    MEMORY                     */

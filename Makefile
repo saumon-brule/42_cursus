@@ -42,7 +42,9 @@ MATHS_FOLDER = maths
 MATHS_FILES = arrmax.c \
 	arrmin.c \
 	max.c \
-	min.c
+	min.c \
+	maxs.c \
+	mins.c
 
 LIST_FOLDER = list
 LIST_FILES = lstadd_back.c \
