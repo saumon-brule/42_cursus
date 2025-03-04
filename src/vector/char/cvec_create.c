@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:48:43 by saumon            #+#    #+#             */
-/*   Updated: 2025/03/04 18:26:30 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/04 23:38:09 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	cvec_init(t_cvector *vector, char *array, size_t len)
 	vector->data = malloc(elem_capacity * sizeof(char));
 	if (!vector->data)
 		return (1);
-		vector->capacity = elem_capacity;
+	vector->capacity = elem_capacity;
 	if (array)
 	{
 		vector->len = len;
