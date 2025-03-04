@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cvec_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saumon <saumon@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:10:56 by saumon            #+#    #+#             */
-/*   Updated: 2025/03/03 18:15:53 by saumon           ###   ########lyon.fr   */
+/*   Updated: 2025/03/04 19:27:30 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,4 @@ void	cvec_print(int fd, t_cvector *vector)
 	while (++i < vector->len)
 		ft_dprintf(fd, ", %d", (int)vector->data[i]);
 	ft_dprintf(fd, "](%d/%d)\n", (int)vector->len, (int)vector->capacity);
-
 }
