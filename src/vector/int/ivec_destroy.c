@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ivec_destroy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saumon <saumon@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 10:02:01 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/03 16:15:49 by saumon           ###   ########lyon.fr   */
+/*   Created: 2025/03/03 16:40:02 by saumon            #+#    #+#             */
+/*   Updated: 2025/03/03 16:51:44 by saumon           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include <stdlib.h>
 
-void	*ft_memcpy(void *dest, void *src, size_t n)
+#include "vector.h"
+
+void	ivec_clear(t_ivector *vector)
 {
-	int		*write_dest;
-	int		*read_src;
-	size_t	size_limit;
-	size_t	i;
+	free(vector->data);
+}
 
-	write_dest = dest;
-	read_src = src;
-	size_limit = n / sizeof(int);
-	i = -1;
-	while (++i < size_limit)
-		write_dest[i] = read_src[i];
-	i = i * sizeof(int) - 1;
-	while (++i < n)
-		((char *)write_dest)[i] = ((char *)read_src)[i];
-	return (dest);
+void	ivec_destroy(t_ivector *vector)
+{
+	free(vector->data);
+	free(vector);
 }
