@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 08:30:31 by ebini            #+#    #+#             */
-/*   Updated: 2025/03/04 08:45:59 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/03/05 06:29:08 by ebini             #+#    #+#             */
+/*   Updated: 2025/03/05 08:19:30 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "libft.h"
 #include "vector.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	get_push_pos(t_ivector *stack, int el)
 {
-	t_ivector	stack_a;
-	t_ivector	stack_b;
+	int	i;
+	int	old;
+	int	new;
 
-	if (parse_input(ac, av, &stack_a))
+	if (!stack->len)
+		return (0);
+	i = 0;
+	old = ivec_get(stack, i);
+	while (++i < (int)stack->len)
 	{
-		ft_dprintf(2, "Error\n");
-		return (1);
+		new = ivec_get(stack, i);
+		if (old < new)
+			break;
+		old = new;
 	}
-	ivec_init(&stack_b, stack_a.data, stack_a.len);
-	ivec_print(1, &stack_a);
-	ivec_print(1, &stack_b);
-	push_swap(&stack_a, &stack_b);
-	ivec_print(1, &stack_a);
-	ivec_print(1, &stack_b);
-	ivec_clear(&stack_a);
-	ivec_clear(&stack_b);
+	i *= i < (int)stack->len;
+	while (i < (int)stack->len && el < ivec_get(stack, i))
+		i = (i + 1) % stack->len;
+	return (i);
 }

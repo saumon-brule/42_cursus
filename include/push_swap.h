@@ -18,4 +18,7 @@ int		parse_input(int ac, char **av, t_ivector *vector);
 bool	is_int(char *s);
 bool	is_number(char *s);
 
+int		get_push_pos(t_ivector *stack, int el);
+void	push_swap(t_ivector *stack_a, t_ivector *stack_b);
+
 #endif

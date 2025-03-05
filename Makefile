@@ -9,6 +9,8 @@ CONVERTER_FILES = ft_atoi.c \
 
 FILES = $(addprefix $(SRC_FOLDER)/, \
 	main.c \
+	push_swap.c \
+	push_swap_utils.c \
 	parse_input.c \
 	parsing_check/is_number.c \
 	parsing_check/is_int.c \
@@ -18,7 +20,7 @@ OBJS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.o))
 DEPS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.d))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(HEADER_FOLDER)
+CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(HEADER_FOLDER) -I$(LIBFT_HEADER_FOLDER) -g3
 
 LIBFT_FOLDER = libft
 LIBFT_HEADERS = include
@@ -41,7 +43,7 @@ $(NAME):	$(OBJS) $(LIBFT_ARCHIVE)
 
 $(BUILD_FOLDER)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -I$(LIBFT_HEADER_FOLDER) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT_ARCHIVE):
 	make -C $(LIBFT_FOLDER)
