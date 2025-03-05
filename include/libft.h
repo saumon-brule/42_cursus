@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/04 23:37:57 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/05 17:54:12 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -316,6 +316,24 @@ void	*ft_memset(void *s, int c, size_t n);
 /*************************************************/
 
 /**
+ * @brief Get the index of the first occurence of the char c in the string s.
+ * @param s The string to search in
+ * @param c The character to look for
+ * @return The index of c in s or -1 if not found.
+ */
+ssize_t	ft_indexof(const char *s, char c);
+
+/**
+ * @brief Get the index of the first occurence of the char c in the n first char
+ * of the string s.
+ * @param s The string to search in
+ * @param c The character to look for
+ * @param n The number of charcter max to search in
+ * @return The index of c in s or -1 if not found.
+ */
+ssize_t	ft_nindexof(const char *s, char c, size_t n);
+
+/**
  * @brief Split a string s into substring for every character c. The result
  * can't contain any empty string.
  * @param s The string to split
@@ -383,8 +401,6 @@ int		ft_printf(const char *format, ...)
 
 int		ft_dprintf(int fd, const char *format, ...)
 		__attribute__((format(printf, 2, 3)));
-
-char	*get_next_line(int fd);
 
 # define LIBFT_H
 #endif
