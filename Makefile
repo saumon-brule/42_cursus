@@ -86,18 +86,18 @@ STRING_FILES = ft_split.c \
 	ft_tolower.c
 
 VECTOR_FOLDER = vector
-VECTOR_FILES = char/cvec_create.c \
-	char/cvec_destroy.c \
-	char/cvec_get.c \
-	char/cvec_pop.c \
-	char/cvec_print.c \
-	char/cvec_push.c \
-	int/ivec_create.c \
+VECTOR_FILES = int/ivec_create.c \
 	int/ivec_destroy.c \
 	int/ivec_get.c \
 	int/ivec_pop.c \
 	int/ivec_print.c \
 	int/ivec_push.c
+#	char/cvec_create.c \
+#	char/cvec_destroy.c \
+#	char/cvec_get.c \
+#	char/cvec_pop.c \
+#	char/cvec_print.c \
+#	char/cvec_push.c \
 
 FILES = $(addprefix $(SRC_FOLDER)/, \
 	$(addprefix $(CONVERTER_FOLDER)/, $(CONVERTER_FILES)) \
