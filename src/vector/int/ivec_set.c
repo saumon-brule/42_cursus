@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ivec_pop.c                                         :+:      :+:    :+:   */
+/*   ivec_set.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 16:33:13 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/05 17:57:55 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/03/03 16:35:43 by ebini             #+#    #+#             */
+/*   Updated: 2025/03/05 17:57:14 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "vector.h"
 
-int	ivec_pop(t_ivector *vector)
+void	ivec_set(t_ivector *vector, ssize_t index, int value)
 {
-	--vector->len;
-	return (vector->data[vector->len]);
+	if (index < 0)
+		vector->data[vector->len + index] = value;
+	vector->data[index] = value;
 }

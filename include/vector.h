@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saumon <saumon@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 07:33:43 by saumon            #+#    #+#             */
-/*   Updated: 2025/03/03 22:15:18 by saumon           ###   ########lyon.fr   */
+/*   Updated: 2025/03/05 17:59:15 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,6 @@ typedef struct s_cvector
 	size_t	len;
 }			t_cvector;
 
-t_cvector	*cvec_create(char *array, size_t len);
-int			cvec_init(t_cvector *vector, char *array, size_t len);
-int			cvec_push(t_cvector *vector, char element);
-char		cvec_get(t_cvector *vector, ssize_t index);
-char		cvec_pop(t_cvector *vector);
-void		cvec_print(int fd, t_cvector *vector);
-void		cvec_clear(t_cvector *vector);
-void		cvec_destroy(t_cvector *vector);
-
 typedef struct s_ivector
 {
 	int		*data;
@@ -41,6 +32,7 @@ typedef struct s_ivector
 t_ivector	*ivec_create(int *array, size_t len);
 int			ivec_init(t_ivector *vector, int *array, size_t len);
 int			ivec_push(t_ivector *vector, int element);
+void		ivec_set(t_ivector *vector, ssize_t index, int value);
 int			ivec_get(t_ivector *vector, ssize_t index);
 int			ivec_pop(t_ivector *vector);
 void		ivec_print(int fd, t_ivector *vector);
