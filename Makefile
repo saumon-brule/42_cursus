@@ -87,12 +87,14 @@ STRING_FILES = ft_split.c \
 
 VECTOR_FOLDER = vector
 VECTOR_FILES = int/ivec_create.c \
-	int/ivec_destroy.c \
+	int/ivec_push.c \
 	int/ivec_set.c \
 	int/ivec_get.c \
+	int/ivec_includes.c \
+	int/ivec_index.c \
 	int/ivec_pop.c \
 	int/ivec_print.c \
-	int/ivec_push.c
+	int/ivec_destroy.c
 #	char/cvec_create.c \
 #	char/cvec_destroy.c \
 #	char/cvec_get.c \

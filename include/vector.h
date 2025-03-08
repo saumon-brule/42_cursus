@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 07:33:43 by saumon            #+#    #+#             */
-/*   Updated: 2025/03/05 17:59:15 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/08 10:47:33 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int			ivec_init(t_ivector *vector, int *array, size_t len);
 int			ivec_push(t_ivector *vector, int element);
 void		ivec_set(t_ivector *vector, ssize_t index, int value);
 int			ivec_get(t_ivector *vector, ssize_t index);
+bool		ivec_includes(t_ivector *vector, int el);
+ssize_t		ivec_index(t_ivector *vector, int el);
 int			ivec_pop(t_ivector *vector);
 void		ivec_print(int fd, t_ivector *vector);
 void		ivec_clear(t_ivector *vector);
