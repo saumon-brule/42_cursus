@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_input.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 08:46:47 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/04 18:13:22 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/03/04 08:30:31 by ebini            #+#    #+#             */
+/*   Updated: 2025/03/04 08:45:59 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 #include "libft.h"
 #include "vector.h"
-#include "push_swap.h"
 
-int	parse_input(int ac, char **av, t_ivector *vector)
+int	main(int ac, char **av)
 {
-	int	i;
+	t_ivector	stack_a;
+	t_ivector	stack_b;
 
-	i = 0;
-	while (++i < ac)
-		if (!is_number(av[i]) || !is_int(av[i]))
-			return (1);
-	ivec_init(vector, NULL, ac - 1);
-	i = 0;
-	while (++i < ac)
-		ivec_push(vector, ft_atoi(av[i]));
-	return (0);
+	if (parse_input(ac, av, &stack_a) || ivec_init(&stack_b, NULL, stack_a.len))
+	{
+		ft_dprintf(2, "Error\n");
+		return (1);
+	}
+	push_swap(&stack_a, &stack_b);
+	ivec_clear(&stack_a);
+	ivec_clear(&stack_b);
 }

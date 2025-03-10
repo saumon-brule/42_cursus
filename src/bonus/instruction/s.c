@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   s.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 06:29:08 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/05 08:19:30 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/03/06 00:39:47 by ebini             #+#    #+#             */
+/*   Updated: 2025/03/10 14:02:51 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 #include "libft.h"
 
-int	get_push_pos(t_ivector *stack, int el)
+static int	s(t_ivector *stack)
 {
-	int	i;
-	int	old;
-	int	new;
+	int	tmp;
 
-	if (!stack->len)
-		return (0);
-	i = 0;
-	old = ivec_get(stack, i);
-	while (++i < (int)stack->len)
-	{
-		new = ivec_get(stack, i);
-		if (old < new)
-			break;
-		old = new;
-	}
-	i *= i < (int)stack->len;
-	while (i < (int)stack->len && el < ivec_get(stack, i))
-		i = (i + 1) % stack->len;
-	return (i);
+	if (stack->len < 2)
+		return (1);
+	tmp = ivec_get(stack, 0);
+	ivec_set(stack, 0, ivec_get(stack, 1));
+	ivec_set(stack, 1, tmp);
+	return (0);
+}
+
+int	sa(t_ivector *stack_a)
+{
+	return (s(stack_a));
+}
+
+int	sb(t_ivector *stack_b)
+{
+	return (s(stack_b));
+}
+
+int	ss(t_ivector *stack_a, t_ivector *stack_b)
+{
+	return (s(stack_a) || s(stack_b));
 }
