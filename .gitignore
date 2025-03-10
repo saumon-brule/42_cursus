@@ -67,4 +67,5 @@ test/
 push_swap_tester
 checker_linux
 tester
+checker
 push_swap
