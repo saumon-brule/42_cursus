@@ -6,11 +6,13 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/05 17:54:12 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/10 13:11:35 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
+# define LIBFT_H
+
 # include "defs.h"
 
 /*************************************************/
@@ -402,5 +404,6 @@ int		ft_printf(const char *format, ...)
 int		ft_dprintf(int fd, const char *format, ...)
 		__attribute__((format(printf, 2, 3)));
 
-# define LIBFT_H
+char	*get_next_line(int fd);
+
 #endif
