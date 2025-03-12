@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 14:51:33 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/11 17:57:20 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/10 18:18:26 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,10 @@ int	init_input(char *param, bool here_doc)
 	if (fd == -1)
 	{
 		if (here_doc)
-		{
 			perror("pipex");
-			return (-1);
-		}
-		ft_dprintf(2, "pipex: %s: %s\n", strerror(errno), param);
-		return (-2);
+		else
+			ft_dprintf(2, "pipex: %s: %s\n", strerror(errno), param);
+		return (-1);
 	}
 	return (fd);
 }
