@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saumon <saumon@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 02:40:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/26 02:51:21 by saumon           ###   ########lyon.fr   */
+/*   Updated: 2025/03/19 00:05:25 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,76 +15,43 @@
 #include "so_long.h"
 #include "settings.h"
 
-#include <stdio.h>	
+#include <stdio.h>
 
-void	calc_area(t_player *player, t_vec movement,
-	t_index *start, t_area *size)
+void	update_nearest_collision(t_game *game, t_segment *vertice_movement,
+	t_collision *nearest_collision)
 {
-	const t_point	next_pos = {
-		player->pos.x + movement.x, player->pos.y + movement.y};
-
-	if (player->pos.x < next_pos.x)
+	t_collision	vertice_collision;
+	
+	vertice_collision = get_nearest_vertice_collision(game, vertice_movement);
+	if (vertice_collision.collides)
 	{
-		start->x = (int)(player->pos.x / CELL_SIZE);
-		size->w = 1 + (int)(next_pos.x / CELL_SIZE) - start->x;
-	}
-	else
-	{
-		start->x = (int)(next_pos.x / CELL_SIZE);
-		size->w = 1 + (int)(player->pos.x / CELL_SIZE) - start->x;
-	}
-	if (player->pos.y < next_pos.y)
-	{
-		start->y = (int)(player->pos.y / CELL_SIZE);
-		size->h = 1 + (int)(next_pos.y / CELL_SIZE - start->y);
-	}
-	else
-	{
-		start->y = (int)(next_pos.y / CELL_SIZE);
-		size->h = 1 + (int)(player->pos.y / CELL_SIZE - start->y);
+		if (!nearest_collision->collides)
+			*nearest_collision = vertice_collision;
+		else if (player_square_distance(game->player,
+			&(vertice_collision.index)) < player_square_distance(game->player,
+			&(nearest_collision->index)))
+			*nearest_collision = vertice_collision;
 	}
 }
 
-t_index	update_nearest_collision(t_player *player, t_vec movement,
-	t_index area_pos, t_index nearest_collision)
+t_collision	get_nearest_collision(t_game *game, t_vec movement)
 {
-	if (check_player_movement_square(player, movement,
-			area_pos.x, area_pos.y))
-	{
-		if (nearest_collision.x == -1
-			|| player_square_distance(player, area_pos)
-			< player_square_distance(player, nearest_collision))
-			nearest_collision = area_pos;
-	}
-	return (nearest_collision);
-}
+	const t_player	*player = game->player;
+	t_collision		nearest_collision;
+	t_segment		vertice_movement;
 
-t_index	get_nearest_collision(t_map *map, t_player *player, t_vec movement)
-{
-	t_index	area_pos;
-	t_area	area_size;
-	int		area_width;
-	t_index	current_pos;
-	t_index	nearest_collision;
-
-	nearest_collision = (t_index){-1, -1};
-	calc_area(player, movement, &area_pos, &area_size);
-	// printf("%d:%d:%d:%d\n", area_pos.x, area_pos.y, area_size.w, area_size.h);
-	area_width = area_size.w;
-	while (area_size.h--)
-	{
-		area_size.w = area_width;
-		while (area_size.w--)
-		{
-			current_pos.x = area_pos.x + area_size.w;
-			current_pos.y = area_pos.y + area_size.h;
-			// printf("%d:%d:%d:%d\n", area_pos.x, area_pos.y, area_size.w, area_size.h);
-			if (get_map(map, current_pos.x, current_pos.y) != '0')
-			{
-				nearest_collision = update_nearest_collision(player, movement,
-					current_pos, nearest_collision);
-			}
-		}
-	}
+	nearest_collision.collides = false;
+	vertice_movement.vec = movement;
+	vertice_movement.pos = player->pos;
+	update_nearest_collision(game, &vertice_movement, &nearest_collision);
+	vertice_movement.pos = (t_point){player->pos.x + player->width,
+		player->pos.y};
+	update_nearest_collision(game, &vertice_movement, &nearest_collision);
+	vertice_movement.pos = (t_point){player->pos.x,
+		player->pos.y + player->height};
+	update_nearest_collision(game, &vertice_movement, &nearest_collision);
+	vertice_movement.pos = (t_point){player->pos.x + player->width,
+		player->pos.y + player->height};
+	update_nearest_collision(game, &vertice_movement, &nearest_collision);
 	return (nearest_collision);
 }

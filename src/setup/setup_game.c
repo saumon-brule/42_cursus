@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   setup_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 03:56:47 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/20 09:12:45 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/02/26 17:17:02 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#include "mlx.h"
 #include <X11/X.h>
 
 #include "so_long.h"

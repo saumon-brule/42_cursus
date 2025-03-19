@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_img_on_screen.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saumon <saumon@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 10:27:57 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/25 19:30:29 by saumon           ###   ########lyon.fr   */
+/*   Updated: 2025/03/18 15:32:30 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#include "mlx.h"
 
 #include "so_long_defs.h"
 #include "geometry.h"
@@ -19,8 +19,6 @@
 
 void	handle_pixel_cpy(char *dest, char *src, int bpp_dest, int bpp_src)
 {
-	// if (bpp_dest == 32 && bpp_src == 32)
-	// 	return ;
 	dest[0] = src[0];
 	dest[1] = src[1];
 	dest[2] = src[2];
@@ -51,7 +49,7 @@ void	put_pixel_on_screen(t_game *game, char *pixel, t_point pos, int bpp)
 		while (++i < game->scale)
 		{
 			x = pos.x * game->scale + i;
-			if (x < 0 || x > game->displayed->width)
+			if (x < 0 || x >= game->displayed->width)
 				continue ;
 			handle_pixel_cpy(game->displayed->data
 				+ (y_pos + x * (game->displayed->bpp / 8)),

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   geometry.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 17:57:26 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/23 10:42:49 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/14 15:52:17 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,12 @@ typedef struct s_area
 	int	w;
 	int	h;
 }			t_area;
+
+typedef struct s_collision
+{
+	bool	collides;
+	t_point	pos;
+	t_index	index;
+}			t_collision;
 
 #endif

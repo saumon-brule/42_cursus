@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <mlx.h>
+#include "mlx.h"
 
 #include "libft.h"
 #include "so_long.h"
@@ -25,8 +25,7 @@ int	main(int ac, char **av)
 
 	if (ac > 1)
 	{
-		game = init_game(ac, av);
-		if (!game)
+		if (init_game(ac, av, &game))
 			return (EXIT_FAILURE);
 		parse_result = parse_map(game, av[1]);
 		if (parse_result)
@@ -38,6 +37,7 @@ int	main(int ac, char **av)
 		}
 		if (setup_game(game))
 			return (EXIT_FAILURE);
+		ft_printf("%d\n", game->settings->debug_enabled);
 		mlx_loop(game->mlx);
 	}
 	ft_dprintf(2, "Invalid number of parameters\n");

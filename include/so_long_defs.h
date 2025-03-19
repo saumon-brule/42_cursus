@@ -20,9 +20,6 @@
 # include "mlx_defs.h"
 # include "geometry.h"
 
-typedef void*			t_mlx;
-typedef void*			t_win;
-
 typedef struct s_player
 {
 	t_point		pos;
@@ -52,16 +49,32 @@ typedef struct s_sprites
 	t_img	*coin;
 }			t_sprites;
 
+typedef struct s_input_map
+{
+	bool	k_f3;
+}			t_input_map;
+
+typedef struct s_settings
+{
+	bool	debug_enabled;
+}			t_settings;
+
+typedef void			t_mlx;
+typedef void			t_win;
+
 typedef struct s_game
 {
-	t_mlx		mlx;
-	t_win		win;
+	t_mlx		*mlx;
+	t_win		*win;
 	t_img		*displayed;
 	t_player	*player;
 	t_map		*map;
 	t_time		last_time;
 	t_sprites	*sprites;
+	t_settings	*settings;
+	t_input_map	*input_map;
 	int			frames;
+	double		dt;
 	int			scale;
 }						t_game;
 

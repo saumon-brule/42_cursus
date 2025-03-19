@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.h                                            :+:      :+:    :+:   */
+/*   ivec_pop.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/23 09:16:15 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/23 10:58:57 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/03/03 16:33:13 by ebini             #+#    #+#             */
+/*   Updated: 2025/03/05 17:57:55 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLEAN_H
-# define CLEAN_H
+#include "vector.h"
 
-enum e_crash_state
+int	ivec_pop(t_ivector *vector)
 {
-	STATE_PARSE = 0,
-	STATE_IMAGES,
-};
-
-#endif
+	--vector->len;
+	return (vector->data[vector->len]);
+}

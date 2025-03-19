@@ -1,7 +1,7 @@
 NAME = so_long
 BUILD_FOLDER = .build
 SRC_FOLDER = src
-INCLUDE_FOLDER = includes
+INCLUDE_FLAGS = -Iinclude
 
 FILES =	$(addprefix $(SRC_FOLDER)/, \
 	main.c \
@@ -9,37 +9,51 @@ FILES =	$(addprefix $(SRC_FOLDER)/, \
 	events/on_key_release.c \
 	events/on_destroy.c \
 	init/init_game.c \
+	init/init_player.c \
+	init/init_mlx.c \
+	init/init_sprites.c \
+	init/init_settings.c \
 	setup/setup_game.c \
 	map/parse_map.c \
 	map/get_map_errors.c \
 	map/handle_map.c \
-	maths/check_collision.c \
+	maths/check_segment_square_collision.c \
 	maths/geometry.c \
 	update/collisions.c \
 	update/time.c \
 	update/update.c \
+	update/get_nearest_vertice_collision.c \
 	draw/draw_img_on_screen.c \
 	draw/draw_game.c \
 	draw/draw_map.c \
 	draw/draw_player.c \
 	exit/clean.c \
+	exit/clean_game_init.c \
+	exit/free_mlx.c \
 	exit/exit_game.c \
+	debug/put_debug_pixel.c \
+	debug/draw_line.c \
 )
 
 OBJS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.o))
 DEPS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.d))
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -MD -MP -I$(INCLUDE_FOLDER) -pg
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -MD -MP $(INCLUDE_FLAGS) -g3
 
 LIBFT_FOLDER = libft
 LIBFT_ARCHIVE = libft.a
+LIBFT_INCLUDE_FLAGS = -I$(LIBFT_FOLDER)/include
 LIBFT_FLAGS = -L$(LIBFT_FOLDER) -l$(shell echo $(LIBFT_ARCHIVE) | cut -c4- | rev | cut -c3- | rev)
+
+MLX_FOLDER = mlx
+MLX_ARCHIVE = libmlx.a
+MLX_INCLUDE_FLAGS = -I$(MLX_FOLDER)
+MLX_FLAGS = -L$(MLX_FOLDER) -l$(shell echo $(MLX_ARCHIVE) | cut -c4- | rev | cut -c3- | rev)
 
 # MLX_FOLDER = minilibx
 # MLX_ARCHIVE = libmlx.a
 # MLX_FLAGS = -L$(MLX_FOLDER) -l$(shell echo $(MLX_ARCHIVE) | cut -c4- | rev | cut -c3- | rev)
-MLX_FLAGS = -lmlx
 
 MATHS_FLAGS = -lm
 
@@ -48,19 +62,19 @@ X11_FLAGS = -L/usr/lib -lX11 -lXext
 MAKEFLAGS = --no-print-directory
 
 TEST = test.out
-TEST_FLAGS = -Wall -Wextra -Werror -g3 -I$(INCLUDE_FOLDER)
+TEST_FLAGS = -Wall -Wextra -Werror -g3 $(INCLUDE_FLAGS)
 TEST_MAIN = main.test.c
 
 .PHONY: all clean fclean re test compile
 
 all:	$(NAME)
 
-$(NAME):	$(OBJS) $(LIBFT_ARCHIVE)
+$(NAME):	$(OBJS) $(LIBFT_ARCHIVE) $(MLX_ARCHIVE)
 	$(CC) -o $(NAME) $(OBJS) $(LIBFT_FLAGS) $(MLX_FLAGS) $(X11_FLAGS) $(MATHS_FLAGS)
 
 $(BUILD_FOLDER)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(LIBFT_INCLUDE_FLAGS) $(MLX_INCLUDE_FLAGS) -c $< -o $@
 
 $(LIBFT_ARCHIVE):
 	make -C $(LIBFT_FOLDER)

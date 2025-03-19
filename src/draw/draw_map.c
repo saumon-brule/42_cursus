@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saumon <saumon@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 17:33:30 by saumon            #+#    #+#             */
-/*   Updated: 2025/02/25 21:31:00 by saumon           ###   ########lyon.fr   */
+/*   Updated: 2025/02/26 17:17:02 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#include "mlx.h"
 
 #include "so_long.h"
 #include "settings.h"

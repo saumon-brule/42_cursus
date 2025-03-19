@@ -42,7 +42,9 @@ MATHS_FOLDER = maths
 MATHS_FILES = arrmax.c \
 	arrmin.c \
 	max.c \
-	min.c
+	min.c \
+	maxs.c \
+	mins.c
 
 LIST_FOLDER = list
 LIST_FILES = lstadd_back.c \
@@ -83,6 +85,23 @@ STRING_FILES = ft_split.c \
 	ft_toupper.c \
 	ft_tolower.c
 
+VECTOR_FOLDER = vector
+VECTOR_FILES = int/ivec_create.c \
+	int/ivec_push.c \
+	int/ivec_set.c \
+	int/ivec_get.c \
+	int/ivec_includes.c \
+	int/ivec_index.c \
+	int/ivec_pop.c \
+	int/ivec_print.c \
+	int/ivec_destroy.c
+#	char/cvec_create.c \
+#	char/cvec_destroy.c \
+#	char/cvec_get.c \
+#	char/cvec_pop.c \
+#	char/cvec_print.c \
+#	char/cvec_push.c \
+
 FILES = $(addprefix $(SRC_FOLDER)/, \
 	$(addprefix $(CONVERTER_FOLDER)/, $(CONVERTER_FILES)) \
 	$(addprefix $(FREE_FOLDER)/, $(FREE_FILES)) \
@@ -93,6 +112,7 @@ FILES = $(addprefix $(SRC_FOLDER)/, \
 	$(addprefix $(MATHS_FOLDER)/, $(MATHS_FILES)) \
 	$(addprefix $(MEMORY_FOLDER)/, $(MEMORY_FILES)) \
 	$(addprefix $(STRING_FOLDER)/, $(STRING_FILES)) \
+	$(addprefix $(VECTOR_FOLDER)/, $(VECTOR_FILES)) \
 )
 
 OBJS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.o))
@@ -128,7 +148,7 @@ fclean: clean
 re: fclean 
 	$(MAKE) all
 
-$(TEST_NAME): fclean
+$(TEST_NAME):
 	@$(MAKE) -s $(NAME) CFLAGS="$(CFLAGS) -g3"
 	@$(CC) $(TEST_FLAGS) $(TEST_FILE) $(NAME) -g3 -o $(TEST_NAME)
 

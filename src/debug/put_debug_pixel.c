@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   defs.h                                             :+:      :+:    :+:   */
+/*   put_debug_pixel.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/07 16:22:00 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/22 21:37:37 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/03/15 19:21:39 by ebini             #+#    #+#             */
+/*   Updated: 2025/03/18 23:41:16 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEFS_H
-# include <limits.h>
-# include <stdbool.h>
-# include <stddef.h>
-# include <sys/types.h>
+#include "so_long.h"
 
-# define MEMORY_SIZE 4096
+#include <stdio.h>
 
-typedef struct s_list
+void	put_debug_pixel(t_game *game, t_point pos)
 {
-	void			*content;
-	struct s_list	*next;
-}		t_list;
-
-# define DEFS_H
-#endif
+	put_pixel_on_screen(game, (char []){0, 0, 255, 255}, pos, 32);
+}
