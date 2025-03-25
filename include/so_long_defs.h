@@ -59,6 +59,11 @@ typedef struct s_settings
 	bool	debug_enabled;
 }			t_settings;
 
+typedef struct s_debug
+{
+	t_segment	vertice_movements[4];
+}			t_debug;
+
 typedef void			t_mlx;
 typedef void			t_win;
 
@@ -73,6 +78,7 @@ typedef struct s_game
 	t_sprites	*sprites;
 	t_settings	*settings;
 	t_input_map	*input_map;
+	t_debug		*debug;
 	int			frames;
 	double		dt;
 	int			scale;

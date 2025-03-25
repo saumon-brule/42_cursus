@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 06:24:41 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/19 00:35:56 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/24 22:33:41 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,41 @@
 
 #include <stdio.h>
 
-void	move_player(t_game *game, double dt)
+void	stick_player(t_player *player, t_point hit, int vertice_index)
 {
+	if (vertice_index == 0)
+		player->pos = hit;
+	else if (vertice_index == 1)
+		player->pos = (t_point){hit.x - player->width, hit.y};
+	else if (vertice_index == 2)
+		player->pos = (t_point){hit.x, hit.y - player->height};
+	else
+		player->pos = (t_point){hit.x - player->width, hit.y - player->height};
+}
+
+void	move_player(t_game *game, double dt, t_segment *vertice_movement_array)
+{
+	t_player			*player;
 	const t_vec			movement = {
 		game->player->speed.x * dt,
 		game->player->speed.y * dt
 	};
-	const t_collision	collision = get_nearest_collision(game, movement);
+	const t_collision	collision = get_nearest_collision(game, movement,
+		vertice_movement_array);
 
+	player = game->player;
 	if (collision.collides)
-		printf("colliding with : %c\n", get_map(game->map, collision.index.x, collision.index.y));
-	game->player->pos.x += game->player->speed.x * dt;
-	game->player->pos.y += game->player->speed.y * dt;
+	{
+		stick_player(player, collision.pos, collision.vertice_index);
+		player->speed.x *= fabs((collision.pos.x / CELL_SIZE) - round(collision.pos.x / CELL_SIZE)) < fabs((collision.pos.y / CELL_SIZE) - round(collision.pos.y / CELL_SIZE));
+		player->speed.y *= fabs((collision.pos.y / CELL_SIZE) - round(collision.pos.y / CELL_SIZE)) < fabs((collision.pos.x / CELL_SIZE) - round(collision.pos.x / CELL_SIZE));
+	}
+	else
+	{
+		player->pos.x += movement.x;
+		player->pos.y += movement.y;
+	}
+	printf("%.3f;%.3f\n", player->speed.x, player->speed.y);
 }
 
 void	update_player_speed(t_player *player, double dt)
@@ -89,7 +112,7 @@ int	main_loop(t_game *game)
 	game->dt = wait_for_frame(&(game->last_time));
 	if (game->frames)
 		exit_game(game);
-	move_player(game, game->dt);
+	move_player(game, game->dt, game->debug->vertice_movements);
 	update_player_speed(game->player, game->dt);
 	// printf("====STATS====\n");
 	// printf("pos: %.3f:%.3f\n", game->player->pos.x, game->player->pos.y);

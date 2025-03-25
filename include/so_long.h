@@ -20,11 +20,12 @@
 bool		init_mlx(t_game *game);
 bool		init_sprites(t_game *game);
 bool		init_player(t_game *game);
-bool		init_input_map(t_game *game);
+bool		init_settings(t_game *game);
 bool		init_game(int ac, char **av, t_game **game);
 
 //        MAP         //
 
+void		set_map(t_map *map, size_t x, size_t y, char value);
 char		get_map(t_map *map, size_t x, size_t y);
 int			parse_map(t_game *game, char *map_file);
 char		*get_map_errors(int map_error_num);
@@ -32,8 +33,9 @@ char		*get_map_errors(int map_error_num);
 //       MATHS        //
 
 t_collision	check_segment_square_collision(t_segment *segment,
-			t_square *square);
+				t_square *square);
 double		player_square_distance(t_player *player, t_index *square_position);
+double		point_distance(t_point *a, t_point *b);
 
 //       SETUP        //
 
@@ -42,16 +44,18 @@ int			setup_game(t_game *game);
 //       UPDATE       //
 
 void		calc_area(t_segment *segment, t_map *map,
-			t_index *start, t_area *size);
+				t_index *start, t_area *size);
 t_collision	get_nearest_vertice_collision(t_game *game,
-			t_segment *vertice_movement);
-t_collision	get_nearest_collision(t_game *game, t_vec movement);
+				t_segment *vertice_movement);
+t_collision	get_nearest_collision(t_game *game, t_vec movement,
+				t_segment *vertice_movement_array);
 double		wait_for_frame(t_time *last_time);
 int			main_loop(t_game *game);
 
 //        DRAW        //
 
-void		put_pixel_on_screen(t_game *game, char *pixel, t_point pos, int bpp);
+void		put_pixel_on_screen(t_game *game, char *pixel, t_point pos,
+				int bpp);
 bool		draw_game(t_game *game);
 void		draw_img_on_screen(t_img *img, t_game *game, t_point pos);
 void		draw_map(t_game *game);

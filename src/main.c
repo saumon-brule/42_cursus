@@ -37,7 +37,9 @@ int	main(int ac, char **av)
 		}
 		if (setup_game(game))
 			return (EXIT_FAILURE);
-		ft_printf("%d\n", game->settings->debug_enabled);
+		ft_printf("%p\n", game);
+		ft_printf("%p\n", game->settings);
+		// ft_printf("%d\n", game->settings->debug_enabled);
 		mlx_loop(game->mlx);
 	}
 	ft_dprintf(2, "Invalid number of parameters\n");

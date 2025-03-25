@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 01:56:46 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/18 23:06:35 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/24 19:14:32 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	init_game(int ac, char **av, t_game **game)
 		return (clean(*game, STATE_PLAYER));
 	if (init_sprites(*game))
 		return (clean(*game, STATE_SPRITES));
-	if (init_input_map(*game))
+	if (init_settings(*game))
 		return (clean(*game, STATE_INPUT));
 	(*game)->scale = get_scale(ac, av);
 	return (false);

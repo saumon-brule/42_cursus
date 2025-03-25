@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 02:19:49 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/19 15:19:28 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/24 18:06:47 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,28 @@ void	calc_area(t_segment *segment, t_map *map, t_index *start, t_area *size)
 void	update_nearest_vertice_collision(t_segment *vertice_movement,
 	t_index square_pos, t_collision *collision)
 {
-	t_collision new_collision;
+	t_collision	new_collision;
 	t_square	current_square;
 
-	ft_printf("TITS\n");
 	current_square.pos.x = square_pos.x * CELL_SIZE;
 	current_square.pos.y = square_pos.y * CELL_SIZE;
 	current_square.size = CELL_SIZE;
 	new_collision = check_segment_square_collision(vertice_movement,
-		&current_square);
-	if (new_collision.collides
-		&& sqrt(pow(new_collision.pos.x, 2) + pow(new_collision.pos.y, 2))
-		< sqrt(pow(collision->pos.x, 2) + pow(collision->pos.y, 2)))
+			&current_square);
+	if (new_collision.collides)
 	{
-		*collision = new_collision;
-		collision->index = square_pos;
+		if (!collision->collides
+			|| point_distance(&(vertice_movement->pos), &(new_collision.pos))
+			< point_distance(&(vertice_movement->pos), &(collision->pos)))
+		{
+			*collision = new_collision;
+			collision->index = square_pos;
+		}
 	}
 }
 
-t_collision	get_nearest_vertice_collision(t_game *game, t_segment *vertice_movement)
+t_collision	get_nearest_vertice_collision(t_game *game,
+	t_segment *vertice_movement)
 {
 	t_index		area_pos;
 	t_area		area_size;

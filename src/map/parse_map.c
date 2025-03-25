@@ -83,10 +83,10 @@ int	fill_map(t_map *map, int map_fd)
 
 int	parse_map(t_game *game, char *map_file)
 {
-	int			map_fd;
+	const int	map_fd = open(map_file, O_RDONLY);
 	int			result;
+	int			i;
 
-	map_fd = open(map_file, O_RDONLY);
 	if (map_fd == -1)
 	{
 		ft_dprintf(2, "parse_map: %s: %s", strerror(errno), map_file);
@@ -104,10 +104,12 @@ int	parse_map(t_game *game, char *map_file)
 	if (result)
 		free(game->map);
 	close(map_fd);
-	int	i = 0;
+	i = 0;
 	while (game->map->data[i] != 'P')
 		++i;
-	game->player->pos.x = (double)((i % game->map->width) * CELL_SIZE) + ((double)CELL_SIZE - (double)game->player->width) / 2.0;
-	game->player->pos.y = (double)((i / game->map->height - 1) * CELL_SIZE) + ((double)CELL_SIZE - (double)game->player->height) / 2.0;
+	game->player->pos.x = (double)((i % game->map->width) * CELL_SIZE)
+		+ ((double)CELL_SIZE - (double)game->player->width) / 2.0;
+	game->player->pos.y = (double)((i / game->map->height - 1) * CELL_SIZE)
+		+ ((double)CELL_SIZE - (double)game->player->height) / 2.0;
 	return (result);
 }

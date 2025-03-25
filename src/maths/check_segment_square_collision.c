@@ -6,13 +6,13 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 20:41:16 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/18 17:30:26 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/25 01:04:32 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
-#include "so_long_defs.h"
+#include "so_long.h"
 #include "settings.h"
 #include "libft.h"
 
@@ -46,12 +46,15 @@ void	update_segment_square_collision(t_segment *segment, t_segment *edge,
 	t_collision	intersection;
 
 	intersection = segment_intersection(segment, edge);
-	if (intersection.collides && (!collision->collides
-		|| sqrt(pow(intersection.pos.x, 2) + pow(intersection.pos.y, 2)
-		< sqrt(pow(collision->pos.x, 2) + pow(collision->pos.y, 2)))))
+	if (intersection.collides)
 	{
-		collision->pos.x = intersection.pos.x;
-		collision->pos.y = intersection.pos.y;
+		if (!collision->collides
+			|| point_distance(&(segment->pos), &(intersection.pos))
+			< point_distance(&(segment->pos), &(collision->pos)))
+		{
+			collision->collides = true;
+			collision->pos = intersection.pos;
+		}
 	}
 }
 
@@ -61,8 +64,6 @@ t_collision	check_segment_square_collision(t_segment *segment, t_square *square)
 	t_collision	collision;
 
 	collision.collides = false;
-	collision.index.x = -1;
-	collision.index.y = -1;
 	edge.pos = square->pos;
 	edge.vec = (t_vec){0, square->size};
 	update_segment_square_collision(segment, &edge, &collision);

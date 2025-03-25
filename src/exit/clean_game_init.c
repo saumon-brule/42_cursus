@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 22:23:17 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/18 23:10:46 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/24 19:02:31 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	clean_to_input(t_game *game)
 
 int	clean_to_parse(t_game *game)
 {
+	free(game->settings);
 	free(game->input_map);
+	free(game->debug);
 	return (clean_to_input(game));
 }
