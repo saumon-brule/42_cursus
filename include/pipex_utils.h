@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 02:01:37 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/05 19:35:10 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/27 13:50:58 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,18 @@
 # define WSQ  0b00000010
 # define ASQ  0b00000001
 
+typedef struct s_exec
+{
+	int		ac;
+	char	**av;
+	char	**env;
+}			t_exec;
+
 typedef struct s_pipex_fd
 {
-	int	in;
 	int	out;
-	int	next_out;
-	int	last_out;
+	int	in;
+	int	next_in;
 }			t_pipex_fd;
 
 /**
@@ -62,19 +68,19 @@ size_t	count_args(char *s);
  * @brief Will change pipe fd position according to their values. The read
  * fd will be set to the next one, the new write fd will be closed and a new
  * pipe will be created to replace the write and next read fd.
- * @param fd_arr And array of fd. The first one is the read fd, the second
- * one is the write fd and the last one is the next read fd
+ * @param pipe_fd A struct of type t_pipex_fd
+ * @param is_last A bool telling if it is swapping fd for the last process
  * @return 0 if everything is good. -1 if there was an error with pipe.
  */
-int		swap_fd(t_pipex_fd *pipe_fd);
+int		swap_fd(t_pipex_fd *pipe_fd, bool is_last);
 
 /**
  * @brief Uses dup2 to make fd new point on the same file as fd old and then
- * delete old.
- * @param old A deleted fd
+ * close old.
  * @param new A fd redirected to old
+ * @param old A closed fd
  */
-int		change_fd(int old, int new);
+int		change_fd(int new, int old);
 
 /**
  * @brief Tells if a character is a separator or not.
@@ -156,7 +162,7 @@ size_t	var_name_len(char *s);
  */
 size_t	var_len(char *s);
 
-int		pipex_fork(t_pipex_fd *pipe_fd, int pc, char **pv, char **env);
+int		pipex_fork(t_pipex_fd *pipe_fd, t_exec *args, bool here_doc);
 
 /**
  * @brief This function will exec a raw command as if it was parsed by the shell
@@ -167,6 +173,6 @@ int		pipex_fork(t_pipex_fd *pipe_fd, int pc, char **pv, char **env);
  */
 int		exec_shell(char *cmd, char **env);
 
-int		pipex(int pc, char **pv, char **env, bool here_doc);
+int		pipex(t_exec *args, bool here_doc);
 
 #endif
