@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 20:09:22 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/12 13:24:52 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/27 18:38:41 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,13 @@ int	parse_command(char *cmd, char *path, char **result)
 	folders = ft_split(path, ':');
 	if (!folders)
 		return (1);
-	status = find_command(folders, cmd, result);
+	if (*cmd)
+		status = find_command(folders, cmd, result);
+	else
+	{
+		status = 127;
+		ft_dprintf(2, "pipex: command not found: \n");
+	}
 	free_split(folders);
 	return (status);
 }
