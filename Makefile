@@ -25,6 +25,7 @@ DEPS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.d))
 
 LIBFT_FOLDER = libft
 LIBFT_ARCHIVE = libft.a
+LIBFT = $(LIBFT_FOLDER)/$(LIBFT_ARCHIVE)
 LIBFT_NAME = ft
 
 INCLUDE_FLAGS = $(addprefix -I, $(INCLUDE_FOLDER))
@@ -33,18 +34,18 @@ CFLAGS = -Wall -Wextra -Werror -g3 -MD -MP $(INCLUDE_FLAGS)
 
 MAKEFLAGS = --no-print-directory
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus FORCE
 
 all:	$(NAME)
 
-$(NAME):	$(OBJS) $(LIBFT_ARCHIVE)
+$(NAME):	$(OBJS) $(LIBFT)
 	$(CC) $(OBJS) -g3 -o $(NAME) -L$(LIBFT_FOLDER) -l$(LIBFT_NAME)
 
 $(BUILD_FOLDER)/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(LIBFT_ARCHIVE):
+$(LIBFT): FORCE
 	$(MAKE) -C $(LIBFT_FOLDER)
 
 clean:
