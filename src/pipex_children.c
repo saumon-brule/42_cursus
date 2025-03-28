@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:21:27 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/27 15:56:31 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/28 16:38:53 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	exit_child(t_pipex_fd *pipe_fd, int exit_code)
 		close(pipe_fd->in);
 	if (pipe_fd->out > -1)
 		close(pipe_fd->out);
-	free(pipe_fd);
 	exit(exit_code);
 }
 
@@ -62,7 +61,6 @@ void	child_process(t_pipex_fd *pipe_fd, t_exec *args, int index,
 	status = exec_shell(args->av[index], args->env);
 	close(pipe_fd->out);
 	close(pipe_fd->in);
-	free(pipe_fd);
 	exit(status);
 }
 

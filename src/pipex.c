@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 14:51:33 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/27 15:56:10 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/28 16:39:04 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,20 @@ int	init_input(char *param, bool here_doc)
 	return (fd);
 }
 
-int	init_pipex(t_pipex_fd **pipe_fd, char *param, bool here_doc)
+int	init_pipex(t_pipex_fd *pipe_fd, char *param, bool here_doc)
 {
 	int	tmp_fd[2];
 
-	*pipe_fd = malloc(sizeof(t_pipex_fd));
-	if (!*pipe_fd)
-	{
-		perror("pipex");
-		return (1);
-	}
-	(*pipe_fd)->in = init_input(param, here_doc);
+	pipe_fd->in = init_input(param, here_doc);
 	if (pipe(tmp_fd) == -1)
 	{
 		perror("pipex");
-		if ((*pipe_fd)->in > -1)
-			close((*pipe_fd)->in);
-		free(*pipe_fd);
+		if (pipe_fd->in > -1)
+			close(pipe_fd->in);
 		return (1);
 	}
-	(*pipe_fd)->out = tmp_fd[1];
-	(*pipe_fd)->next_in = tmp_fd[0];
+	pipe_fd->out = tmp_fd[1];
+	pipe_fd->next_in = tmp_fd[0];
 	return (0);
 }
 
@@ -72,7 +65,6 @@ int	exit_pipex(t_pipex_fd *pipe_fd, pid_t last_pid, bool pipe_error)
 	close(pipe_fd->next_in);
 	if (!pipe_error)
 		close(pipe_fd->in);
-	free(pipe_fd);
 	if (pipe_error)
 		return (1);
 	waitpid(last_pid, &stat_loc, 0);
@@ -90,13 +82,13 @@ int	exit_pipex(t_pipex_fd *pipe_fd, pid_t last_pid, bool pipe_error)
 
 int	pipex(t_exec *args, bool here_doc)
 {
-	t_pipex_fd	*pipe_fd;
+	t_pipex_fd	pipe_fd;
 	pid_t		last_pid;
 
 	if (init_pipex(&pipe_fd, args->av[0], here_doc) == 1)
 		return (1);
-	last_pid = pipex_fork(pipe_fd, args, here_doc);
+	last_pid = pipex_fork(&pipe_fd, args, here_doc);
 	if (last_pid == -1)
-		return (exit_pipex(pipe_fd, last_pid, true));
-	return (exit_pipex(pipe_fd, last_pid, false));
+		return (exit_pipex(&pipe_fd, last_pid, true));
+	return (exit_pipex(&pipe_fd, last_pid, false));
 }
