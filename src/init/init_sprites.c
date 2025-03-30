@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 23:39:39 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/18 21:50:23 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/30 06:12:30 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,10 @@ t_img	*new_xpm_img(t_game *game, char *path)
 
 bool	init_sprites(t_game *game)
 {
-	game->sprites = malloc(sizeof(t_sprites));
-	if (!game->sprites)
-	{
-		perror("init_sprites");
-		return (true);
-	}
-	game->sprites->air = new_xpm_img(game, TEXTURE_AIR);
-	game->sprites->wall = new_xpm_img(game, TEXTURE_WALL);
-	game->sprites->coin = new_xpm_img(game, TEXTURE_COIN);
-	if (!game->sprites->air || !game->sprites->wall || !game->sprites->coin)
+	game->sprites.air = new_xpm_img(game, TEXTURE_AIR);
+	game->sprites.wall = new_xpm_img(game, TEXTURE_WALL);
+	game->sprites.coin = new_xpm_img(game, TEXTURE_COIN);
+	if (!game->sprites.air || !game->sprites.wall || !game->sprites.coin)
 	{
 		clean_sprites(game);
 		return (true);

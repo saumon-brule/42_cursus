@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 04:30:38 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/26 17:17:02 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/30 06:15:23 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@
 
 void	exit_game(t_game *game)
 {
-	free(game->map->data);
-	free(game->map);
+	free(game->map.data);
 	clean_sprites(game);
-	mlx_destroy_image(game->mlx, game->player->sprite);
+	mlx_destroy_image(game->mlx, game->player.sprite);
 	mlx_destroy_image(game->mlx, game->displayed);
-	free(game->player);
+	mlx_destroy_image(game->mlx, game->background);
 	mlx_destroy_window(game->mlx, game->win);
 	clean_mlx(game->mlx);
-	free(game);
 	exit(EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 06:24:41 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/24 22:33:41 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/30 07:08:21 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	move_player(t_game *game, double dt, t_segment *vertice_movement_array)
 {
 	t_player			*player;
 	const t_vec			movement = {
-		game->player->speed.x * dt,
-		game->player->speed.y * dt
+		game->player.speed.x * dt,
+		game->player.speed.y * dt
 	};
 	const t_collision	collision = get_nearest_collision(game, movement,
 		vertice_movement_array);
 
-	player = game->player;
+	player = &(game->player);
 	if (collision.collides)
 	{
 		stick_player(player, collision.pos, collision.vertice_index);
@@ -110,10 +110,10 @@ void	show_fps(double dt)
 int	main_loop(t_game *game)
 {
 	game->dt = wait_for_frame(&(game->last_time));
-	if (game->frames)
-		exit_game(game);
-	move_player(game, game->dt, game->debug->vertice_movements);
-	update_player_speed(game->player, game->dt);
+	// if (game->frames)
+	// 	exit_game(game);
+	move_player(game, game->dt, game->debug.vertice_movements);
+	update_player_speed(&(game->player), game->dt);
 	// printf("====STATS====\n");
 	// printf("pos: %.3f:%.3f\n", game->player->pos.x, game->player->pos.y);
 	// show_fps(dt);

@@ -20,8 +20,7 @@
 bool		init_mlx(t_game *game);
 bool		init_sprites(t_game *game);
 bool		init_player(t_game *game);
-bool		init_settings(t_game *game);
-bool		init_game(int ac, char **av, t_game **game);
+bool		init_game(int ac, char **av, t_game *game);
 
 //        MAP         //
 
@@ -39,6 +38,8 @@ double		point_distance(t_point *a, t_point *b);
 
 //       SETUP        //
 
+void		init_settings(t_game *game);
+t_time		init_last_time();
 int			setup_game(t_game *game);
 
 //       UPDATE       //
@@ -64,13 +65,10 @@ void		draw_player(t_game *game);
 //        CLEAN       //
 
 void		clean_sprites(t_game *game);
-int			clean_to_mlx(t_game *game);
 int			clean_to_player(t_game *game);
 int			clean_to_sprites(t_game *game);
-int			clean_to_input(t_game *game);
-int			clean_to_parse(t_game *game);
+int			clean_to_parsing(t_game *game);
 void		clean_mlx(t_mlx *mlx);
-int			clean(t_game *game, unsigned int state);
 
 //        EXIT        //
 

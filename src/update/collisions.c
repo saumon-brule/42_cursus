@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 02:40:04 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/24 20:51:55 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/30 06:34:50 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	update_nearest_collision(t_game *game, t_segment *vertice_movement,
 	{
 		if (!nearest_collision->collides)
 			*nearest_collision = vertice_collision;
-		else if (player_square_distance(game->player,
+		else if (player_square_distance(&(game->player),
 				&(vertice_collision.index)) < player_square_distance(
-				game->player, &(nearest_collision->index)))
+				&(game->player), &(nearest_collision->index)))
 			*nearest_collision = vertice_collision;
 	}
 }
@@ -38,7 +38,7 @@ void	update_nearest_collision(t_game *game, t_segment *vertice_movement,
 t_collision	get_nearest_collision(t_game *game, t_vec movement,
 		t_segment *vertice_movement_array)
 {
-	const t_player	*player = game->player;
+	const t_player	*player = &(game->player);
 	t_collision		nearest_collision;
 	t_segment		vertice_movement;
 
@@ -48,16 +48,16 @@ t_collision	get_nearest_collision(t_game *game, t_vec movement,
 	// printf("%.3f, %.3f\n", vertice_movement.vec.x, vertice_movement.vec.y);
 	vertice_movement_array[0] = vertice_movement;
 	update_nearest_collision(game, &vertice_movement, &nearest_collision, 0);
-	vertice_movement.pos = (t_point){player->pos.x + player->width,
+	vertice_movement.pos = (t_point){player->pos.x + player->width - 1,
 		player->pos.y};
 	vertice_movement_array[1] = vertice_movement;
 	update_nearest_collision(game, &vertice_movement, &nearest_collision, 1);
 	vertice_movement.pos = (t_point){player->pos.x,
-		player->pos.y + player->height};
+		player->pos.y + player->height - 1};
 	vertice_movement_array[2] = vertice_movement;
 	update_nearest_collision(game, &vertice_movement, &nearest_collision, 2);
-	vertice_movement.pos = (t_point){player->pos.x + player->width,
-		player->pos.y + player->height};
+	vertice_movement.pos = (t_point){player->pos.x + player->width - 1,
+		player->pos.y + player->height - 1};
 	vertice_movement_array[3] = vertice_movement;
 	update_nearest_collision(game, &vertice_movement, &nearest_collision, 3);
 	return (nearest_collision);

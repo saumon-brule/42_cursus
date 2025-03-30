@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 02:19:49 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/24 18:06:47 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/30 06:35:55 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_collision	get_nearest_vertice_collision(t_game *game,
 	t_collision	collision;
 
 	collision.collides = false;
-	calc_area(vertice_movement, game->map, &area_pos, &area_size);
+	calc_area(vertice_movement, &(game->map), &area_pos, &area_size);
 	area_width = area_size.w;
 	while (area_size.h--)
 	{
@@ -87,7 +87,7 @@ t_collision	get_nearest_vertice_collision(t_game *game,
 		{
 			current_pos.x = area_pos.x + area_size.w;
 			current_pos.y = area_pos.y + area_size.h;
-			if (get_map(game->map, current_pos.x, current_pos.y) != '0')
+			if (get_map(&(game->map), current_pos.x, current_pos.y) != '0')
 			{
 				update_nearest_vertice_collision(vertice_movement, current_pos,
 					&collision);

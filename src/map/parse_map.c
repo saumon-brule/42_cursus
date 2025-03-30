@@ -92,24 +92,15 @@ int	parse_map(t_game *game, char *map_file)
 		ft_dprintf(2, "parse_map: %s: %s", strerror(errno), map_file);
 		return (-1);
 	}
-	game->map = malloc(sizeof(t_map));
-	if (!game->map)
-	{
-		perror("parse_map");
-		close(map_fd);
-		return (-1);
-	}
-	game->map->height = 0;
-	result = fill_map(game->map, map_fd);
-	if (result)
-		free(game->map);
+	game->map.height = 0;
+	result = fill_map(&(game->map), map_fd);
 	close(map_fd);
 	i = 0;
-	while (game->map->data[i] != 'P')
+	while (game->map.data[i] != 'P')
 		++i;
-	game->player->pos.x = (double)((i % game->map->width) * CELL_SIZE)
-		+ ((double)CELL_SIZE - (double)game->player->width) / 2.0;
-	game->player->pos.y = (double)((i / game->map->height - 1) * CELL_SIZE)
-		+ ((double)CELL_SIZE - (double)game->player->height) / 2.0;
+	game->player.pos.x = (double)((i % game->map.width) * CELL_SIZE)
+		+ ((double)CELL_SIZE - (double)game->player.width) / 2.0;
+	game->player.pos.y = (double)((i / game->map.height - 1) * CELL_SIZE)
+		+ ((double)CELL_SIZE - (double)game->player.height) / 2.0;
 	return (result);
 }

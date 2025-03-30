@@ -20,27 +20,24 @@
 
 int	main(int ac, char **av)
 {
-	t_game	*game;
+	t_game	game;
 	int		parse_result;
 
 	if (ac > 1)
 	{
 		if (init_game(ac, av, &game))
 			return (EXIT_FAILURE);
-		parse_result = parse_map(game, av[1]);
+		parse_result = parse_map(&game, av[1]);
 		if (parse_result)
 		{
 			if (parse_result > 0)
 				ft_dprintf(2, "[\033[91mPARSING ERROR\033[0m] - %s\n",
 					get_map_errors(parse_result));
-			return (clean(game, STATE_PARSE));
+			return (clean_to_parsing(&game));
 		}
-		if (setup_game(game))
+		if (setup_game(&game))
 			return (EXIT_FAILURE);
-		ft_printf("%p\n", game);
-		ft_printf("%p\n", game->settings);
-		// ft_printf("%d\n", game->settings->debug_enabled);
-		mlx_loop(game->mlx);
+		mlx_loop((game.mlx));
 	}
 	ft_dprintf(2, "Invalid number of parameters\n");
 	return (EXIT_FAILURE);

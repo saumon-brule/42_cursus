@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 01:47:36 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/21 15:14:57 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/03/29 20:35:32 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 // KEYS //
 
-# define SET_AZERTY_MAPPING
+// # define SET_AZERTY_MAPPING
 
 # ifdef SET_AZERTY_MAPPING
 #  define GAME_KEY_LEFT XK_q
