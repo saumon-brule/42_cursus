@@ -16,7 +16,6 @@
 
 #include "libft.h"
 #include "so_long.h"
-#include "clean.h"
 
 int	main(int ac, char **av)
 {
@@ -33,11 +32,14 @@ int	main(int ac, char **av)
 			if (parse_result > 0)
 				ft_dprintf(2, "[\033[91mPARSING ERROR\033[0m] - %s\n",
 					get_map_errors(parse_result));
-			return (clean_to_parsing(&game));
+			clean_sprites(&game);
+			clean_game_struct(&game);
+			return (1);
 		}
 		if (setup_game(&game))
 			return (EXIT_FAILURE);
-		mlx_loop((game.mlx));
+		draw_game(&game);
+		mlx_loop(game.mlx);
 	}
 	ft_dprintf(2, "Invalid number of parameters\n");
 	return (EXIT_FAILURE);

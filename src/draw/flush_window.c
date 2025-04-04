@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_settings.c                                    :+:      :+:    :+:   */
+/*   flush.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 22:05:41 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/30 07:09:07 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/04/03 04:47:25 by ebini             #+#    #+#             */
+/*   Updated: 2025/04/03 04:51:33 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-
+#include "mlx.h"
 #include "so_long_defs.h"
-#include "libft.h"
 
-void	init_settings(t_game *game)
+void	flush_window(t_game *game)
 {
-	game->settings.debug_enabled = false;
+	mlx_put_image_to_window(game->mlx, game->win, game->displayed, 0, 0);
 }

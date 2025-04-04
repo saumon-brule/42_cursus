@@ -5,34 +5,27 @@ INCLUDE_FLAGS = -Iinclude
 
 FILES =	$(addprefix $(SRC_FOLDER)/, \
 	main.c \
-	events/on_key_press.c \
-	events/on_key_release.c \
-	events/on_destroy.c \
 	init/init_game.c \
-	init/init_player.c \
-	init/init_mlx.c \
 	init/init_sprites.c \
-	init/init_settings.c \
+	events/on_key_press.c \
+	events/on_destroy.c \
 	setup/setup_game.c \
+	update/handle_tile.c \
+	update/move_player.c \
 	map/parse_map.c \
 	map/get_map_errors.c \
 	map/handle_map.c \
-	maths/check_segment_square_collision.c \
-	maths/geometry.c \
-	update/collisions.c \
-	update/time.c \
-	update/update.c \
-	update/get_nearest_vertice_collision.c \
+	map/parse_util.c \
+	map/check_map.c \
+	map/flood_map.c \
+	map/flood_map_utils.c \
 	draw/draw_img_on_screen.c \
 	draw/draw_game.c \
 	draw/draw_map.c \
 	draw/draw_player.c \
-	exit/clean.c \
-	exit/clean_game_init.c \
-	exit/free_mlx.c \
+	draw/flush_window.c \
 	exit/exit_game.c \
-	debug/put_debug_pixel.c \
-	debug/draw_line.c \
+	exit/clean.c \
 )
 
 OBJS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.o))
@@ -55,7 +48,7 @@ MLX_FLAGS = -L$(MLX_FOLDER) -l$(shell echo $(MLX_ARCHIVE) | cut -c4- | rev | cut
 # MLX_ARCHIVE = libmlx.a
 # MLX_FLAGS = -L$(MLX_FOLDER) -l$(shell echo $(MLX_ARCHIVE) | cut -c4- | rev | cut -c3- | rev)
 
-MATHS_FLAGS = -lm
+# MATHS_FLAGS = -lm
 
 X11_FLAGS = -L/usr/lib -lX11 -lXext
 

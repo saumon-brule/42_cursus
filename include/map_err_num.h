@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_err_num.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ebini <ebini@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 02:28:10 by ebini             #+#    #+#             */
-/*   Updated: 2025/02/20 20:05:30 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/04/03 07:44:38 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ enum e_map_errors
 	MAP_OPEN_MAP,
 	MAP_NO_START,
 	MAP_NO_EXIT,
+	MAP_TOO_MUCH_START,
+	MAP_TOO_MUCH_EXIT,
 	MAP_NO_COIN,
-	MAP_COIN_OOB
+	MAP_COIN_OOB,
+	MAP_EXIT_OOB,
+	MAP_TOO_BIG_MAP,
 };
 
 #endif

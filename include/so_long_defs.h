@@ -13,56 +13,30 @@
 #ifndef SO_LONG_DEFS_H
 # define SO_LONG_DEFS_H
 
-# include <time.h>
-# include <sys/time.h>
-
 # include "defs.h"
 # include "mlx_defs.h"
-# include "geometry.h"
 
-typedef struct s_player
+typedef struct s_tuple
 {
-	t_point		pos;
-	t_vec		speed;
-	t_vec		acc;
-	int			width;
-	int			height;
-	bool		is_grounded;
-	bool		is_walled;
-	t_img		*sprite;
-}						t_player;
+	size_t	x;
+	size_t	y;
+}			t_tuple;
 
 typedef struct s_map
 {
 	char	*data;
-	int		width;
-	int		height;
+	size_t	width;
+	size_t	height;
 }						t_map;
-
-typedef struct timeval	t_time;
-typedef struct timespec	t_sleep;
 
 typedef struct s_sprites
 {
 	t_img	*wall;
 	t_img	*air;
 	t_img	*coin;
+	t_img	*exit;
+	t_img	*player;
 }			t_sprites;
-
-typedef struct s_input_map
-{
-	bool	k_f3;
-}			t_input_map;
-
-typedef struct s_settings
-{
-	bool	debug_enabled;
-}			t_settings;
-
-typedef struct s_debug
-{
-	t_segment	vertice_movements[4];
-}			t_debug;
 
 typedef void			t_mlx;
 typedef void			t_win;
@@ -72,17 +46,12 @@ typedef struct s_game
 	t_mlx		*mlx;
 	t_win		*win;
 	t_img		*displayed;
-	t_img		*background;
-	t_player	player;
-	t_map		map;
-	t_time		last_time;
 	t_sprites	sprites;
-	t_settings	settings;
-	t_input_map	input_map;
-	t_debug		debug;
-	int			frames;
-	double		dt;
+	int			action_count;
 	int			scale;
+	t_map		map;
+	size_t		coins;
+	t_tuple		player_pos;
 }						t_game;
 
 typedef struct s_img_data
@@ -91,6 +60,13 @@ typedef struct s_img_data
 	int		endian;
 	int		width;
 	void	*data;
-}						t_img_data;
+}			t_img_data;
+
+typedef struct s_map_checker
+{
+	ssize_t	p_pos;
+	ssize_t	e_pos;
+	size_t	c_count;
+}			t_map_checker;
 
 #endif

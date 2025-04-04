@@ -17,66 +17,52 @@
 
 //        INIT        //
 
-bool		init_mlx(t_game *game);
-bool		init_sprites(t_game *game);
-bool		init_player(t_game *game);
-bool		init_game(int ac, char **av, t_game *game);
+bool	init_game(int ac, char **av, t_game *game);
+bool	init_sprites(t_game *game);
 
 //        MAP         //
 
-void		set_map(t_map *map, size_t x, size_t y, char value);
-char		get_map(t_map *map, size_t x, size_t y);
-int			parse_map(t_game *game, char *map_file);
-char		*get_map_errors(int map_error_num);
+void	set_map(t_map *map, size_t x, size_t y, char value);
+char	get_map(t_map *map, size_t x, size_t y);
+int		parse_map(t_game *game, char *map_file);
+char	*get_map_errors(int map_error_num);
+int		check_map(t_game *game);
+t_list	*flood_node_create(t_tuple pos);
+void	flood_node_del_first(t_list **lst);
+int		flood_map(t_map *map, t_tuple pos, t_map_checker *checker);
+t_map	*duplicate_map(t_map *map);
+void	clear_map(t_map *map);
 
-//       MATHS        //
+//       UTILS        //
 
-t_collision	check_segment_square_collision(t_segment *segment,
-				t_square *square);
-double		player_square_distance(t_player *player, t_index *square_position);
-double		point_distance(t_point *a, t_point *b);
+void	convert_line_to_string(char *line);
 
 //       SETUP        //
 
-void		init_settings(t_game *game);
-t_time		init_last_time();
-int			setup_game(t_game *game);
-
-//       UPDATE       //
-
-void		calc_area(t_segment *segment, t_map *map,
-				t_index *start, t_area *size);
-t_collision	get_nearest_vertice_collision(t_game *game,
-				t_segment *vertice_movement);
-t_collision	get_nearest_collision(t_game *game, t_vec movement,
-				t_segment *vertice_movement_array);
-double		wait_for_frame(t_time *last_time);
-int			main_loop(t_game *game);
+int		setup_game(t_game *game);
 
 //        DRAW        //
 
-void		put_pixel_on_screen(t_game *game, char *pixel, t_point pos,
-				int bpp);
-bool		draw_game(t_game *game);
-void		draw_img_on_screen(t_img *img, t_game *game, t_point pos);
-void		draw_map(t_game *game);
-void		draw_player(t_game *game);
+bool	draw_game(t_game *game);
+void	draw_img_on_screen(t_img *img, t_game *game, t_tuple pos);
+void	draw_map(t_game *game);
+void	draw_tile(t_game *game, t_map *map, int x, int y);
+void	draw_player(t_game *game);
+void	flush_window(t_game *game);
+
+//         MOVE       //
+
+void	move_player(t_game *game, int dx, int dy);
+bool	handle_tile(char tile, t_game *game, t_tuple new_pos);
 
 //        CLEAN       //
 
-void		clean_sprites(t_game *game);
-int			clean_to_player(t_game *game);
-int			clean_to_sprites(t_game *game);
-int			clean_to_parsing(t_game *game);
-void		clean_mlx(t_mlx *mlx);
+void	clean_game_struct(t_game *game);
+void	clean_sprites(t_game *game);
+void	clean_mlx(t_mlx *mlx);
 
 //        EXIT        //
 
-void		exit_game(t_game *game);
-
-//        DEBUG       //
-
-void		put_debug_pixel(t_game *game, t_point pos);
-void		draw_line(t_game *game, t_segment *line);
+void	exit_game(t_game *game);
 
 #endif

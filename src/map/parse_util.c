@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_debug_pixel.c                                  :+:      :+:    :+:   */
+/*   parse_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/15 19:21:39 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/18 23:41:16 by ebini            ###   ########lyon.fr   */
+/*   Created: 2025/04/03 06:02:19 by ebini             #+#    #+#             */
+/*   Updated: 2025/04/03 06:07:12 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-#include <stdio.h>
-
-void	put_debug_pixel(t_game *game, t_point pos)
+void	convert_line_to_string(char *line)
 {
-	put_pixel_on_screen(game, (char []){0, 0, 255, 255}, pos, 32);
+	const size_t	line_len = ft_strlen(line);
+
+	if (line[line_len - 1] == '\n')
+		line[line_len - 1] = '\0';
 }

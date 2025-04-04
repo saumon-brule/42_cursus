@@ -6,14 +6,13 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 10:27:57 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/18 15:32:30 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/04/03 03:04:32 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 
 #include "so_long_defs.h"
-#include "geometry.h"
 
 #include <stdio.h>
 
@@ -30,7 +29,7 @@ void	handle_pixel_cpy(char *dest, char *src, int bpp_dest, int bpp_src)
 		dest[3] = (char)255;
 }
 
-void	put_pixel_on_screen(t_game *game, char *pixel, t_point pos, int bpp)
+void	put_pixel_on_screen(t_game *game, char *pixel, t_tuple pos, int bpp)
 {
 	int		i;
 	int		j;
@@ -61,15 +60,13 @@ void	put_pixel_on_screen(t_game *game, char *pixel, t_point pos, int bpp)
 /**
  * In this function we admit that the screen is the final image displayed on the
  * "real" screen of the user (so it is already scaled) and that the img is not
- * scaled. This is usefull because it will allow every calculation of physic and
- * speed to not need  and it will only be the camera's properties that will 
- * change.
+ * scaled.
  */
-void	draw_img_on_screen(t_img *img, t_game *game, t_point pos)
+void	draw_img_on_screen(t_img *img, t_game *game, t_tuple pos)
 {
 	int		i;
 	int		j;
-	t_point	screen_pos;
+	t_tuple	screen_pos;
 
 	j = -1;
 	while (++j < img->height)
