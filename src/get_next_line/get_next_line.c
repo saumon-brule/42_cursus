@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 03:50:32 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/20 22:23:19 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/04/05 17:19:55 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ int	strjoin_nl(char **s1, t_reader *reader)
 	result = malloc(pre_len + suf_len + 1);
 	if (!result)
 		return (-1);
-	ft_strncpy(*s1, result, pre_len);
-	ft_strncpy(suffix, result + pre_len, suf_len);
+	ft_memcpy(result, *s1, pre_len);
+	ft_memcpy(result + pre_len, suffix, suf_len);
 	result[pre_len + suf_len] = '\0';
 	reader->pos += suf_len;
 	if (*s1)
 		free(*s1);
 	*s1 = result;
-	return (!(result[pre_len + suf_len - 1] == '\n'));
+	return (result[pre_len + suf_len - 1] != '\n');
 }
 
 int	secure_read(int fd, t_reader *reader, size_t buffer_size, char *result)

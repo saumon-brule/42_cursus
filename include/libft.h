@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/10 13:11:35 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/04/05 17:20:17 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -364,7 +364,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_strcpy(const char *src, char *dest);
 size_t	ft_strcpy_len(const char *src, char *dest);
-void	ft_strncpy(const char *src, char *dest, size_t n);
+void	ft_strncpy(char *dest, const char *src, size_t n);
 char	*ft_strdup(const char *s);
 char	*ft_strndup(const char *s, size_t n);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
