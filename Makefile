@@ -83,7 +83,10 @@ STRING_FILES = ft_split.c \
 	ft_strtrim.c \
 	ft_substr.c \
 	ft_toupper.c \
-	ft_tolower.c
+	ft_tolower.c \
+	starts_by.c \
+	ends_by.c
+
 
 VECTOR_FOLDER = vector
 VECTOR_FILES = int/ivec_create.c \
