@@ -98,6 +98,11 @@ int	parse_map(t_game *game, char *map_file)
 	const int	map_fd = open(map_file, O_RDONLY);
 	int			result;
 
+	if (!ends_by(map_file, ".ber"))
+	{
+		ft_dprintf(2, "invalid file name: %s\n", map_file);
+		return (-1);
+	}
 	if (map_fd == -1)
 	{
 		ft_dprintf(2, "parse_map: %s: %s\n", strerror(errno), map_file);
