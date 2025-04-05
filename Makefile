@@ -32,7 +32,7 @@ OBJS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.o))
 DEPS = $(addprefix $(BUILD_FOLDER)/, $(FILES:.c=.d))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MD -MP $(INCLUDE_FLAGS) -g3
+CFLAGS = -Wall -Wextra -Werror -MD -MP $(INCLUDE_FLAGS)
 
 LIBFT_FOLDER = libft
 LIBFT_ARCHIVE = libft.a
@@ -73,12 +73,11 @@ $(MLX): FORCE
 
 clean:
 	rm -rf $(BUILD_FOLDER)
-# $(MAKE) -C $(MLX_FOLDER) clean
+	$(MAKE) -C $(LIBFT_FOLDER) clean
+	$(MAKE) -C $(MLX_FOLDER) clean
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_FOLDER) fclean
-	$(MAKE) -C $(MLX_FOLDER) clean
 
 re: fclean
 	$(MAKE) all
