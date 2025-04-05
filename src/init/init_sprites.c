@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 23:39:39 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/05 18:20:08 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/04/05 18:46:23 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_img	*new_xpm_img(t_game *game, char *path)
 	t_img	*result;
 	int		dummy_int;
 
-	result = mlx_xpm_file_to_image(game->mlx, path, &dummy_int, &dummy_int);;
+	result = mlx_xpm_file_to_image(game->mlx, path, &dummy_int, &dummy_int);
 	if (!result)
 		ft_dprintf(2, "init_sprites: %s: %s\n", strerror(errno), path);
 	return (result);
