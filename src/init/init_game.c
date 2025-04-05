@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 11:52:55 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/03 06:45:35 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/04/05 18:28:53 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ bool	init_game_struct(t_game *game)
 	if (!game->displayed)
 	{
 		perror("init_game");
-		clean_mlx(game->mlx);
 		mlx_destroy_window(game->mlx, game->win);
+		clean_mlx(game->mlx);
 		return (true);
 	}
 	return (false);
@@ -49,11 +49,15 @@ int	get_scale(int ac, char **av)
 	int	scale;
 
 	if (ac < 3)
-		return (1);
+		return (DEFAULT_SCALE);
 	scale = ft_atoi(av[2]);
 	if (scale > 0)
+	{
+		if (scale > MAX_SCALE)
+			return (MAX_SCALE);
 		return (scale);
-	return (1);
+	}
+	return (DEFAULT_SCALE);
 }
 
 void	init_game_values(int ac, char **av, t_game *game)

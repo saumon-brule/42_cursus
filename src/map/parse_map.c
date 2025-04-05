@@ -42,8 +42,8 @@ int	join_line_to_map(t_map *map, char *line)
 		perror("join_line_to_map");
 		return (-1);
 	}
-	ft_strncpy(map->data, new_data, map->height * map->width);
-	ft_strncpy(line, new_data + map->height * map->width, map->width);
+	ft_strncpy(new_data, map->data, map->height * map->width);
+	ft_strncpy(new_data + map->height * map->width, line, map->width);
 	free(map->data);
 	map->data = new_data;
 	if (++(map->height) > INT_MAX)
@@ -100,7 +100,7 @@ int	parse_map(t_game *game, char *map_file)
 
 	if (map_fd == -1)
 	{
-		ft_dprintf(2, "parse_map: %s: %s", strerror(errno), map_file);
+		ft_dprintf(2, "parse_map: %s: %s\n", strerror(errno), map_file);
 		return (-1);
 	}
 	game->map.height = 0;
@@ -108,6 +108,8 @@ int	parse_map(t_game *game, char *map_file)
 	close(map_fd);
 	if (result)
 		return (result);
+	if (!game->map.data)
+		return (MAP_EMPTY_FILE);
 	result = check_map(game);
 	if (result)
 		free(game->map.data);

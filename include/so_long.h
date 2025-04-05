@@ -39,11 +39,11 @@ void	convert_line_to_string(char *line);
 
 //       SETUP        //
 
-int		setup_game(t_game *game);
+void	setup_game(t_game *game);
 
 //        DRAW        //
 
-bool	draw_game(t_game *game);
+void	draw_game(t_game *game);
 void	draw_img_on_screen(t_img *img, t_game *game, t_tuple pos);
 void	draw_map(t_game *game);
 void	draw_tile(t_game *game, t_map *map, int x, int y);
