@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:51 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/05 17:20:17 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/04/05 19:41:14 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -372,6 +372,8 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*strjoinall(size_t count, ...);
 size_t	ft_strlen(const char *s);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+bool	starts_by(const char *s, const char *pattern);
+bool	ends_by(const char *s, const char *pattern);
 
 /**
  * @brief Delete every characters of set at the beginning and the end of s.
