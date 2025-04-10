@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 14:51:33 by ebini             #+#    #+#             */
-/*   Updated: 2025/03/28 16:39:04 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/04/10 18:10:47 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ int	exit_pipex(t_pipex_fd *pipe_fd, pid_t last_pid, bool pipe_error)
 		return (WEXITSTATUS(stat_loc));
 	else if (WIFSIGNALED(stat_loc))
 		return (WTERMSIG(stat_loc) + 128);
-	else if (WIFSTOPPED(stat_loc))
-		return (WSTOPSIG(stat_loc));
 	else
 		return (1);
 }
