@@ -6,7 +6,7 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:51:33 by ebini             #+#    #+#             */
-/*   Updated: 2025/01/27 04:08:26 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/04/14 11:28:56 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,23 @@
 void	*lstpop(t_list **lst)
 {
 	void	*content;
-	t_list	*lst_parent;
-	t_list	*local_lst;
+	t_list	*parent;
+	t_list	*last;
 
-	local_lst = *lst;
-	if (!local_lst)
+	last = *lst;
+	if (!last)
 		return (NULL);
-	lst_parent = NULL;
-	while (local_lst->next)
+	parent = NULL;
+	while (last->next)
 	{
-		lst_parent = local_lst;
-		local_lst = local_lst->next;
+		parent = last;
+		last = last->next;
 	}
-	content = local_lst->content;
-	if (lst_parent)
-		lst_parent->next = NULL;
-	free(local_lst);
+	content = last->content;
+	if (parent)
+		parent->next = NULL;
+	else
+		*lst = NULL;
+	free(last);
 	return (content);
 }
