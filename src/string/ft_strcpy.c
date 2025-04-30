@@ -6,13 +6,13 @@
 /*   By: ebini <ebini@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:09:30 by ebini             #+#    #+#             */
-/*   Updated: 2025/04/05 17:19:31 by ebini            ###   ########lyon.fr   */
+/*   Updated: 2025/04/30 21:51:23 by ebini            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strcpy(const char *src, char *dest)
+void	ft_strcpy(char *dest, const char *src)
 {
 	size_t	i;
 
@@ -22,7 +22,7 @@ void	ft_strcpy(const char *src, char *dest)
 	dest[i] = '\0';
 }
 
-size_t	ft_strcpy_len(const char *src, char *dest)
+size_t	ft_strcpy_len(char *dest, const char *src)
 {
 	size_t	i;
 
