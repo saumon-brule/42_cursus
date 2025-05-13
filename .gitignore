@@ -64,3 +64,4 @@ test/
 .build/
 *.a
 tester
+.build_type.mk
